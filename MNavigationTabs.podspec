@@ -88,6 +88,7 @@ Pod::Spec.new do |s|
   #
   s.source_files = 'MNavigationTabs/Sources/**/*'
   s.exclude_files = "Classes/Exclude"
+  s.resources = 'MNavigationTabs/Sources/**/*.xib'
 
   # s.public_header_files = "Classes/**/*.h"
 

@@ -15,6 +15,7 @@ class MNavigationTabsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        label.textColor = color
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,10 +39,10 @@ class MNavigationTabsViewController: UIViewController {
 @IBDesignable extension MNavigationTabsViewController {
     @IBInspectable var labelTextColor: UIColor? {
         set {
-            label.textColor = newValue
+            color = newValue
         }
         get {
-            return label.textColor
+            return color
         }
     }
 }
