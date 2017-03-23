@@ -11,8 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MNavigationTabsViewController" customModule="MNavigationTabs" customModuleProvider="target">
             <connections>
-                <outlet property="label" destination="h6j-2T-Tbt" id="nqn-5v-9ZP"/>
+                <outlet property="tabsScrollView" destination="uDp-tq-YPN" id="iqP-Yg-HX1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewControllersScrollView" destination="Ax5-yD-bA2" id="9H0-Po-PxN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,18 +21,27 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6j-2T-Tbt">
-                    <rect key="frame" x="166" y="323" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uDp-tq-YPN" userLabel="Tabs Scroll View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="xex-sh-Hh0"/>
+                    </constraints>
+                </scrollView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ax5-yD-bA2" userLabel="ViewController Scroll View">
+                    <rect key="frame" x="0.0" y="33" width="375" height="634"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="h6j-2T-Tbt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2YJ-H0-Slj"/>
-                <constraint firstItem="h6j-2T-Tbt" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="R1g-JU-fGa"/>
+                <constraint firstItem="Ax5-yD-bA2" firstAttribute="top" secondItem="uDp-tq-YPN" secondAttribute="bottom" id="5Vo-Iq-m0W"/>
+                <constraint firstItem="Ax5-yD-bA2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="76O-2j-P0g"/>
+                <constraint firstAttribute="trailing" secondItem="Ax5-yD-bA2" secondAttribute="trailing" id="FUr-KX-hbf"/>
+                <constraint firstAttribute="bottom" secondItem="Ax5-yD-bA2" secondAttribute="bottom" id="IHn-9G-LjD"/>
+                <constraint firstItem="uDp-tq-YPN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Imp-hV-V8G"/>
+                <constraint firstItem="uDp-tq-YPN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eH1-jF-nhq"/>
+                <constraint firstAttribute="trailing" secondItem="uDp-tq-YPN" secondAttribute="trailing" id="z7G-qo-13h"/>
             </constraints>
+            <point key="canvasLocation" x="35.5" y="53.5"/>
         </view>
     </objects>
 </document>
