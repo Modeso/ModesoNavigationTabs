@@ -12,14 +12,14 @@ public class MNavigationTabsViewController: UIViewController {
 
     var color: UIColor!
     @IBOutlet weak var label: UILabel!
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         label.textColor = color
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
