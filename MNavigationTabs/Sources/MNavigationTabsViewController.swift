@@ -12,12 +12,16 @@ public class MNavigationTabsViewController: UIViewController {
 
     var color: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     var tabWidth: CGFloat = 111.0
-    var viewControllersArray: [UIViewController] = [] {
+    public var viewControllersArray: [UIViewController] = [] {
         didSet {
-            adjustviewControllersScrollView()
+            adjustViewControllersScrollView()
         }
     }
-    var viewControllersTitlesArray: [String] = []
+    public var viewControllersTitlesArray: [String] = [] {
+        didSet {
+            adjustTitlesScrollView()
+        }
+    }
     
     
     @IBOutlet weak var tabsScrollView: UIScrollView!
@@ -38,14 +42,25 @@ public class MNavigationTabsViewController: UIViewController {
         
     }
     
-    func adjustviewControllersScrollView() {
+    func adjustViewControllersScrollView() {
         var origin: CGFloat = 0.0
         for viewController in viewControllersArray {
             viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewController.view.frame.size.width, height: viewController.view.frame.size.height)
             viewControllersScrollView.addSubview(viewController.view)
             origin += viewController.view.frame.size.width
         }
-        viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height)
+        viewControllersScrollView.contentSize = CGSize(width: origin, height: viewControllersScrollView.frame.size.height)
+    }
+    
+    func adjustTitlesScrollView() {
+        var origin: CGFloat = 0.0
+        for title in viewControllersTitlesArray {
+            let label = UILabel(frame: CGRect(x: origin, y: 0, width: tabWidth, height: 33))
+            label.text = title
+            tabsScrollView.addSubview(label)
+            origin += label.frame.size.width
+        }
+        tabsScrollView.contentSize = CGSize(width: origin, height: tabsScrollView.frame.size.height)
     }
 
 }

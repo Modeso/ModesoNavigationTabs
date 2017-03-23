@@ -27,11 +27,10 @@
                         <constraint firstAttribute="height" constant="33" id="xex-sh-Hh0"/>
                     </constraints>
                 </scrollView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ax5-yD-bA2" userLabel="ViewController Scroll View">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ax5-yD-bA2" userLabel="ViewController Scroll View">
                     <rect key="frame" x="0.0" y="33" width="375" height="634"/>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Ax5-yD-bA2" firstAttribute="top" secondItem="uDp-tq-YPN" secondAttribute="bottom" id="5Vo-Iq-m0W"/>
                 <constraint firstItem="Ax5-yD-bA2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="76O-2j-P0g"/>
