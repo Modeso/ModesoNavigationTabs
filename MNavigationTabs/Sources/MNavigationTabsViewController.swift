@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MNavigationTabsViewController: UIViewController {
+public class MNavigationTabsViewController: UIViewController {
 
     var color: UIColor!
     @IBOutlet weak var label: UILabel!
