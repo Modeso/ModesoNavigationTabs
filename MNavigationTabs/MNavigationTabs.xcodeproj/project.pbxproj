@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A59261141E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59261131E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift */; };
 		A5F2666F1E82B8730021EEB9 /* MNavigationTabs.h in Headers */ = {isa = PBXBuildFile; fileRef = A5F2666D1E82B8730021EEB9 /* MNavigationTabs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5F266771E82BC6C0021EEB9 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F266761E82BC6C0021EEB9 /* Source.swift */; };
 		A5F266971E82CCAD0021EEB9 /* MNavigationTabsConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F266961E82CCAD0021EEB9 /* MNavigationTabsConfigurations.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A59261131E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MNavigationTabsViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
 		A5F2666A1E82B8730021EEB9 /* MNavigationTabs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MNavigationTabs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F2666D1E82B8730021EEB9 /* MNavigationTabs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNavigationTabs.h; sourceTree = "<group>"; };
 		A5F2666E1E82B8730021EEB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				A5F266981E82D0DD0021EEB9 /* MNavigationTabs.swift */,
 				A5F2669A1E82D48E0021EEB9 /* MNavigationTabsViewController.swift */,
 				A5F2669B1E82D48E0021EEB9 /* MNavigationTabsViewController.xib */,
+				A59261131E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -159,6 +162,7 @@
 			files = (
 				A5F2669C1E82D48E0021EEB9 /* MNavigationTabsViewController.swift in Sources */,
 				A5F266971E82CCAD0021EEB9 /* MNavigationTabsConfigurations.swift in Sources */,
+				A59261141E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift in Sources */,
 				A5F266771E82BC6C0021EEB9 /* Source.swift in Sources */,
 				A5F266991E82D0DD0021EEB9 /* MNavigationTabs.swift in Sources */,
 			);
