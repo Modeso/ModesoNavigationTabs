@@ -7,7 +7,10 @@
 //
 
 import UIKit
-
+enum TabsScrollStatus {
+    case fixed
+    case scrollable
+}
 public class MNavigationTabsViewController: UIViewController {
 
     var color: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -17,7 +20,7 @@ public class MNavigationTabsViewController: UIViewController {
     var indicatorHeight: CGFloat = 20.0
     var viewControllerWidth: CGFloat = 320.0
     var indicatorView: UIView!        
-    
+    var tabsBarStatus: TabsScrollStatus = .fixed
     public var viewControllersArray: [UIViewController] = [] {
         didSet {
             adjustViewControllersScrollView()
@@ -38,6 +41,10 @@ public class MNavigationTabsViewController: UIViewController {
         super.viewDidLoad()
         addNavigationIndicator()
         viewControllerWidth = viewControllersScrollView.frame.size.width
+        
+        if tabsBarStatus == .fixed {
+            tabsScrollView.isScrollEnabled = false
+        }
     }
 
     override public func loadView() {
@@ -64,6 +71,7 @@ public class MNavigationTabsViewController: UIViewController {
         var index:Int = 0
         for title in viewControllersTitlesArray {
             let button = UIButton(frame: CGRect(x: origin, y: 0, width: tabWidth, height: 33))
+            button.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
             button.setTitle(title, for: .normal)
             button.tag = index
             button.addTarget(self, action: #selector(selectPage(sender:)), for: .touchUpInside)
@@ -71,17 +79,18 @@ public class MNavigationTabsViewController: UIViewController {
             origin += button.frame.size.width + tabsInbetweenMargin
             index += 1
         }
-        tabsScrollView.contentSize = CGSize(width: origin + tabLeadingTrailingMargin, height: tabsScrollView.frame.size.height)
+        tabsScrollView.contentSize = CGSize(width: origin + tabLeadingTrailingMargin - tabsInbetweenMargin, height: tabsScrollView.frame.size.height)
         tabsScrollView.bringSubview(toFront: indicatorView)
     }
     
     func addNavigationIndicator() {
         indicatorView = UIView(frame: CGRect(x: tabLeadingTrailingMargin, y: tabsScrollView.frame.size.height - indicatorHeight, width: tabWidth, height: indicatorHeight))
+        indicatorView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         tabsScrollView.addSubview(indicatorView)
     }
     
     func selectPage(sender: UIButton) {
-        viewControllersScrollView.contentOffset = CGPoint(x: CGFloat(sender.tag) * viewControllerWidth, y: 0)
+        viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(sender.tag) * viewControllerWidth, y: 0), animated: true)
     }
 
 }

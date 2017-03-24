@@ -10,19 +10,48 @@ import Foundation
 extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         
         if scrollView == viewControllersScrollView {
-
+            
             let currentPage = scrollView.contentOffset.x / viewControllerWidth
             let currentTabOrigin: CGFloat = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage) * tabsInbetweenMargin) + tabLeadingTrailingMargin
             
-            tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
+            
+            if currentTabOrigin + tabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x {
+                
+                
+                if Int(currentPage + 1) == viewControllersTitlesArray.count {
+                    tabsScrollView.setContentOffset(CGPoint(x: tabsScrollView.contentSize.width - tabsScrollView.bounds.width, y: 0), animated: true)
+                }
+                else {
+                    var movingStep = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage - 1) * tabsInbetweenMargin) + tabLeadingTrailingMargin
+                    if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
+                        movingStep = tabsScrollView.contentOffset.x + tabWidth
+                    }
+                    tabsScrollView.setContentOffset(CGPoint(x: movingStep, y: 0), animated: true)
+                }
+                
+                
+            } else if currentTabOrigin <= tabsScrollView.contentOffset.x {
+                
+                if currentPage == 0 {
+                    tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                } else {
+                    tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage - 1) * tabsInbetweenMargin) + tabLeadingTrailingMargin, y: 0), animated: true)
+                }
+                
+            }
+            
             
             //Adjust indicator origin
             var indicatorFrame = indicatorView.frame
             indicatorFrame.origin.x = currentTabOrigin
             indicatorView.frame = indicatorFrame
         }
-    }    
+    }
+    
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidEndScrollingAnimation(scrollView)
+    }
 }
