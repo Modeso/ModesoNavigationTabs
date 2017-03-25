@@ -22,8 +22,6 @@ public class MNavigationTabsViewController: UIViewController {
     var tabInnerMargin: CGFloat = 10.0
     /// Leading and Trailing margin of the first and last tab
     var tabOuterMargin: CGFloat = 10.0
-    /// Single Tab font
-    var tabFont: UIFont = UIFont.systemFont(ofSize: 12)
     /// Tab indicator height
     var indicatorHeight: CGFloat = 20.0
     /// Tab indicator color
@@ -45,6 +43,9 @@ public class MNavigationTabsViewController: UIViewController {
     public var viewControllersArray: [UIViewController] = []
     /// Titles array to use it in tabs navigation bar.
     public var viewControllersTitlesArray: [String] = []
+    /// Single Tab font
+    public var tabFont: UIFont = UIFont.systemFont(ofSize: 12)
+    
     internal var indicatorView: UIView!
     
     // IBOutlets
@@ -61,6 +62,7 @@ public class MNavigationTabsViewController: UIViewController {
         }
         
         tabsBarHeightConstraint.constant = navigationBarHeight
+        tabsScrollView.backgroundColor = tabsBarBackgroundColor
     }
     
     override public func viewWillAppear(_ animated: Bool) {

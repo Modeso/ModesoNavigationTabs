@@ -46,14 +46,6 @@ import Foundation
         }
     }
     
-    @IBInspectable var tabLabelFont: UIFont {
-        set {
-            tabFont = newValue
-        }
-        get {
-            return tabFont
-        }
-    }
     // MARK:- Indicator
     @IBInspectable var indicatorViewHeight: CGFloat {
         set {
