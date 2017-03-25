@@ -15,7 +15,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         if scrollView == viewControllersScrollView {
             
             let currentPage = scrollView.contentOffset.x / viewControllerWidth
-            let currentTabOrigin: CGFloat = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage) * tabsInbetweenMargin) + tabLeadingTrailingMargin
+            let currentTabOrigin: CGFloat = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
             
             
             if currentTabOrigin + tabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x {
@@ -25,7 +25,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     tabsScrollView.setContentOffset(CGPoint(x: tabsScrollView.contentSize.width - tabsScrollView.bounds.width, y: 0), animated: true)
                 }
                 else {
-                    var movingStep = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage - 1) * tabsInbetweenMargin) + tabLeadingTrailingMargin
+                    var movingStep = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin
                     if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
                         movingStep = tabsScrollView.contentOffset.x + tabWidth
                     }
@@ -38,7 +38,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 if currentPage == 0 {
                     tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 } else {
-                    tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage - 1) * tabsInbetweenMargin) + tabLeadingTrailingMargin, y: 0), animated: true)
+                    tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
                 }
                 
             }
