@@ -30,7 +30,7 @@
                         <outlet property="delegate" destination="-1" id="IY3-be-3jx"/>
                     </connections>
                 </scrollView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ax5-yD-bA2" userLabel="ViewController Scroll View">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ax5-yD-bA2" userLabel="ViewController Scroll View">
                     <rect key="frame" x="0.0" y="33" width="600" height="567"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="iQ0-Ge-0oz"/>

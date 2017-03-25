@@ -26,6 +26,7 @@ public class MNavigationTabsViewController: UIViewController {
     var indicatorHeight: CGFloat = 20.0
     /// Tab indicator color
     var indicatorColor: UIColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+    /// Navigation bar height
     var navigationBarHeight: CGFloat = 33
     /**
      * State of the Navigation tabs views.

@@ -62,7 +62,7 @@ import Foundation
             return indicatorColor
         }
     }
-    //MARK:- General
+    //MARK:- NavigationBar
     @IBInspectable var tabsScrollStatus: Int {
         set {
             if let value = TabsScrollStatus(rawValue: newValue) {
@@ -73,5 +73,16 @@ import Foundation
             return tabsBarStatus.hashValue
         }
     }
+    
+    @IBInspectable var tabsBarHeight: CGFloat {
+        set {
+            navigationBarHeight = newValue
+        }
+        get {
+            return navigationBarHeight
+        }
+    }
+    
+    
     
 }
