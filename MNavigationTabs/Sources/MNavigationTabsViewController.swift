@@ -22,12 +22,16 @@ public class MNavigationTabsViewController: UIViewController {
     var tabInnerMargin: CGFloat = 10.0
     /// Leading and Trailing margin of the first and last tab
     var tabOuterMargin: CGFloat = 10.0
+    /// Single Tab font
+    var tabFont: UIFont = UIFont.systemFont(ofSize: 12)
     /// Tab indicator height
     var indicatorHeight: CGFloat = 20.0
     /// Tab indicator color
     var indicatorColor: UIColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
     /// Navigation bar height
     var navigationBarHeight: CGFloat = 33
+    /// Navigation bar color
+    var navigationBarColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     /**
      * State of the Navigation tabs views.
      * fixed: Navigation tabs will use tabWidth property and extend beyond screen bounds without scrolling ability.
@@ -46,6 +50,7 @@ public class MNavigationTabsViewController: UIViewController {
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
     @IBOutlet weak var viewControllersScrollView: UIScrollView!
+    @IBOutlet weak var tabsBarHeightConstraint: NSLayoutConstraint!
     
     // MARK:- Views cycle
     override public func viewDidLoad() {
@@ -54,6 +59,8 @@ public class MNavigationTabsViewController: UIViewController {
         if tabsBarStatus == .fixed || tabsBarStatus == .fit {
             tabsScrollView.isScrollEnabled = false
         }
+        
+        tabsBarHeightConstraint.constant = navigationBarHeight
     }
     
     override public func viewWillAppear(_ animated: Bool) {

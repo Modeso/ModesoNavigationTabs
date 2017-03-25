@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MNavigationTabsViewController" customModule="MNavigationTabs" customModuleProvider="target">
             <connections>
+                <outlet property="tabsBarHeightConstraint" destination="xex-sh-Hh0" id="FSc-5H-VYf"/>
                 <outlet property="tabsScrollView" destination="uDp-tq-YPN" id="iqP-Yg-HX1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewControllersScrollView" destination="Ax5-yD-bA2" id="9H0-Po-PxN"/>
@@ -24,7 +25,6 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDp-tq-YPN" userLabel="Tabs Scroll View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="9jg-Wo-l9S"/>
                         <constraint firstAttribute="height" constant="33" id="xex-sh-Hh0"/>
                     </constraints>
                     <connections>
@@ -39,19 +39,12 @@
                 </scrollView>
             </subviews>
             <constraints>
-                <constraint firstItem="uDp-tq-YPN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2C1-YW-dlT"/>
-                <constraint firstItem="Ax5-yD-bA2" firstAttribute="top" secondItem="uDp-tq-YPN" secondAttribute="bottom" id="5Vo-Iq-m0W"/>
                 <constraint firstItem="Ax5-yD-bA2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="76O-2j-P0g"/>
-                <constraint firstAttribute="trailing" secondItem="Ax5-yD-bA2" secondAttribute="trailing" id="FUr-KX-hbf"/>
-                <constraint firstAttribute="bottom" secondItem="Ax5-yD-bA2" secondAttribute="bottom" id="IHn-9G-LjD"/>
                 <constraint firstItem="uDp-tq-YPN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Imp-hV-V8G"/>
                 <constraint firstAttribute="bottom" secondItem="Ax5-yD-bA2" secondAttribute="bottom" id="MZu-XG-Hbr"/>
                 <constraint firstAttribute="trailing" secondItem="Ax5-yD-bA2" secondAttribute="trailing" id="cUr-Sh-XiA"/>
-                <constraint firstItem="Ax5-yD-bA2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dxn-b1-Da5"/>
                 <constraint firstItem="uDp-tq-YPN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eH1-jF-nhq"/>
-                <constraint firstAttribute="trailing" secondItem="uDp-tq-YPN" secondAttribute="trailing" id="ouv-qC-PYX"/>
                 <constraint firstItem="Ax5-yD-bA2" firstAttribute="top" secondItem="uDp-tq-YPN" secondAttribute="bottom" id="u1F-d1-96x"/>
-                <constraint firstItem="uDp-tq-YPN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="y87-s2-fex"/>
                 <constraint firstAttribute="trailing" secondItem="uDp-tq-YPN" secondAttribute="trailing" id="z7G-qo-13h"/>
             </constraints>
             <point key="canvasLocation" x="35.5" y="53.5"/>

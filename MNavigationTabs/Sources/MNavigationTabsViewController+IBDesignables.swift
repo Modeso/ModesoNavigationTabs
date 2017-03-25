@@ -45,6 +45,15 @@ import Foundation
             return tabOuterMargin
         }
     }
+    
+    @IBInspectable var tabLabelFont: UIFont {
+        set {
+            tabFont = newValue
+        }
+        get {
+            return tabFont
+        }
+    }
     // MARK:- Indicator
     @IBInspectable var indicatorViewHeight: CGFloat {
         set {
@@ -83,6 +92,13 @@ import Foundation
         }
     }
     
-    
+    @IBInspectable var tabsBarBackgroundColor: UIColor {
+        set {
+            navigationBarColor = newValue
+        }
+        get {
+            return navigationBarColor
+        }
+    }
     
 }
