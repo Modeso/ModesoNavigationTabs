@@ -63,12 +63,14 @@ import Foundation
         }
     }
     //MARK:- General
-    @IBInspectable var tabsScrollStatus: TabsScrollStatus {
+    @IBInspectable var tabsScrollStatus: Int {
         set {
-            tabsBarStatus = newValue
+            if let value = TabsScrollStatus(rawValue: newValue) {
+                tabsBarStatus = value
+            }
         }
         get {
-            return tabsBarStatus
+            return tabsBarStatus.hashValue
         }
     }
     

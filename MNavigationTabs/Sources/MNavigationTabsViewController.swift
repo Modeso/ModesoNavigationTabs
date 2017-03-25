@@ -7,7 +7,7 @@
 //
 
 import UIKit
-enum TabsScrollStatus {
+enum TabsScrollStatus: Int {
     case fixed
     case scrollable
     case fit
@@ -47,7 +47,7 @@ public class MNavigationTabsViewController: UIViewController {
             adjustTitlesScrollView()
         }
     }
-    fileprivate var indicatorView: UIView!
+    internal var indicatorView: UIView!
     
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
