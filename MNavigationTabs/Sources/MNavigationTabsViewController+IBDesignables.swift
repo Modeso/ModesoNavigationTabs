@@ -63,7 +63,7 @@ import Foundation
             return indicatorColor
         }
     }
-    //MARK:- NavigationBar
+    // MARK:- NavigationBar
     @IBInspectable var tabsScrollStatus: Int {
         set {
             if let value = TabsScrollStatus(rawValue: newValue) {
@@ -90,6 +90,15 @@ import Foundation
         }
         get {
             return navigationBarColor
+        }
+    }
+    // MARK:- ViewControllers scrollview
+    @IBInspectable var viewControllersBounce: Bool {
+        set {
+            enableBounce = newValue
+        }
+        get {
+            return enableBounce
         }
     }
     

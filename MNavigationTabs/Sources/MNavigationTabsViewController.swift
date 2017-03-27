@@ -30,6 +30,8 @@ public class MNavigationTabsViewController: UIViewController {
     var navigationBarHeight: CGFloat = 33
     /// Navigation bar color
     var navigationBarColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    /// Bounce viewcontrollers
+    var enableBounce: Bool = false
     /**
      * State of the Navigation tabs views.
      * fixed: Navigation tabs will use tabWidth property and extend beyond screen bounds without scrolling ability.
@@ -37,7 +39,7 @@ public class MNavigationTabsViewController: UIViewController {
      * fit: Navigation tabs will adjust its width so all tabs fit in a single screen without scrolling ability.
      *
      **/
-    var tabsBarStatus: TabsScrollStatus = .fixed
+    var tabsBarStatus: TabsScrollStatus = .fit
     
     /// ViewControllers array to switch between them.
     public var viewControllersArray: [UIViewController] = []
@@ -63,6 +65,7 @@ public class MNavigationTabsViewController: UIViewController {
         
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBarBackgroundColor
+        viewControllersScrollView.bounces = enableBounce
     }
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -79,7 +82,7 @@ public class MNavigationTabsViewController: UIViewController {
     
     // MARK:- Creating views
     /// Add ViewControllers to viewControllersScrollView
-    func adjustViewControllersScrollView() {
+    fileprivate func adjustViewControllersScrollView() {
         var origin: CGFloat = 0.0
         for viewController in viewControllersArray {
             viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewController.view.frame.size.height)
@@ -89,7 +92,7 @@ public class MNavigationTabsViewController: UIViewController {
         viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)
     }
     /// Add titles to tabsScrollView
-    func adjustTitlesScrollView() {
+    fileprivate func adjustTitlesScrollView() {
         var origin: CGFloat = tabOuterMargin
         var index:Int = 0
         
@@ -110,14 +113,14 @@ public class MNavigationTabsViewController: UIViewController {
         tabsScrollView.contentSize = CGSize(width: origin + tabOuterMargin - tabInnerMargin, height: tabsScrollView.frame.size.height)
     }
     
-    func addNavigationIndicator() {
+    fileprivate func addNavigationIndicator() {
         indicatorView = UIView(frame: CGRect(x: tabOuterMargin, y: tabsScrollView.frame.size.height - indicatorHeight, width: tabWidth, height: indicatorHeight))
         indicatorView.backgroundColor = indicatorColor
         tabsScrollView.addSubview(indicatorView)
     }
     
     // MARK:- IBActions
-    func selectPage(sender: UIButton) {
+    @objc fileprivate func selectPage(sender: UIButton) {
         viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(sender.tag) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
     }
     
