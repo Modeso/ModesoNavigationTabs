@@ -14,7 +14,12 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
         if scrollView == viewControllersScrollView {
             
-            let currentPage = scrollView.contentOffset.x / viewControllersScrollView.bounds.width
+            if currentPage == Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width) {
+                return
+            }
+            viewControllersArray[currentPage].viewWillDisappear(true)
+            
+            currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
             let currentTabOrigin: CGFloat = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
             
             
@@ -48,6 +53,8 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             var indicatorFrame = indicatorView.frame
             indicatorFrame.origin.x = currentTabOrigin
             indicatorView.frame = indicatorFrame
+            
+            viewControllersArray[currentPage].viewWillAppear(true)
         }
     }
     

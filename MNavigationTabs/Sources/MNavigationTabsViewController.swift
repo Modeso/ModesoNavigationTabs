@@ -49,6 +49,7 @@ public class MNavigationTabsViewController: UIViewController {
     public var tabFont: UIFont = UIFont.systemFont(ofSize: 12)
     
     internal var indicatorView: UIView!
+    internal var currentPage: Int = 0
     
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
@@ -86,7 +87,9 @@ public class MNavigationTabsViewController: UIViewController {
         var origin: CGFloat = 0.0
         for viewController in viewControllersArray {
             viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewController.view.frame.size.height)
-            viewControllersScrollView.addSubview(viewController.view)
+            self.addChildViewController(viewController)
+            viewControllersScrollView.addSubview(viewController.view)            
+            viewController.didMove(toParentViewController: self)
             origin += viewControllersScrollView.bounds.width
         }
         viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)
