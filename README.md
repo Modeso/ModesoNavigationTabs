@@ -46,11 +46,6 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 - Xcode 8.1+
 - Swift 3.0+
 
-## Communication
-
-- If you **found a bug**, open an issue.
-- If you **have a feature request**, open an issue.
-- If you **want to contribute**, submit a pull request.
 
 ## Installation
 
@@ -146,6 +141,12 @@ mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
 > `viewControllersTitlesArray`: Array of NSAttributedString represensts titles of the UIViewControllers which will be displayed in the top Tabs Navigation Bar.
 > `activeTabFont`: Font of the current selected tab.
 > `inactiveTabFont`: Font for the resu of the unselected tabs.
+
+## Communication
+
+- If you **found a bug**, open an issue.
+- If you **have a feature request**, open an issue.
+- If you **want to contribute**, submit a pull request.
 
 ## Credits
 
