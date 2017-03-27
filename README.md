@@ -11,7 +11,7 @@
 
 MNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
 
-<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/MNavigationTabsGif.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">  <img src="https://github.com/Modeso/MNavigationTabs/blob/master/Options.png" alt="Options">
+<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/MNavigationTabsGif.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 
 - [Options](#options)
 - [Requirements](#requirements)
@@ -22,6 +22,9 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 - [License](#license)
 
 ## Options
+
+<img src="https://github.com/Modeso/MNavigationTabs/blob/master/Options.png" alt="Options">
+
 - `Tab Width`: Define width of single tabs which holds titles of the viewControllers objects.
 - `Active Bkg Color`: Background color for the current selected tab.
 - `InActive Bkg Color`: Background color for the rest of the unselected tabs.
