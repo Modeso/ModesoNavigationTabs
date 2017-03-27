@@ -142,6 +142,7 @@ mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
 ```
 > `viewControllersArray`: Array of UIViewControllers to display and navigate among.
 > `viewControllersTitlesArray`: Array of NSAttributedString represensts titles of the UIViewControllers which will be displayed in the top Tabs Navigation Bar.
+
 > `activeTabFont`: Font of the current selected tab.
 > `inactiveTabFont`: Font for the resu of the unselected tabs.
 
