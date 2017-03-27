@@ -15,7 +15,7 @@ enum TabsScrollStatus: Int {
 public class MNavigationTabsViewController: UIViewController {
     
     /// Single tab width
-    var tabWidth: CGFloat = 111.0
+    var navigationTabWidth: CGFloat = 111.0
     /// Tab Colors
     var activeTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
     var inactiveTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
@@ -28,7 +28,7 @@ public class MNavigationTabsViewController: UIViewController {
     /// Leading and Trailing margin of the first and last tab
     var tabOuterMargin: CGFloat = 10.0
     /// Tab indicator height
-    var indicatorHeight: CGFloat = 5.0
+    var indicatorViewHeight: CGFloat = 5.0
     /// Tab indicator color
     var indicatorColor: UIColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
     /// Navigation bar height
@@ -107,10 +107,10 @@ public class MNavigationTabsViewController: UIViewController {
         
         // Special case if .fit status is enabled, adjust tabWidth
         if tabsBarStatus == .fit {
-            tabWidth = (tabsScrollView.bounds.width -  ((2 * tabOuterMargin) + CGFloat(viewControllersTitlesArray.count - 1) * tabInnerMargin)) / CGFloat(viewControllersTitlesArray.count)
+            navigationTabWidth = (tabsScrollView.bounds.width -  ((2 * tabOuterMargin) + CGFloat(viewControllersTitlesArray.count - 1) * tabInnerMargin)) / CGFloat(viewControllersTitlesArray.count)
         }
         for title in viewControllersTitlesArray {
-            let button = UIButton(frame: CGRect(x: origin, y: 0, width: tabWidth, height: 33))
+            let button = UIButton(frame: CGRect(x: origin, y: 0, width: navigationTabWidth, height: 33))
             button.backgroundColor = inactiveTabColor
             button.setAttributedTitle(title, for: .normal)
             button.titleLabel?.font = inactiveTabFont
@@ -129,7 +129,7 @@ public class MNavigationTabsViewController: UIViewController {
     }
     
     fileprivate func addNavigationIndicator() {
-        indicatorView = UIView(frame: CGRect(x: tabOuterMargin, y: tabsScrollView.frame.size.height - indicatorHeight, width: tabWidth, height: indicatorHeight))
+        indicatorView = UIView(frame: CGRect(x: tabOuterMargin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: navigationTabWidth, height: indicatorViewHeight))
         indicatorView.backgroundColor = indicatorColor
         tabsScrollView.addSubview(indicatorView)
     }

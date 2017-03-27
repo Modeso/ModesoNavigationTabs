@@ -12,15 +12,15 @@ import Foundation
 @IBDesignable extension MNavigationTabsViewController {
     
     // MARK:- Tabs
-    @IBInspectable var navigationTabWidth: CGFloat {
+    @IBInspectable var tabWidth: CGFloat {
         set {
-            tabWidth = newValue
+            navigationTabWidth = newValue
         }
         get {
-            return tabWidth
+            return navigationTabWidth
         }
     }
-    @IBInspectable var activeTabBackgroundColor: UIColor {
+    @IBInspectable var activeBkgColor: UIColor {
         set {
             activeTabColor = newValue
         }
@@ -28,7 +28,7 @@ import Foundation
             return activeTabColor
         }
     }
-    @IBInspectable var inactiveTabBackgroundColor: UIColor {
+    @IBInspectable var inactiveBkgColor: UIColor {
         set {
             inactiveTabColor = newValue
         }
@@ -36,7 +36,7 @@ import Foundation
             return inactiveTabColor
         }
     }
-    @IBInspectable var activeTabLabelColor: UIColor {
+    @IBInspectable var activeTextColor: UIColor {
         set {
             activeTabTextColor = newValue
         }
@@ -44,7 +44,7 @@ import Foundation
             return activeTabTextColor
         }
     }
-    @IBInspectable var inactiveTabLabelColor: UIColor {
+    @IBInspectable var inactiveTextColor: UIColor {
         set {
             inactiveTabTextColor = newValue
         }
@@ -71,15 +71,15 @@ import Foundation
     }
     
     // MARK:- Indicator
-    @IBInspectable var indicatorViewHeight: CGFloat {
+    @IBInspectable var indicatorHeight: CGFloat {
         set {
-            indicatorHeight = newValue
+            indicatorViewHeight = newValue
         }
         get {
-            return tabWidth
+            return indicatorViewHeight
         }
     }
-    @IBInspectable var indicatorBackgroundColor: UIColor {
+    @IBInspectable var indicatorBkgColor: UIColor {
         set {
             indicatorColor = newValue
         }
@@ -88,7 +88,7 @@ import Foundation
         }
     }
     // MARK:- NavigationBar
-    @IBInspectable var tabsScrollStatus: Int {
+    @IBInspectable var titlesScroll: Int {
         set {
             if let value = TabsScrollStatus(rawValue: newValue) {
                 tabsBarStatus = value
@@ -108,7 +108,7 @@ import Foundation
         }
     }
     
-    @IBInspectable var tabsBarBackgroundColor: UIColor {
+    @IBInspectable var tabsBkgColor: UIColor {
         set {
             navigationBarColor = newValue
         }
@@ -117,7 +117,7 @@ import Foundation
         }
     }
     // MARK:- ViewControllers scrollview
-    @IBInspectable var viewControllersBounce: Bool {
+    @IBInspectable var scrollBounce: Bool {
         set {
             enableBounce = newValue
         }

@@ -34,19 +34,19 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = activeTabFont
             (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor            
             
-            let currentTabOrigin: CGFloat = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+            let currentTabOrigin: CGFloat = (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
             
             
-            if currentTabOrigin + tabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x {
+            if currentTabOrigin + navigationTabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x {
                 
                 
                 if Int(currentPage + 1) == viewControllersTitlesArray.count {
                     tabsScrollView.setContentOffset(CGPoint(x: tabsScrollView.contentSize.width - tabsScrollView.bounds.width, y: 0), animated: true)
                 }
                 else {
-                    var movingStep = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin
+                    var movingStep = (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin
                     if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
-                        movingStep = tabsScrollView.contentOffset.x + tabWidth
+                        movingStep = tabsScrollView.contentOffset.x + navigationTabWidth
                     }
                     tabsScrollView.setContentOffset(CGPoint(x: movingStep, y: 0), animated: true)
                 }
@@ -57,7 +57,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 if currentPage == 0 {
                     tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 } else {
-                    tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
+                    tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
                 }
                 
             }
