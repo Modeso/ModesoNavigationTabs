@@ -71,7 +71,7 @@ public class MNavigationTabsViewController: UIViewController {
         }
         
         tabsBarHeightConstraint.constant = navigationBarHeight
-        tabsScrollView.backgroundColor = tabsBarBackgroundColor
+        tabsScrollView.backgroundColor = tabsBkgColor
         viewControllersScrollView.bounces = enableBounce
     }
     
