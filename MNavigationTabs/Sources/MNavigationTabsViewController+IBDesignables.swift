@@ -20,12 +20,36 @@ import Foundation
             return tabWidth
         }
     }
-    @IBInspectable var tabBackgroundColor: UIColor {
+    @IBInspectable var activeTabBackgroundColor: UIColor {
         set {
-            tabColor = newValue
+            activeTabColor = newValue
         }
         get {
-            return tabColor
+            return activeTabColor
+        }
+    }
+    @IBInspectable var inactiveTabBackgroundColor: UIColor {
+        set {
+            inactiveTabColor = newValue
+        }
+        get {
+            return inactiveTabColor
+        }
+    }
+    @IBInspectable var activeTabLabelColor: UIColor {
+        set {
+            activeTabTextColor = newValue
+        }
+        get {
+            return activeTabTextColor
+        }
+    }
+    @IBInspectable var inactiveTabLabelColor: UIColor {
+        set {
+            inactiveTabTextColor = newValue
+        }
+        get {
+            return inactiveTabTextColor
         }
     }
     @IBInspectable var innerMargin: CGFloat {

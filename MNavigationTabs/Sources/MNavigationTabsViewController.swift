@@ -16,8 +16,13 @@ public class MNavigationTabsViewController: UIViewController {
     
     /// Single tab width
     var tabWidth: CGFloat = 111.0
-    /// Tab Color
-    var tabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+    /// Tab Colors
+    var activeTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+    var inactiveTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+    /// Active tab text color
+    var activeTabTextColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    /// Inactive tab text color
+    var inactiveTabTextColor: UIColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
     /// Margin between two tabs
     var tabInnerMargin: CGFloat = 10.0
     /// Leading and Trailing margin of the first and last tab
@@ -44,9 +49,10 @@ public class MNavigationTabsViewController: UIViewController {
     /// ViewControllers array to switch between them.
     public var viewControllersArray: [UIViewController] = []
     /// Titles array to use it in tabs navigation bar.
-    public var viewControllersTitlesArray: [String] = []
+    public var viewControllersTitlesArray: [NSAttributedString] = []
     /// Single Tab font
-    public var tabFont: UIFont = UIFont.systemFont(ofSize: 12)
+    public var inactiveTabFont: UIFont = UIFont.systemFont(ofSize: 12)
+    public var activeTabFont: UIFont = UIFont.systemFont(ofSize: 12)
     
     internal var indicatorView: UIView!
     internal var currentPage: Int = 0
@@ -105,8 +111,10 @@ public class MNavigationTabsViewController: UIViewController {
         }
         for title in viewControllersTitlesArray {
             let button = UIButton(frame: CGRect(x: origin, y: 0, width: tabWidth, height: 33))
-            button.backgroundColor = tabColor
-            button.setTitle(title, for: .normal)
+            button.backgroundColor = inactiveTabColor
+            button.setAttributedTitle(title, for: .normal)
+            button.titleLabel?.font = inactiveTabFont
+            button.titleLabel?.textColor = inactiveTabTextColor
             button.tag = index
             button.addTarget(self, action: #selector(selectPage(sender:)), for: .touchUpInside)
             tabsScrollView.addSubview(button)
@@ -114,6 +122,10 @@ public class MNavigationTabsViewController: UIViewController {
             index += 1
         }
         tabsScrollView.contentSize = CGSize(width: origin + tabOuterMargin - tabInnerMargin, height: tabsScrollView.frame.size.height)
+        
+        (tabsScrollView.subviews[0] as? UIButton)?.backgroundColor = activeTabColor
+        (tabsScrollView.subviews[0] as? UIButton)?.titleLabel?.font = activeTabFont
+        (tabsScrollView.subviews[0] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
     }
     
     fileprivate func addNavigationIndicator() {
@@ -124,6 +136,16 @@ public class MNavigationTabsViewController: UIViewController {
     
     // MARK:- IBActions
     @objc fileprivate func selectPage(sender: UIButton) {
+        if sender.tag != currentPage {
+            // Set font to inactivefont
+            (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = inactiveTabColor
+            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
+            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
+            
+            (tabsScrollView.subviews[sender.tag] as? UIButton)?.backgroundColor = activeTabColor
+            (tabsScrollView.subviews[sender.tag] as? UIButton)?.titleLabel?.font = activeTabFont
+            (tabsScrollView.subviews[sender.tag] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
+        }
         viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(sender.tag) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
     }
     
