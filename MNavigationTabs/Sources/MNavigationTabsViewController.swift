@@ -23,9 +23,9 @@ public class MNavigationTabsViewController: UIViewController {
     /// Leading and Trailing margin of the first and last tab
     var tabOuterMargin: CGFloat = 10.0
     /// Tab indicator height
-    var indicatorHeight: CGFloat = 20.0
+    var indicatorHeight: CGFloat = 5.0
     /// Tab indicator color
-    var indicatorColor: UIColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
+    var indicatorColor: UIColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
     /// Navigation bar height
     var navigationBarHeight: CGFloat = 33
     /// Navigation bar color
@@ -68,8 +68,8 @@ public class MNavigationTabsViewController: UIViewController {
         viewControllersScrollView.bounces = enableBounce
     }
     
-    override public func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         adjustViewControllersScrollView()
         adjustTitlesScrollView()
