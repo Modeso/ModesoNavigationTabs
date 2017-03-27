@@ -135,17 +135,7 @@ public class MNavigationTabsViewController: UIViewController {
     }
     
     // MARK:- IBActions
-    @objc fileprivate func selectPage(sender: UIButton) {
-        if sender.tag != currentPage {
-            // Set font to inactivefont
-            (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = inactiveTabColor
-            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
-            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
-            
-            (tabsScrollView.subviews[sender.tag] as? UIButton)?.backgroundColor = activeTabColor
-            (tabsScrollView.subviews[sender.tag] as? UIButton)?.titleLabel?.font = activeTabFont
-            (tabsScrollView.subviews[sender.tag] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
-        }
+    @objc fileprivate func selectPage(sender: UIButton) {        
         viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(sender.tag) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
     }
     

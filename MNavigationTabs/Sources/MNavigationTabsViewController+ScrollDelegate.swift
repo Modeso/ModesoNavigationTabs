@@ -17,9 +17,23 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             if currentPage == Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width) {
                 return
             }
+            
+            
+            // Set font to inactivefont
+            (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = inactiveTabColor
+            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
+            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
+            
+            
             viewControllersArray[currentPage].viewWillDisappear(true)
             
             currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
+            
+            // Set font to inactivefont
+            (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = activeTabColor
+            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = activeTabFont
+            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor            
+            
             let currentTabOrigin: CGFloat = (CGFloat(currentPage) * tabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
             
             
