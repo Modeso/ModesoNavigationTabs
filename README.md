@@ -10,17 +10,15 @@
 [![Twitter](https://img.shields.io/badge/twitter-@modeso_ch-0B0032.svg?style=flat)](http://twitter.com/AlamofireSF)
 
 MNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
-<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/MNavigationTabsGif.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
-<img src="https://github.com/Modeso/MNavigationTabs/blob/master/Options.png" alt="Options">
+
+<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/MNavigationTabsGif.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">  <img src="https://github.com/Modeso/MNavigationTabs/blob/master/Options.png" alt="Options">
 
 - [Options](#options)
 - [Requirements](#requirements)
-- [Migration Guides](#migration-guides)
-- [Communication](#communication)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Communication](#communication)
 - [Credits](#credits)
-- [Donations](#donations)
 - [License](#license)
 
 ## Options
@@ -140,9 +138,9 @@ Assign it in `prepaerforSegue` method
 Finally, set necessary parameters for `mNavigationTabs` instance
 ```swift
  mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
-        mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First"),NSAttributedString(string: "Second"),NSAttributedString(string: "Third"),NSAttributedString(string: "Forth")]
-        mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
-        mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
+mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First"),NSAttributedString(string: "Second"),NSAttributedString(string: "Third"),NSAttributedString(string: "Forth")]
+mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
+mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
 ```
 > `viewControllersArray`: Array of UIViewControllers to display and navigate among.
 > `viewControllersTitlesArray`: Array of NSAttributedString represensts titles of the UIViewControllers which will be displayed in the top Tabs Navigation Bar.
