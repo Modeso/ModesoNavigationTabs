@@ -1,7 +1,8 @@
 # MNavigationTabs
 <p align="center">
-![MNavigationTabs: Navigation Tabs in Swift](https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAZsAAAAJDM2NTU0MDA1LTA3YmEtNGUyMC05YmZjLTIxMDNlZWZlM2ZkMQ.png)
+  <img src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAZsAAAAJDM2NTU0MDA1LTA3YmEtNGUyMC05YmZjLTIxMDNlZWZlM2ZkMQ.png">
 </p>
+
 [![Build Status](https://img.shields.io/travis/rust-lang/rust.svg)](https://img.shields.io/travis/rust-lang/rust.svg)
 [![CocoaPods Compatible](https://img.shields.io/badge/Pod-compatible-4BC51D.svg
 )](https://cocoapods.org
