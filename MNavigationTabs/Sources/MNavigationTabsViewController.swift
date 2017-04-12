@@ -111,7 +111,7 @@ public class MNavigationTabsViewController: UIViewController {
             navigationTabWidth = (tabsScrollView.bounds.width -  ((2 * tabOuterMargin) + CGFloat(viewControllersTitlesArray.count - 1) * tabInnerMargin)) / CGFloat(viewControllersTitlesArray.count)
         }
         for title in viewControllersTitlesArray {
-            let button = UIButton(frame: CGRect(x: origin, y: 0, width: navigationTabWidth, height: 33))
+            let button = UIButton(frame: CGRect(x: origin, y: 0, width: navigationTabWidth, height: navigationBarHeight))
             button.backgroundColor = inactiveTabColor
             button.setAttributedTitle(title, for: .normal)
             button.titleLabel?.font = inactiveTabFont
