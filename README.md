@@ -40,6 +40,7 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 > 0: `.fixed`: In case of large tab width, this will prevent scrolling and tabs will extend beyond screen width.
 > 1: `.scrollable`: Same as above, but scrolling is now enabled.
 > 2: `.fit`: The default status, this will ignore tabWidth and adjust all tabs to fit inside single screen (not recommended for large numbers of tabs).
+> 3: `.center`: Set active tabs to the center of the screen.
 - `Tabs Bar Height`: Height of the Tabs Navigation bar.
 - `Tabs Bkg Color`: Background color of Tabs Navigation bar.
 - `Scroll Bounce`: Enable/disable bounce for the displayed UIViewControllers.
