@@ -32,10 +32,15 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor            
         
         var currentTabOrigin: CGFloat = (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+        var indicatorFrame = indicatorView.frame
         
         if tabsBarStatus == .center {
             currentTabOrigin = -tabsScrollView.bounds.width * 0.5 + 0.5 * navigationTabWidth
             currentTabOrigin += navigationTabWidth * CGFloat(currentPage) + (CGFloat(currentPage) * tabInnerMargin) + tabInnerMargin
+            tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
+            
+            //Adjust indicator origin
+            indicatorFrame.origin.x = currentTabOrigin + tabsScrollView.bounds.width * 0.5 - indicatorFrame.size.width / 2.0
         }
         else {
             if currentTabOrigin + navigationTabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x {
@@ -59,16 +64,16 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 } else {
                     tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
-                }                
+                }
             }
+            
+            //Adjust indicator origin
+            indicatorFrame.origin.x = currentTabOrigin
         }
-        
-        
-        //Adjust indicator origin
-        var indicatorFrame = indicatorView.frame
-        indicatorFrame.origin.x = currentTabOrigin
-        indicatorView.frame = indicatorFrame
-        
+    
+        UIView.animate(withDuration: 0.2, animations: {
+            self.indicatorView.frame = indicatorFrame
+        })
         viewControllersArray[currentPage].viewWillAppear(true)
         
     }
