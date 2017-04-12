@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B4BE7CA66B0284C3C30C51997E02507A20B5C2C8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "06BF1BE3CD202F4A8687465BE3A23E1741AE71B7" : 9223372036854775807,
+    "B4BE7CA66B0284C3C30C51997E02507A20B5C2C8" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4B896C47-681C-4D39-9B15-FC1FA15EF714",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "06BF1BE3CD202F4A8687465BE3A23E1741AE71B7" : "",
+    "B4BE7CA66B0284C3C30C51997E02507A20B5C2C8" : "MNavigationTabs\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MNavigationTabs",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MNavigationTabs\/MNavigationTabs.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Modeso\/tecbaker-scanner-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "06BF1BE3CD202F4A8687465BE3A23E1741AE71B7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Modeso\/MNavigationTabs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B4BE7CA66B0284C3C30C51997E02507A20B5C2C8"
+    }
+  ]
+}

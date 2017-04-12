@@ -11,6 +11,7 @@ enum TabsScrollStatus: Int {
     case fixed
     case scrollable
     case fit
+    case center
 }
 public class MNavigationTabsViewController: UIViewController {
     
@@ -66,8 +67,8 @@ public class MNavigationTabsViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        if tabsBarStatus == .fixed || tabsBarStatus == .fit {
-            tabsScrollView.isScrollEnabled = false
+        if tabsBarStatus == .scrollable {
+            tabsScrollView.isScrollEnabled = true
         }
         
         tabsBarHeightConstraint.constant = navigationBarHeight

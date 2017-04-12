@@ -11,32 +11,33 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+            
+        if scrollView != viewControllersScrollView || currentPage == Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width) {
+            return
+        }
         
-        if scrollView == viewControllersScrollView {
-            
-            if currentPage == Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width) {
-                return
-            }
-            
-            
-            // Set font to inactivefont
-            (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = inactiveTabColor
-            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
-            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
-            
-            
-            viewControllersArray[currentPage].viewWillDisappear(true)
-            
-            currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
-            
-            // Set font to inactivefont
-            (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = activeTabColor
-            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = activeTabFont
-            (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor            
-            
-            let currentTabOrigin: CGFloat = (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
-            
-            
+        // Set font to inactivefont
+        (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = inactiveTabColor
+        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
+        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
+        
+        
+        viewControllersArray[currentPage].viewWillDisappear(true)
+        
+        currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
+        
+        // Set font to inactivefont
+        (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = activeTabColor
+        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = activeTabFont
+        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor            
+        
+        var currentTabOrigin: CGFloat = (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+        
+        if tabsBarStatus == .center {
+            currentTabOrigin = -tabsScrollView.bounds.width * 0.5 + 0.5 * navigationTabWidth
+            currentTabOrigin += navigationTabWidth * CGFloat(currentPage) + (CGFloat(currentPage) * tabInnerMargin) + tabInnerMargin
+        }
+        else {
             if currentTabOrigin + navigationTabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x {
                 
                 
@@ -58,18 +59,18 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 } else {
                     tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
-                }
-                
+                }                
             }
-            
-            
-            //Adjust indicator origin
-            var indicatorFrame = indicatorView.frame
-            indicatorFrame.origin.x = currentTabOrigin
-            indicatorView.frame = indicatorFrame
-            
-            viewControllersArray[currentPage].viewWillAppear(true)
         }
+        
+        
+        //Adjust indicator origin
+        var indicatorFrame = indicatorView.frame
+        indicatorFrame.origin.x = currentTabOrigin
+        indicatorView.frame = indicatorFrame
+        
+        viewControllersArray[currentPage].viewWillAppear(true)
+        
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
