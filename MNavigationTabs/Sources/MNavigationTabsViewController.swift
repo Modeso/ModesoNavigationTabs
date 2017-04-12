@@ -76,9 +76,7 @@ public class MNavigationTabsViewController: UIViewController {
         viewControllersScrollView.bounces = enableBounce
     }
     
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    public func updateUI() {
         adjustViewControllersScrollView()
         adjustTitlesScrollView()
         addNavigationIndicator()
