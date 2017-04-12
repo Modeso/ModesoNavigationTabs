@@ -7,7 +7,7 @@
 //
 
 import UIKit
-enum TabsScrollStatus: Int {
+public enum TabsScrollStatus: Int {
     case fixed
     case scrollable
     case fit
