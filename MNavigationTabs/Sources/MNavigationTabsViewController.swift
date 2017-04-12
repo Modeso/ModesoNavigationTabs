@@ -16,28 +16,28 @@ enum TabsScrollStatus: Int {
 public class MNavigationTabsViewController: UIViewController {
     
     /// Single tab width
-    var navigationTabWidth: CGFloat = 111.0
+    public var navigationTabWidth: CGFloat = 111.0
     /// Tab Colors
-    var activeTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-    var inactiveTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+    public var activeTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+    public var inactiveTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
     /// Active tab text color
-    var activeTabTextColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    public var activeTabTextColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     /// Inactive tab text color
-    var inactiveTabTextColor: UIColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+    public var inactiveTabTextColor: UIColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
     /// Margin between two tabs
-    var tabInnerMargin: CGFloat = 10.0
+    public var tabInnerMargin: CGFloat = 10.0
     /// Leading and Trailing margin of the first and last tab
-    var tabOuterMargin: CGFloat = 10.0
+    public var tabOuterMargin: CGFloat = 10.0
     /// Tab indicator height
-    var indicatorViewHeight: CGFloat = 5.0
+    public var indicatorViewHeight: CGFloat = 5.0
     /// Tab indicator color
-    var indicatorColor: UIColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
+    public var indicatorColor: UIColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
     /// Navigation bar height
-    var navigationBarHeight: CGFloat = 33
+    public var navigationBarHeight: CGFloat = 33
     /// Navigation bar color
-    var navigationBarColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    public var navigationBarColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     /// Bounce viewcontrollers
-    var enableBounce: Bool = false
+    public var enableBounce: Bool = false
     /**
      * State of the Navigation tabs views.
      * fixed: Navigation tabs will use tabWidth property and extend beyond screen bounds without scrolling ability.
@@ -45,7 +45,7 @@ public class MNavigationTabsViewController: UIViewController {
      * fit: Navigation tabs will adjust its width so all tabs fit in a single screen without scrolling ability.
      *
      **/
-    var tabsBarStatus: TabsScrollStatus = .fit
+    public var tabsBarStatus: TabsScrollStatus = .fit
     
     /// ViewControllers array to switch between them.
     public var viewControllersArray: [UIViewController] = []
