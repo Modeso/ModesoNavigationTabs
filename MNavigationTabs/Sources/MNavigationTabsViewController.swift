@@ -77,6 +77,10 @@ public class MNavigationTabsViewController: UIViewController {
     }
     
     public func updateUI() {
+        // Error checking
+        if viewControllersArray.count == 0 || viewControllersTitlesArray.count == 0 {
+            return
+        }
         adjustViewControllersScrollView()
         adjustTitlesScrollView()
         addNavigationIndicator()
