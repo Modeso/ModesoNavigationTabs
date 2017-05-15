@@ -16,20 +16,38 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             return
         }
         
-        // Set font to inactivefont
-        (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = inactiveTabColor
-        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
-        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
-        
-        
-        viewControllersArray[currentPage].viewWillDisappear(true)
-        
+        oldPage = currentPage
         currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
         
+        scrollToCurrentPage(currentPage: currentPage)
+    }
+    
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidEndScrollingAnimation(scrollView)
+    }
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollViewDidEndScrollingAnimation(scrollView)
+    }
+
+    public func scrollToCurrentPage(currentPage: Int) {
+        
+        if currentPage > viewControllersTitlesArray.count - 1 {
+            return
+        }
+        if Int(viewControllersScrollView.contentOffset.x / viewControllersScrollView.bounds.width) < currentPage {
+            viewControllersScrollView.contentOffset.x = CGFloat(currentPage) * viewControllersScrollView.bounds.width
+        }
+        // Set font to inactivefont
+        (tabsScrollView.subviews[oldPage] as? UIButton)?.backgroundColor = inactiveTabColor
+        (tabsScrollView.subviews[oldPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
+        (tabsScrollView.subviews[oldPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
+        
+        
+        viewControllersArray[oldPage].viewWillDisappear(true)
         // Set font to inactivefont
         (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = activeTabColor
         (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = activeTabFont
-        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor            
+        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
         
         var currentTabOrigin: CGFloat = (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
         var indicatorFrame = indicatorView.frame
@@ -70,18 +88,11 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             //Adjust indicator origin
             indicatorFrame.origin.x = currentTabOrigin
         }
-    
+        
         UIView.animate(withDuration: 0.2, animations: {
             self.indicatorView.frame = indicatorFrame
         })
         viewControllersArray[currentPage].viewWillAppear(true)
-        
     }
-    
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        scrollViewDidEndScrollingAnimation(scrollView)
-    }
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollViewDidEndScrollingAnimation(scrollView)
-    }
+
 }

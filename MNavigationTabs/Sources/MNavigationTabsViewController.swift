@@ -57,6 +57,7 @@ public class MNavigationTabsViewController: UIViewController {
     
     internal var indicatorView: UIView!
     internal var currentPage: Int = 0
+    internal var oldPage: Int = 0
     
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
