@@ -62,6 +62,7 @@ public class MNavigationTabsViewController: UIViewController {
     internal var indicatorView: UIView!
     internal var currentPage: Int = 0
     internal var oldPage: Int = 0
+    internal var viewIsSetup = false
     
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
@@ -94,6 +95,13 @@ public class MNavigationTabsViewController: UIViewController {
         })
     }
     
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if !viewIsSetup {
+            updateUI()
+        }
+    }
+    
     public func updateUI() {
         // Error checking
         if viewControllersArray.count == 0 || viewControllersTitlesArray.count == 0 {
@@ -116,6 +124,15 @@ public class MNavigationTabsViewController: UIViewController {
     // MARK:- Creating views
     /// Add ViewControllers to viewControllersScrollView
     fileprivate func adjustViewControllersScrollView() {
+        
+        for viewController in self.childViewControllers {
+            viewController.removeFromParentViewController()
+        }
+        
+        for view in viewControllersScrollView.subviews{
+            view.removeFromSuperview()
+        }
+        
         var origin: CGFloat = 0.0
         for viewController in viewControllersArray {
             viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
@@ -127,9 +144,15 @@ public class MNavigationTabsViewController: UIViewController {
         viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)
         currentPage = 0
         viewControllersScrollView.setContentOffset(CGPoint.zero, animated: true)
+        viewIsSetup = true
     }
     /// Add titles to tabsScrollView
     fileprivate func adjustTitlesScrollView() {
+        
+        for view in tabsScrollView.subviews{
+            view.removeFromSuperview()
+        }
+        
         var origin: CGFloat = tabOuterMargin
         var index:Int = 0
         
@@ -159,6 +182,11 @@ public class MNavigationTabsViewController: UIViewController {
     }
     
     fileprivate func addNavigationIndicator() {
+        
+        if indicatorView != nil {
+            indicatorView.removeFromSuperview()
+        }
+        
         indicatorView = UIView(frame: CGRect(x: tabOuterMargin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight))
         indicatorView.backgroundColor = indicatorColor
         tabsScrollView.addSubview(indicatorView)
