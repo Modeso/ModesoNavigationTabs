@@ -31,7 +31,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
 
     public func scrollToCurrentPage(currentPage: Int) {
         
-        if currentPage > viewControllersTitlesArray.count - 1 || oldPage > viewControllersTitlesArray.count - 1 { {
+        if currentPage > viewControllersTitlesArray.count - 1 || oldPage > viewControllersTitlesArray.count - 1 {
             return
         }
         if Int(viewControllersScrollView.contentOffset.x / viewControllersScrollView.bounds.width) < currentPage {
