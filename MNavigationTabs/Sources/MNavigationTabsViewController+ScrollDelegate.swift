@@ -49,28 +49,28 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = activeTabFont
         (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
         
-        var currentTabOrigin: CGFloat = (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+        var currentTabOrigin: CGFloat = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
         var indicatorFrame = indicatorView.frame
         
         if tabsBarStatus == .center {
-            currentTabOrigin = -tabsScrollView.bounds.width * 0.5 + 0.5 * navigationTabWidth
-            currentTabOrigin += navigationTabWidth * CGFloat(currentPage) + (CGFloat(currentPage) * tabInnerMargin) + tabInnerMargin
+            currentTabOrigin = -tabsScrollView.bounds.width * 0.5 + 0.5 * calculatedTabWidth
+            currentTabOrigin += calculatedTabWidth * CGFloat(currentPage) + (CGFloat(currentPage) * tabInnerMargin) + tabInnerMargin
             tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
             
             //Adjust indicator origin
             indicatorFrame.origin.x = currentTabOrigin + tabsScrollView.bounds.width * 0.5 - indicatorFrame.size.width / 2.0
         }
         else {
-            if currentTabOrigin + navigationTabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x {
+            if currentTabOrigin + calculatedTabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x {
                 
                 
                 if Int(currentPage + 1) == viewControllersTitlesArray.count {
                     tabsScrollView.setContentOffset(CGPoint(x: tabsScrollView.contentSize.width - tabsScrollView.bounds.width, y: 0), animated: true)
                 }
                 else {
-                    var movingStep = (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin
+                    var movingStep = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin
                     if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
-                        movingStep = tabsScrollView.contentOffset.x + navigationTabWidth
+                        movingStep = tabsScrollView.contentOffset.x + calculatedTabWidth
                     }
                     tabsScrollView.setContentOffset(CGPoint(x: movingStep, y: 0), animated: true)
                 }
@@ -81,7 +81,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 if currentPage == 0 {
                     tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 } else {
-                    tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * navigationTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
+                    tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
                 }
             }
             

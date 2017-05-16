@@ -17,6 +17,8 @@ public class MNavigationTabsViewController: UIViewController {
     
     /// Single tab width
     public var navigationTabWidth: CGFloat = 111.0
+    /// Calculated tab width
+    public var calculatedTabWidth: CGFloat = 111.0
     /// Tab Colors
     public var activeTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
     public var inactiveTabColor: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
@@ -36,6 +38,8 @@ public class MNavigationTabsViewController: UIViewController {
     public var navigationBarHeight: CGFloat = 33
     /// Navigation bar color
     public var navigationBarColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    /// ScrollView nackground color
+    public var scrollViewBackgroundColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     /// Bounce viewcontrollers
     public var enableBounce: Bool = false
     /**
@@ -74,7 +78,20 @@ public class MNavigationTabsViewController: UIViewController {
         
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBkgColor
+        viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
         viewControllersScrollView.bounces = enableBounce
+    }
+    
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: nil, completion: { _ in
+            if UIDevice.current.orientation == .portrait {
+                let visibleTapRatio =  Float((self.indicatorView.frame.origin.x + self.indicatorView.frame.size.width) / self.viewControllersScrollView.bounds.width)
+                let visibleTapNumber =  Int(visibleTapRatio * Float(self.viewControllersArray.count))
+                self.viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(visibleTapNumber - 1) * self.viewControllersScrollView.frame.size.width, y: 0), animated: false)
+                
+            }
+        })
     }
     
     public func updateUI() {
@@ -85,6 +102,11 @@ public class MNavigationTabsViewController: UIViewController {
         adjustViewControllersScrollView()
         adjustTitlesScrollView()
         addNavigationIndicator()
+        
+        if tabsBarStatus == .scrollable {
+            tabsScrollView.isScrollEnabled = true
+            tabsScrollView.setContentOffset(CGPoint.zero, animated: true)
+        }
     }
     override public func loadView() {
         super.loadView()
@@ -96,13 +118,15 @@ public class MNavigationTabsViewController: UIViewController {
     fileprivate func adjustViewControllersScrollView() {
         var origin: CGFloat = 0.0
         for viewController in viewControllersArray {
-            viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewController.view.frame.size.height)
+            viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
             self.addChildViewController(viewController)
             viewControllersScrollView.addSubview(viewController.view)            
             viewController.didMove(toParentViewController: self)
             origin += viewControllersScrollView.bounds.width
         }
         viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)
+        currentPage = 0
+        viewControllersScrollView.setContentOffset(CGPoint.zero, animated: true)
     }
     /// Add titles to tabsScrollView
     fileprivate func adjustTitlesScrollView() {
@@ -111,10 +135,12 @@ public class MNavigationTabsViewController: UIViewController {
         
         // Special case if .fit status is enabled, adjust tabWidth
         if tabsBarStatus == .fit {
-            navigationTabWidth = (tabsScrollView.bounds.width -  ((2 * tabOuterMargin) + CGFloat(viewControllersTitlesArray.count - 1) * tabInnerMargin)) / CGFloat(viewControllersTitlesArray.count)
+            calculatedTabWidth = (tabsScrollView.bounds.width -  ((2 * tabOuterMargin) + CGFloat(viewControllersTitlesArray.count - 1) * tabInnerMargin)) / CGFloat(viewControllersTitlesArray.count)
+        } else {
+            calculatedTabWidth = navigationTabWidth
         }
         for title in viewControllersTitlesArray {
-            let button = UIButton(frame: CGRect(x: origin, y: 0, width: navigationTabWidth, height: navigationBarHeight))
+            let button = UIButton(frame: CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight))
             button.backgroundColor = inactiveTabColor
             button.setAttributedTitle(title, for: .normal)
             button.titleLabel?.font = inactiveTabFont
@@ -133,7 +159,7 @@ public class MNavigationTabsViewController: UIViewController {
     }
     
     fileprivate func addNavigationIndicator() {
-        indicatorView = UIView(frame: CGRect(x: tabOuterMargin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: navigationTabWidth, height: indicatorViewHeight))
+        indicatorView = UIView(frame: CGRect(x: tabOuterMargin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight))
         indicatorView.backgroundColor = indicatorColor
         tabsScrollView.addSubview(indicatorView)
     }

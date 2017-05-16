@@ -116,6 +116,15 @@ import Foundation
             return navigationBarColor
         }
     }
+    
+    @IBInspectable var scrollViewBkgColor: UIColor {
+        set {
+            scrollViewBackgroundColor = newValue
+        }
+        get {
+            return scrollViewBackgroundColor
+        }
+    }
     // MARK:- ViewControllers scrollview
     @IBInspectable var scrollBounce: Bool {
         set {
