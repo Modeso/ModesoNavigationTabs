@@ -39,7 +39,11 @@ public class MNavigationTabsViewController: UIViewController {
     /// Navigation bar color
     public var navigationBarColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     /// ScrollView nackground color
-    public var scrollViewBackgroundColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    public var scrollViewBackgroundColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) {
+        didSet {
+            viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
+        }
+    }
     /// Bounce viewcontrollers
     public var enableBounce: Bool = false
     /**
@@ -125,12 +129,12 @@ public class MNavigationTabsViewController: UIViewController {
     /// Add ViewControllers to viewControllersScrollView
     fileprivate func adjustViewControllersScrollView() {
         
-        for viewController in self.childViewControllers {
-            viewController.removeFromParentViewController()
-        }
-        
         for view in viewControllersScrollView.subviews{
             view.removeFromSuperview()
+        }
+        
+        for viewController in self.childViewControllers {
+            viewController.removeFromParentViewController()
         }
         
         var origin: CGFloat = 0.0
