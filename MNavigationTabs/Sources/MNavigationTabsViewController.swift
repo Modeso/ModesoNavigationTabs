@@ -67,7 +67,9 @@ public class MNavigationTabsViewController: UIViewController {
     internal var currentPage: Int = 0
     internal var oldPage: Int = 0
     internal var viewIsSetup = false
-    
+    /// Orientation is not supporting in the library and it causes issues that it moves to first Tab.
+    internal var isChangingOrientation: Bool = false
+
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
     @IBOutlet weak var viewControllersScrollView: UIScrollView!
@@ -89,6 +91,7 @@ public class MNavigationTabsViewController: UIViewController {
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        isChangingOrientation = true
         coordinator.animate(alongsideTransition: nil, completion: { _ in
             if UIDevice.current.orientation == .portrait {
                 let visibleTapRatio =  Float((self.indicatorView.frame.origin.x + self.indicatorView.frame.size.width) / self.viewControllersScrollView.bounds.width)
@@ -96,6 +99,7 @@ public class MNavigationTabsViewController: UIViewController {
                 self.viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(visibleTapNumber - 1) * self.viewControllersScrollView.frame.size.width, y: 0), animated: false)
                 
             }
+            self.isChangingOrientation = false
         })
     }
     
