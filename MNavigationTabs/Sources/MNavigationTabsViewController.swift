@@ -89,6 +89,10 @@ public class MNavigationTabsViewController: UIViewController {
         
     }
     
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        rotated()
+    }
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
