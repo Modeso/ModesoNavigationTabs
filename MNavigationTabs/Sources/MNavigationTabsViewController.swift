@@ -39,11 +39,8 @@ public class MNavigationTabsViewController: UIViewController {
     /// Navigation bar color
     public var navigationBarColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     /// ScrollView nackground color
-    public var scrollViewBackgroundColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) {
-        didSet {
-            viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
-        }
-    }
+    public var scrollViewBackgroundColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    
     /// Bounce viewcontrollers
     public var enableBounce: Bool = false
     /**
@@ -69,7 +66,7 @@ public class MNavigationTabsViewController: UIViewController {
     internal var viewIsSetup = false
     /// Orientation is not supporting in the library and it causes issues that it moves to first Tab.
     internal var isChangingOrientation: Bool = false
-
+    
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
     @IBOutlet weak var viewControllersScrollView: UIScrollView!
@@ -87,20 +84,27 @@ public class MNavigationTabsViewController: UIViewController {
         tabsScrollView.backgroundColor = tabsBkgColor
         viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
         viewControllersScrollView.bounces = enableBounce
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         isChangingOrientation = true
+        
         coordinator.animate(alongsideTransition: nil, completion: { _ in
-            if UIDevice.current.orientation == .portrait {
-                let visibleTapRatio =  Float((self.indicatorView.frame.origin.x + self.indicatorView.frame.size.width) / self.viewControllersScrollView.bounds.width)
-                let visibleTapNumber =  Int(visibleTapRatio * Float(self.viewControllersArray.count))
-                self.viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(visibleTapNumber - 1) * self.viewControllersScrollView.frame.size.width, y: 0), animated: false)
-                
-            }
             self.isChangingOrientation = false
         })
+    }
+    
+    func rotated() {
+        self.adjustTitleViewsFrames()
+        self.adjustViewControllersFrames()
+        
     }
     
     public override func viewDidLayoutSubviews() {
@@ -145,7 +149,7 @@ public class MNavigationTabsViewController: UIViewController {
         for viewController in viewControllersArray {
             viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
             self.addChildViewController(viewController)
-            viewControllersScrollView.addSubview(viewController.view)            
+            viewControllersScrollView.addSubview(viewController.view)
             viewController.didMove(toParentViewController: self)
             origin += viewControllersScrollView.bounds.width
         }
@@ -200,8 +204,42 @@ public class MNavigationTabsViewController: UIViewController {
         tabsScrollView.addSubview(indicatorView)
     }
     
+    // MARK:- Adjusting views
+    fileprivate func adjustTitleViewsFrames() {
+        
+        var origin: CGFloat = tabOuterMargin
+        
+        if tabsBarStatus == .fit {
+            calculatedTabWidth = (tabsScrollView.bounds.width -  ((2 * tabOuterMargin) + CGFloat(viewControllersTitlesArray.count - 1) * tabInnerMargin)) / CGFloat(viewControllersTitlesArray.count)
+        } else {
+            calculatedTabWidth = navigationTabWidth
+        }
+        
+        for button in tabsScrollView.subviews {
+            
+            button.frame = CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight)
+            origin += button.frame.size.width + tabInnerMargin
+        }
+        
+        let tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+        indicatorView.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
+    }
+    fileprivate func adjustViewControllersFrames() {
+        
+        var index: CGFloat = 0.0
+        for newView in viewControllersScrollView.subviews {
+            newView.frame = CGRect(x: index, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+            index += viewControllersScrollView.bounds.width
+        }
+        
+        viewControllersScrollView.contentSize = CGSize(width: index, height: self.view.frame.size.height - navigationBarHeight)
+        
+        
+        viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: false)
+        
+    }
     // MARK:- IBActions
-    @objc fileprivate func selectPage(sender: UIButton) {        
+    @objc fileprivate func selectPage(sender: UIButton) {
         viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(sender.tag) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
     }
     

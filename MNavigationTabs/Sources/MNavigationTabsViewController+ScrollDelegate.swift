@@ -11,27 +11,25 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-            
+        
         if scrollView != viewControllersScrollView || currentPage == Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width) {
             return
         }
-        // TODO:- Please fix orientation because it causes wrong page to appear
-        if !isChangingOrientation {
-            oldPage = currentPage
-            currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
-            
-            scrollToCurrentPage(currentPage: currentPage)
-
-        }
+        
+        oldPage = currentPage
+        currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
+        scrollToCurrentPage(currentPage: currentPage)
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         scrollViewDidEndScrollingAnimation(scrollView)
     }
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollViewDidEndScrollingAnimation(scrollView)
+        if !isChangingOrientation {
+            scrollViewDidEndScrollingAnimation(scrollView)
+        }
     }
-
+    
     public func scrollToCurrentPage(currentPage: Int) {
         
         if currentPage > viewControllersTitlesArray.count - 1 || oldPage > viewControllersTitlesArray.count - 1 {
@@ -97,5 +95,5 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         })
         viewControllersArray[currentPage].viewWillAppear(true)
     }
-
+    
 }
