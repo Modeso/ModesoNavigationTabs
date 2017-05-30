@@ -39,7 +39,11 @@ public class MNavigationTabsViewController: UIViewController {
     /// Navigation bar color
     public var navigationBarColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     /// ScrollView nackground color
-    public var scrollViewBackgroundColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    public var scrollViewBackgroundColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) {
+        didSet {
+            viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
+        }
+    }
     
     /// Bounce viewcontrollers
     public var enableBounce: Bool = false
@@ -220,10 +224,12 @@ public class MNavigationTabsViewController: UIViewController {
         }
         
         for button in tabsScrollView.subviews {
-            
-            button.frame = CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight)
-            origin += button.frame.size.width + tabInnerMargin
+            if let button = button as? UIButton {
+                button.frame = CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight)
+                origin += button.frame.size.width + tabInnerMargin
+            }
         }
+        tabsScrollView.contentSize = CGSize(width: origin + tabOuterMargin - tabInnerMargin, height: tabsScrollView.frame.size.height)
         
         let tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
         indicatorView.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
