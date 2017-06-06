@@ -161,8 +161,7 @@ public class MNavigationTabsViewController: UIViewController {
             viewController.didMove(toParentViewController: self)
             origin += viewControllersScrollView.bounds.width
         }
-        viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)
-        currentPage = 0
+        viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)        
         viewControllersScrollView.setContentOffset(CGPoint.zero, animated: true)
         viewIsSetup = true
     }
