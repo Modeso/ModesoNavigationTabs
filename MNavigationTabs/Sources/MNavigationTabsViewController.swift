@@ -161,8 +161,11 @@ public class MNavigationTabsViewController: UIViewController {
             viewController.didMove(toParentViewController: self)
             origin += viewControllersScrollView.bounds.width
         }
-        viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)        
-        viewControllersScrollView.setContentOffset(CGPoint.zero, animated: true)
+        if currentPage >= viewControllersArray.count {
+            currentPage = 0
+        }
+        viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)
+        viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: true)
         viewIsSetup = true
     }
     /// Add titles to tabsScrollView
@@ -194,6 +197,9 @@ public class MNavigationTabsViewController: UIViewController {
             index += 1
         }
         tabsScrollView.contentSize = CGSize(width: origin + tabOuterMargin - tabInnerMargin, height: tabsScrollView.frame.size.height)
+        
+        let tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+        indicatorView?.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
         
         (tabsScrollView.subviews[0] as? UIButton)?.backgroundColor = activeTabColor
         (tabsScrollView.subviews[0] as? UIButton)?.titleLabel?.font = activeTabFont
