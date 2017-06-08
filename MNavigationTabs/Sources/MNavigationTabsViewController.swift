@@ -127,9 +127,11 @@ public class MNavigationTabsViewController: UIViewController {
         if viewControllersArray.count == 0 || viewControllersTitlesArray.count == 0 {
             return
         }
+        
         adjustViewControllersScrollView()
         adjustTitlesScrollView()
         addNavigationIndicator()
+        
         
         if tabsBarStatus == .scrollable {
             tabsScrollView.isScrollEnabled = true
@@ -161,9 +163,7 @@ public class MNavigationTabsViewController: UIViewController {
             viewController.didMove(toParentViewController: self)
             origin += viewControllersScrollView.bounds.width
         }
-        if currentPage >= viewControllersArray.count {
-            currentPage = 0
-        }
+        
         viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)
         viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: true)
         viewIsSetup = true
@@ -212,7 +212,9 @@ public class MNavigationTabsViewController: UIViewController {
             indicatorView.removeFromSuperview()
         }
         
-        indicatorView = UIView(frame: CGRect(x: tabOuterMargin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight))
+        let tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+        
+        indicatorView = UIView(frame: CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight))
         indicatorView.backgroundColor = indicatorColor
         tabsScrollView.addSubview(indicatorView)
     }
@@ -259,9 +261,3 @@ public class MNavigationTabsViewController: UIViewController {
     }
     
 }
-
-
-
-
-
-
