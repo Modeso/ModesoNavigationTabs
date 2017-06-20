@@ -32,19 +32,22 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     public func scrollToCurrentPage(currentPage: Int) {
         
-        if currentPage > viewControllersTitlesArray.count - 1 || oldPage > viewControllersTitlesArray.count - 1 {
+        if currentPage > viewControllersTitlesArray.count - 1 {
             return
         }
         if Int(viewControllersScrollView.contentOffset.x / viewControllersScrollView.bounds.width) < currentPage {
             viewControllersScrollView.contentOffset.x = CGFloat(currentPage) * viewControllersScrollView.bounds.width
         }
-        // Set font to inactivefont
-        (tabsScrollView.subviews[oldPage] as? UIButton)?.backgroundColor = inactiveTabColor
-        (tabsScrollView.subviews[oldPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
-        (tabsScrollView.subviews[oldPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
-        
-        
-        viewControllersArray[oldPage].viewWillDisappear(true)
+        if oldPage < viewControllersTitlesArray.count - 1 {
+            // Set font to inactivefont
+            (tabsScrollView.subviews[oldPage] as? UIButton)?.backgroundColor = inactiveTabColor
+            (tabsScrollView.subviews[oldPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
+            (tabsScrollView.subviews[oldPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
+            
+            
+            viewControllersArray[oldPage].viewWillDisappear(true)
+        }
+
         // Set font to inactivefont
         (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = activeTabColor
         (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = activeTabFont
