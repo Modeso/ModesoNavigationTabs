@@ -10,34 +10,38 @@ import Foundation
 extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
-    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        
-        if scrollView != viewControllersScrollView || currentPage == Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width) {
-            return
-        }
-        
-        oldPage = currentPage
-        currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
-        scrollToCurrentPage(currentPage: currentPage)
-    }
-    
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        scrollViewDidEndScrollingAnimation(scrollView)
-    }
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !isChangingOrientation {
-            scrollViewDidEndScrollingAnimation(scrollView)
+            if scrollView != viewControllersScrollView || currentPage == Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width) {
+                return
+            }
+            
+            oldPage = currentPage
+            currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
+            startNavigating(toPage: currentPage)
         }
     }
     
     public func scrollToCurrentPage(currentPage: Int) {
         
-        if currentPage > viewControllersTitlesArray.count - 1 {
+        if viewControllersScrollView.isDragging || viewControllersScrollView.isDecelerating {
             return
         }
+        startNavigating(toPage: currentPage)
+        
+    }
+    
+    fileprivate func startNavigating(toPage currentPage: Int) {
+        
+        if currentPage > viewControllersTitlesArray.count - 1 || oldPage > viewControllersTitlesArray.count - 1 {
+            return
+        }
+        
+        
         if Int(viewControllersScrollView.contentOffset.x / viewControllersScrollView.bounds.width) < currentPage {
             viewControllersScrollView.contentOffset.x = CGFloat(currentPage) * viewControllersScrollView.bounds.width
         }
+        
         if oldPage < viewControllersTitlesArray.count - 1 {
             // Set font to inactivefont
             (tabsScrollView.subviews[oldPage] as? UIButton)?.backgroundColor = inactiveTabColor
@@ -47,7 +51,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             
             viewControllersArray[oldPage].viewWillDisappear(true)
         }
-
+        
         // Set font to inactivefont
         (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = activeTabColor
         (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = activeTabFont
@@ -97,6 +101,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             self.indicatorView.frame = indicatorFrame
         })
         viewControllersArray[currentPage].viewWillAppear(true)
+        
     }
     
 }
