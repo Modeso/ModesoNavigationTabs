@@ -117,6 +117,15 @@ import Foundation
         }
     }
     
+    @IBInspectable var tabsAnimation: Bool {
+        set {
+            enableResizingAnimated = newValue
+        }
+        get {
+            return enableResizingAnimated
+        }
+    }
+    
     @IBInspectable var scrollViewBkgColor: UIColor {
         set {
             scrollViewBackgroundColor = newValue

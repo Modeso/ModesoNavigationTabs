@@ -67,13 +67,19 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             viewControllersScrollView.contentOffset.x = CGFloat(currentPage) * viewControllersScrollView.bounds.width
         }
         
-        if oldPage < viewControllersTitlesArray.count - 1 {
-            // Set font to inactivefont
-            for view in tabsScrollView.subviews {
-                (view as? UIButton)?.backgroundColor = inactiveTabColor
-                (view as? UIButton)?.titleLabel?.font = inactiveTabFont
-                (view as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
+        
+        // Set font to inactivefont
+        for view in tabsScrollView.subviews {
+            (view as? UIButton)?.backgroundColor = inactiveTabColor
+            (view as? UIButton)?.titleLabel?.font = inactiveTabFont
+            (view as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
+            
+            if enableResizingAnimated {
+                UIView.animate(withDuration: 0.2, animations: {
+                    view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+                })
             }
+            
         }
         
         var indexOfCurrentPage = mappingArray.index(of: currentPage)!
@@ -82,6 +88,13 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         (tabsScrollView.subviews[indexOfCurrentPage] as? UIButton)?.backgroundColor = activeTabColor
         (tabsScrollView.subviews[indexOfCurrentPage] as? UIButton)?.titleLabel?.font = activeTabFont
         (tabsScrollView.subviews[indexOfCurrentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
+        
+        if enableResizingAnimated {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.tabsScrollView.subviews[indexOfCurrentPage].transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+            })
+        }
+        
         
         var currentTabOrigin: CGFloat = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabOuterMargin
         var indicatorFrame = indicatorView.frame

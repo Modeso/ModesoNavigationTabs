@@ -53,6 +53,9 @@ public class MNavigationTabsViewController: UIViewController {
     /// infinite viewcontrollers
     public var enableCycles: Bool = false
     
+    /// Allow tabs resizing with animation
+    public var enableResizingAnimated: Bool = false
+    
     /**
      * State of the Navigation tabs views.
      * fixed: Navigation tabs will use tabWidth property and extend beyond screen bounds without scrolling ability.
@@ -120,6 +123,20 @@ public class MNavigationTabsViewController: UIViewController {
         self.adjustTitleViewsFrames()
         self.adjustViewControllersFrames()
         
+        if enableResizingAnimated {
+            DispatchQueue.main.async {
+                for view in self.tabsScrollView.subviews {
+                    UIView.animate(withDuration: 0.2, animations: {
+                        view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+                    })
+                }
+                
+                self.tabsScrollView.subviews[0].transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                
+            }
+            
+        }
+        
     }
     
     public override func viewDidLayoutSubviews() {
@@ -139,6 +156,11 @@ public class MNavigationTabsViewController: UIViewController {
         adjustViewControllersScrollView()
         adjustTitlesScrollView()
         addNavigationIndicator()
+        
+        if enableResizingAnimated {
+            indicatorView.isHidden = true
+        }
+        
         
         
         if tabsBarStatus == .scrollable {
@@ -201,6 +223,7 @@ public class MNavigationTabsViewController: UIViewController {
             button.tag = index
             button.addTarget(self, action: #selector(selectPage(sender:)), for: .touchUpInside)
             tabsScrollView.addSubview(button)
+            
             origin += button.frame.size.width + tabInnerMargin
             index += 1
         }
@@ -248,6 +271,7 @@ public class MNavigationTabsViewController: UIViewController {
         
         let tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
         indicatorView.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
+        
     }
     fileprivate func adjustViewControllersFrames() {
         
