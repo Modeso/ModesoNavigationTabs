@@ -130,13 +130,9 @@ public class MNavigationTabsViewController: UIViewController {
                         view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
                     })
                 }
-                
                 self.tabsScrollView.subviews[0].transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
-                
             }
-            
         }
-        
     }
     
     public override func viewDidLayoutSubviews() {
@@ -289,7 +285,11 @@ public class MNavigationTabsViewController: UIViewController {
     }
     // MARK:- IBActions
     @objc fileprivate func selectPage(sender: UIButton) {
+        
+        currentPage = mappingArray[sender.tag]
+        
         viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(mappingArray[sender.tag]) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
+        adjustTabsView(forPage: currentPage)
     }
     
 }

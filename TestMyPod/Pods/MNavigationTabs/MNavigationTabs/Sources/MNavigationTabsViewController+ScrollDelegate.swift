@@ -10,9 +10,10 @@ import Foundation
 extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if !isChangingOrientation {
-            if scrollView != viewControllersScrollView || currentPage == Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width) {
+            if scrollView != viewControllersScrollView {
                 return
             }
             
@@ -39,12 +40,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             shiftViewsToLeft()
             
         }
-            
-        else if translation.x == 0 && currentPage == 0 {
-            viewControllersScrollView.contentOffset = CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(length), y: 0)
-        } else if translation.x == 0 && currentPage == length {
-            viewControllersScrollView.contentOffset = CGPoint(x: 0, y: 0)
-        }
+        
     }
     
     public func scrollToCurrentPage(currentPage: Int) {
@@ -67,7 +63,11 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             viewControllersScrollView.contentOffset.x = CGFloat(currentPage) * viewControllersScrollView.bounds.width
         }
         
+        adjustTabsView(forPage: currentPage)
         
+    }
+    
+    public func adjustTabsView(forPage currentPage:Int) {
         // Set font to inactivefont
         for view in tabsScrollView.subviews {
             (view as? UIButton)?.backgroundColor = inactiveTabColor
@@ -142,7 +142,6 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
     }
     
-    
     fileprivate func shiftViewsToRight() {
         
         viewControllersScrollView.delegate = nil
@@ -158,7 +157,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         viewControllersArray.shiftRightInPlace()
         mappingArray.shiftLeftInPlace()
         
-        viewControllersScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        viewControllersScrollView.contentOffset.x = 0
         
         viewControllersScrollView.delegate = self
         
@@ -182,7 +181,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
         viewControllersArray[length].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
         
-        viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(length), y: 0), animated: false)
+        viewControllersScrollView.contentOffset.x = viewControllersScrollView.bounds.width * CGFloat(length)
         
         viewControllersScrollView.delegate = self
     }
