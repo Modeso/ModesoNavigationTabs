@@ -22,6 +22,31 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         }
     }
     
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        if !enableCycles {
+            return
+        }
+        
+        let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        let length = viewControllersArray.count - 1
+        if translation.x < 0 && currentPage == length { //drag to the left, show first in the last
+            
+            shiftViewsToRight()
+            
+        } else if translation.x > 0 && currentPage == 0 {
+            
+            shiftViewsToLeft()
+            
+        }
+            
+        else if translation.x == 0 && currentPage == 0 {
+            viewControllersScrollView.contentOffset = CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(length), y: 0)
+        } else if translation.x == 0 && currentPage == length {
+            viewControllersScrollView.contentOffset = CGPoint(x: 0, y: 0)
+        }
+    }
+    
     public func scrollToCurrentPage(currentPage: Int) {
         
         if viewControllersScrollView.isDragging || viewControllersScrollView.isDecelerating {
@@ -44,25 +69,26 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
         if oldPage < viewControllersTitlesArray.count - 1 {
             // Set font to inactivefont
-            (tabsScrollView.subviews[oldPage] as? UIButton)?.backgroundColor = inactiveTabColor
-            (tabsScrollView.subviews[oldPage] as? UIButton)?.titleLabel?.font = inactiveTabFont
-            (tabsScrollView.subviews[oldPage] as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
-            
-            
-            viewControllersArray[oldPage].viewWillDisappear(true)
+            for view in tabsScrollView.subviews {
+                (view as? UIButton)?.backgroundColor = inactiveTabColor
+                (view as? UIButton)?.titleLabel?.font = inactiveTabFont
+                (view as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
+            }
         }
         
-        // Set font to inactivefont
-        (tabsScrollView.subviews[currentPage] as? UIButton)?.backgroundColor = activeTabColor
-        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.font = activeTabFont
-        (tabsScrollView.subviews[currentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
+        var indexOfCurrentPage = mappingArray.index(of: currentPage)!
         
-        var currentTabOrigin: CGFloat = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+        // Set font to inactivefont
+        (tabsScrollView.subviews[indexOfCurrentPage] as? UIButton)?.backgroundColor = activeTabColor
+        (tabsScrollView.subviews[indexOfCurrentPage] as? UIButton)?.titleLabel?.font = activeTabFont
+        (tabsScrollView.subviews[indexOfCurrentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
+        
+        var currentTabOrigin: CGFloat = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabOuterMargin
         var indicatorFrame = indicatorView.frame
         
         if tabsBarStatus == .center {
             currentTabOrigin = -tabsScrollView.bounds.width * 0.5 + 0.5 * calculatedTabWidth
-            currentTabOrigin += calculatedTabWidth * CGFloat(currentPage) + (CGFloat(currentPage) * tabInnerMargin) + tabInnerMargin
+            currentTabOrigin += calculatedTabWidth * CGFloat(indexOfCurrentPage) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabInnerMargin
             tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
             
             //Adjust indicator origin
@@ -76,7 +102,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     tabsScrollView.setContentOffset(CGPoint(x: tabsScrollView.contentSize.width - tabsScrollView.bounds.width, y: 0), animated: true)
                 }
                 else {
-                    var movingStep = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin
+                    var movingStep = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin
                     if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
                         movingStep = tabsScrollView.contentOffset.x + calculatedTabWidth
                     }
@@ -89,7 +115,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 if currentPage == 0 {
                     tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 } else {
-                    tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
+                    tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
                 }
             }
             
@@ -100,8 +126,71 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         UIView.animate(withDuration: 0.2, animations: {
             self.indicatorView.frame = indicatorFrame
         })
-        viewControllersArray[currentPage].viewWillAppear(true)
         
     }
     
+    
+    fileprivate func shiftViewsToRight() {
+        
+        viewControllersScrollView.delegate = nil
+        let length = viewControllersArray.count - 1
+        var origin: CGFloat = 0.0
+        viewControllersArray[length].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+        origin += viewControllersScrollView.bounds.width
+        
+        for i in 0..<length  {
+            viewControllersArray[i].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+            origin += viewControllersScrollView.bounds.width
+        }
+        viewControllersArray.shiftRightInPlace()
+        mappingArray.shiftLeftInPlace()
+        
+        viewControllersScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        
+        viewControllersScrollView.delegate = self
+        
+    }
+    
+    fileprivate func shiftViewsToLeft() {
+        
+        viewControllersArray.shiftLeftInPlace()
+        mappingArray.shiftRightInPlace()
+        
+        viewControllersScrollView.delegate = nil
+        
+        let length = viewControllersArray.count - 1
+        var origin: CGFloat = 0.0
+        
+        for i in 0..<length  {
+            viewControllersArray[i].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+            origin += viewControllersScrollView.bounds.width
+        }
+        
+        
+        viewControllersArray[length].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+        
+        viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(length), y: 0), animated: false)
+        
+        viewControllersScrollView.delegate = self
+    }
+    
+}
+
+
+extension Array {
+    func shiftLeft() -> [Element] {
+        return Array(self[1 ..< count] + [self[0]])
+    }
+    
+    func shiftRight() -> [Element] {
+        return Array([self[count - 1]] + self[0 ..< count - 1])
+    }
+    
+    mutating func shiftRightInPlace() {
+        self = shiftRight()
+    }
+    
+    mutating func shiftLeftInPlace() {
+        self = shiftLeft()
+    }
 }

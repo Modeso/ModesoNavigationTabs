@@ -8,7 +8,7 @@
 
 import Foundation
 
-    
+
 @IBDesignable extension MNavigationTabsViewController {
     
     // MARK:- Tabs
@@ -135,4 +135,12 @@ import Foundation
         }
     }
     
+    @IBInspectable var cycle: Bool {
+        set {
+            enableCycles = newValue
+        }
+        get {
+            return enableCycles
+        }
+    }
 }

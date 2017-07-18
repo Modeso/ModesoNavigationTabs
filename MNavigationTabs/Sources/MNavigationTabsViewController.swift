@@ -41,12 +41,18 @@ public class MNavigationTabsViewController: UIViewController {
     /// ScrollView nackground color
     public var scrollViewBackgroundColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) {
         didSet {
-            viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
+            if viewControllersScrollView != nil {
+                viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
+            }
         }
     }
     
     /// Bounce viewcontrollers
     public var enableBounce: Bool = false
+    
+    /// infinite viewcontrollers
+    public var enableCycles: Bool = false
+    
     /**
      * State of the Navigation tabs views.
      * fixed: Navigation tabs will use tabWidth property and extend beyond screen bounds without scrolling ability.
@@ -70,6 +76,7 @@ public class MNavigationTabsViewController: UIViewController {
     internal var viewIsSetup = false
     /// Orientation is not supporting in the library and it causes issues that it moves to first Tab.
     internal var isChangingOrientation: Bool = false
+    internal var mappingArray: [Int] = []
     
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
@@ -128,6 +135,7 @@ public class MNavigationTabsViewController: UIViewController {
             return
         }
         
+        mappingArray = Array(0 ..< viewControllersArray.count)
         adjustViewControllersScrollView()
         adjustTitlesScrollView()
         addNavigationIndicator()
@@ -257,7 +265,7 @@ public class MNavigationTabsViewController: UIViewController {
     }
     // MARK:- IBActions
     @objc fileprivate func selectPage(sender: UIButton) {
-        viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(sender.tag) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
+        viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(mappingArray[sender.tag]) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
     }
     
 }
