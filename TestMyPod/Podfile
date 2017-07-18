@@ -6,5 +6,5 @@ target 'TestMyPod' do
   use_frameworks!
 
   # Pods for TestMyPod
- pod 'MNavigationTabs', :git => 'https://github.com/Modeso/MNavigationTabs.git'
+  pod 'MNavigationTabs', :git => 'https://github.com/Modeso/MNavigationTabs.git', :branch => 'Supporting_Cycles'
 end

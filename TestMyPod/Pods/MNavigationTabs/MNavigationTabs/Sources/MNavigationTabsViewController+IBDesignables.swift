@@ -8,7 +8,7 @@
 
 import Foundation
 
-    
+
 @IBDesignable extension MNavigationTabsViewController {
     
     // MARK:- Tabs
@@ -116,6 +116,24 @@ import Foundation
             return navigationBarColor
         }
     }
+    
+    @IBInspectable var tabsAnimation: Bool {
+        set {
+            enableResizingAnimated = newValue
+        }
+        get {
+            return enableResizingAnimated
+        }
+    }
+    
+    @IBInspectable var scrollViewBkgColor: UIColor {
+        set {
+            scrollViewBackgroundColor = newValue
+        }
+        get {
+            return scrollViewBackgroundColor
+        }
+    }
     // MARK:- ViewControllers scrollview
     @IBInspectable var scrollBounce: Bool {
         set {
@@ -126,4 +144,12 @@ import Foundation
         }
     }
     
+    @IBInspectable var cycle: Bool {
+        set {
+            enableCycles = newValue
+        }
+        get {
+            return enableCycles
+        }
+    }
 }
