@@ -97,7 +97,14 @@ public class MNavigationTabsViewController: UIViewController {
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBkgColor
         viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
+        
+        if enableCycles {
+            enableBounce = false            
+        }
+        
         viewControllersScrollView.bounces = enableBounce
+        
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
@@ -156,7 +163,6 @@ public class MNavigationTabsViewController: UIViewController {
         if enableResizingAnimated {
             indicatorView.isHidden = true
         }
-        
         
         
         if tabsBarStatus == .scrollable {

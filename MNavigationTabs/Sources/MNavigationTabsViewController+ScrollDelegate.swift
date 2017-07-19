@@ -30,6 +30,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         }
         
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        
         let length = viewControllersArray.count - 1
         if translation.x < 0 && currentPage == length { //drag to the left, show first in the last
             
