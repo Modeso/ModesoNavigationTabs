@@ -182,12 +182,15 @@ public class MNavigationTabsViewController: UIViewController {
         }
         
         var origin: CGFloat = 0.0
+        var index: Int = 0
         for viewController in viewControllersArray {
             viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
             self.addChildViewController(viewController)
             viewControllersScrollView.addSubview(viewController.view)
             viewController.didMove(toParentViewController: self)
             origin += viewControllersScrollView.bounds.width
+            viewController.view.tag = index
+            index += 1
         }
         
         viewControllersScrollView.contentSize = CGSize(width: origin, height: self.view.frame.size.height - navigationBarHeight)
@@ -285,6 +288,11 @@ public class MNavigationTabsViewController: UIViewController {
     }
     // MARK:- IBActions
     @objc fileprivate func selectPage(sender: UIButton) {
+        
+        adjustViewControllersFrames()
+        viewControllersArray = viewControllersArray.sorted( by: { $0.view.tag < $1.view.tag })
+        viewControllersScrollView.contentOffset.x =  CGFloat(mappingArray.index(of: currentPage)!) * viewControllersScrollView.frame.size.width
+        mappingArray = Array(0 ..< viewControllersArray.count)
         
         currentPage = mappingArray[sender.tag]
         
