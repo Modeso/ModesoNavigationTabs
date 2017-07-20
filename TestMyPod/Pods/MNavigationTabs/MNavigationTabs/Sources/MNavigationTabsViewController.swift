@@ -277,7 +277,14 @@ public class MNavigationTabsViewController: UIViewController {
         }
         tabsScrollView.contentSize = CGSize(width: origin + tabOuterMargin - tabInnerMargin, height: tabsScrollView.frame.size.height)
         
-        let tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+        var tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
+        
+        if tabsBarStatus == .center {
+            let initialOrigin = -tabsScrollView.bounds.width * 0.5 + 0.5 * navigationTabWidth + tabInnerMargin
+            tabsScrollView.setContentOffset(CGPoint(x: initialOrigin, y: 0), animated: true)
+            tabOrigin = tabInnerMargin
+        }
+        
         indicatorView.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
         
     }
