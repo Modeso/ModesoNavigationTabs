@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
-        self.view.backgroundColor = UIColor(red: 1.0/255.0, green: 124.0/255.0, blue: 177.0/255.0, alpha: 1)
+//        self.view.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 177.0/255.0, alpha: 1)
         
         let firstViewController = UIStoryboard(name: "ViewControllers", bundle: nil).instantiateViewController(withIdentifier: "FirstViewController")
         let secondViewController = UIStoryboard(name: "ViewControllers", bundle: nil).instantiateViewController(withIdentifier: "SecondViewController")
@@ -24,9 +24,9 @@ class ViewController: UIViewController {
         let forthViewController = UIStoryboard(name: "ViewControllers", bundle: nil).instantiateViewController(withIdentifier: "ForthViewController")
         
         mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
-        mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: ""),NSAttributedString(string: ""),NSAttributedString(string: ""),NSAttributedString(string: "")]
-        mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
-        mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
+        mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "Page One"),NSAttributedString(string: "Page Two"),NSAttributedString(string: "Page Three"),NSAttributedString(string: "Page Four")]
+        mNavigationTabs.activeTabFont = UIFont(name: "Menlo", size: 12)!
+        mNavigationTabs.inactiveTabFont = UIFont(name: "Menlo", size: 10)!
         mNavigationTabs.updateUI()
     }
 

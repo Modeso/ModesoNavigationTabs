@@ -27,13 +27,23 @@
                                     <segue destination="uey-2v-Uos" kind="embed" identifier="MNavigationTabs" id="crS-oM-Sa9"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paged Tabs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="181-N2-Fph">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="181-N2-Fph" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0J0-1y-RDg"/>
+                            <constraint firstItem="181-N2-Fph" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="0ZP-sY-AFE"/>
                             <constraint firstAttribute="trailing" secondItem="Jiw-HB-KUB" secondAttribute="trailing" id="IML-xP-cjR"/>
+                            <constraint firstItem="Jiw-HB-KUB" firstAttribute="top" secondItem="181-N2-Fph" secondAttribute="bottom" id="QtV-Fm-Z61"/>
                             <constraint firstItem="Jiw-HB-KUB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="YPh-bf-RCS"/>
                             <constraint firstItem="Jiw-HB-KUB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="v2c-vU-ZEt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Jiw-HB-KUB" secondAttribute="bottom" id="w7x-zd-iAF"/>
+                            <constraint firstAttribute="trailing" secondItem="181-N2-Fph" secondAttribute="trailing" id="wgv-Pp-WvN"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -59,34 +69,43 @@
                             <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="inactiveBkgColor">
-                            <color key="value" red="0.19215686274509802" green="0.52549019607843139" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="activeTextColor">
-                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="value" red="0.090196080509999998" green="0.0" blue="0.30196079609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="inactiveTextColor">
-                            <color key="value" red="0.98823529409999999" green="1" blue="0.062745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.72156862745098038" green="0.71764705882352942" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="indicatorHeight">
                             <real key="value" value="0.0"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="indicatorBkgColor">
-                            <color key="value" red="0.090196080509999998" green="0.0" blue="0.30196079609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="value" red="1" green="0.86274509799999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="titlesScroll">
-                            <integer key="value" value="0"/>
+                            <integer key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="tabsBkgColor">
-                            <color key="value" red="0.0039215686269999999" green="0.39607843139999999" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="tabsAnimation" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="tabsAnimation" value="NO"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="scrollViewBkgColor">
-                            <color key="value" red="0.0039215686274509803" green="0.396078431372549" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="scrollBounce" value="YES"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="cycle" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="tabsBarCorner">
-                            <real key="value" value="11"/>
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="tabWidth">
+                            <real key="value" value="375"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="outerMargin">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="innerMargin">
+                            <real key="value" value="0.0"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </viewController>
