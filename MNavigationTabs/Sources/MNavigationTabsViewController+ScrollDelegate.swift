@@ -11,11 +11,24 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == tabsScrollView {
-            if scrollView.contentOffset.x <= (CGFloat(viewControllersArray.count - 1) * calculatedTabWidth) {
-                scrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
-            } else if scrollView.contentOffset.x >= (CGFloat(viewControllersArray.count + 2) * calculatedTabWidth) || scrollView.contentOffset.x + tabsScrollView.bounds.width == tabsScrollView.contentSize.width {
-                scrollView.contentOffset.x = CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
+        if scrollView == tabsScrollView && enableCycles {
+            
+            let contentWidth = (CGFloat(viewControllersArray.count) * calculatedTabWidth) + (CGFloat(viewControllersArray.count - 1) * tabInnerMargin) + tabOuterMargin
+            if  contentWidth <= tabsScrollView.bounds.width {
+                
+                if scrollView.contentOffset.x <= (CGFloat(viewControllersArray.count - 1) * calculatedTabWidth) {
+                    scrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
+                }
+                else if scrollView.contentOffset.x + tabsScrollView.bounds.width == tabsScrollView.contentSize.width {
+                    scrollView.contentOffset.x = CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + tabOuterMargin
+                }
+            } else {
+                
+                if scrollView.contentOffset.x <= (CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count - 2) * tabInnerMargin + tabOuterMargin )  {
+                    scrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count + viewControllersArray.count - 2) * tabInnerMargin + tabOuterMargin
+                } else if scrollView.contentOffset.x >= (CGFloat(viewControllersArray.count * 2) * calculatedTabWidth  + CGFloat(viewControllersArray.count * 2) * tabInnerMargin + tabOuterMargin) {
+                    scrollView.contentOffset.x = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin + tabOuterMargin
+                }
             }
         }
     }
@@ -37,14 +50,27 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         if !enableCycles {
             return
         }
-        
         if scrollView == tabsScrollView {
-            if scrollView.contentOffset.x <= (CGFloat(viewControllersArray.count - 1) * calculatedTabWidth) {
-                scrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
-            } else if scrollView.contentOffset.x >= (CGFloat(viewControllersArray.count + 2) * calculatedTabWidth) || scrollView.contentOffset.x + tabsScrollView.bounds.width == tabsScrollView.contentSize.width {
-                scrollView.contentOffset.x = CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
+            
+            let contentWidth = (CGFloat(viewControllersArray.count) * calculatedTabWidth) + (CGFloat(viewControllersArray.count - 1) * tabInnerMargin) + tabOuterMargin
+            if  contentWidth <= tabsScrollView.bounds.width {
+                
+                if scrollView.contentOffset.x <= (CGFloat(viewControllersArray.count - 1) * calculatedTabWidth) {
+                    scrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
+                }
+                else if scrollView.contentOffset.x + tabsScrollView.bounds.width == tabsScrollView.contentSize.width {
+                    scrollView.contentOffset.x = CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + tabOuterMargin
+                }
+            } else {
+                
+                if scrollView.contentOffset.x <= (CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count - 2) * tabInnerMargin + tabOuterMargin )  {
+                    scrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count + viewControllersArray.count - 2) * tabInnerMargin + tabOuterMargin
+                } else if scrollView.contentOffset.x >= (CGFloat(viewControllersArray.count * 2) * calculatedTabWidth  + CGFloat(viewControllersArray.count * 2) * tabInnerMargin + tabOuterMargin) {
+                    scrollView.contentOffset.x = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin + tabOuterMargin
+                }
             }
         }
+        
         
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
         

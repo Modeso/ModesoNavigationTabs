@@ -23,8 +23,8 @@ class ViewController: UIViewController {
         let thirdViewController = UIStoryboard(name: "ViewControllers", bundle: nil).instantiateViewController(withIdentifier: "ThirdViewController")
         let forthViewController = UIStoryboard(name: "ViewControllers", bundle: nil).instantiateViewController(withIdentifier: "ForthViewController")
         
-        mNavigationTabs.viewControllersArray = [firstViewController,secondViewController]
-        mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First Page"),NSAttributedString(string: "Second Page")]
+        mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
+        mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First Page"),NSAttributedString(string: "Second Page"),NSAttributedString(string: "Third Page"),NSAttributedString(string: "Fourth Page")]
         mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
         mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
         mNavigationTabs.updateUI()

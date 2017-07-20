@@ -221,7 +221,11 @@ public class MNavigationTabsViewController: UIViewController {
         } else {
             calculatedTabWidth = navigationTabWidth
         }
-        for i in 0 ..< 3 {
+        var numberOfDummyRepetitions = 1
+        if enableCycles {
+            numberOfDummyRepetitions = 3
+        }
+        for i in 0 ..< numberOfDummyRepetitions {
             for title in viewControllersTitlesArray {
                 let button = UIButton(frame: CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight))
                 button.backgroundColor = inactiveTabColor
@@ -295,6 +299,10 @@ public class MNavigationTabsViewController: UIViewController {
         }
         
         indicatorView.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
+        
+        if enableCycles {
+            tabsScrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count + viewControllersArray.count - 2) * tabInnerMargin + tabOuterMargin
+        }
         
     }
     fileprivate func adjustViewControllersFrames() {
