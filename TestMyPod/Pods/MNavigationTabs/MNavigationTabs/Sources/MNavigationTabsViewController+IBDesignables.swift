@@ -108,6 +108,15 @@ import Foundation
         }
     }
     
+    @IBInspectable var tabsBarCorner: CGFloat {
+        set {
+            tabsCornerRadius = newValue
+        }
+        get {
+            return tabsCornerRadius
+        }
+    }
+    
     @IBInspectable var tabsBkgColor: UIColor {
         set {
             navigationBarColor = newValue

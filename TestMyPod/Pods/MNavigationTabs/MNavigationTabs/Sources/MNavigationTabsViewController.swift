@@ -36,6 +36,8 @@ public class MNavigationTabsViewController: UIViewController {
     public var indicatorColor: UIColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
     /// Navigation bar height
     public var navigationBarHeight: CGFloat = 33
+    /// Tabs corner radius
+    public var tabsCornerRadius: CGFloat = 0
     /// Navigation bar color
     public var navigationBarColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     /// ScrollView nackground color
@@ -228,7 +230,8 @@ public class MNavigationTabsViewController: UIViewController {
             button.tag = index
             button.addTarget(self, action: #selector(selectPage(sender:)), for: .touchUpInside)
             tabsScrollView.addSubview(button)
-            
+            button.clipsToBounds = true
+            button.layer.cornerRadius = tabsCornerRadius
             origin += button.frame.size.width + tabInnerMargin
             index += 1
         }
