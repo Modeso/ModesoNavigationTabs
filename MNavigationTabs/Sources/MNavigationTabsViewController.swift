@@ -221,28 +221,37 @@ public class MNavigationTabsViewController: UIViewController {
         } else {
             calculatedTabWidth = navigationTabWidth
         }
-        for title in viewControllersTitlesArray {
-            let button = UIButton(frame: CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight))
-            button.backgroundColor = inactiveTabColor
-            button.setAttributedTitle(title, for: .normal)
-            button.titleLabel?.font = inactiveTabFont
-            button.titleLabel?.textColor = inactiveTabTextColor
-            button.tag = index
-            button.addTarget(self, action: #selector(selectPage(sender:)), for: .touchUpInside)
-            tabsScrollView.addSubview(button)
-            button.clipsToBounds = true
-            button.layer.cornerRadius = tabsCornerRadius
-            origin += button.frame.size.width + tabInnerMargin
-            index += 1
+        for i in 0 ..< 3 {
+            for title in viewControllersTitlesArray {
+                let button = UIButton(frame: CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight))
+                button.backgroundColor = inactiveTabColor
+                button.setAttributedTitle(title, for: .normal)
+                button.titleLabel?.font = inactiveTabFont
+                button.titleLabel?.textColor = inactiveTabTextColor
+                button.tag = index
+                button.addTarget(self, action: #selector(selectPage(sender:)), for: .touchUpInside)
+                tabsScrollView.addSubview(button)
+                button.clipsToBounds = true
+                button.layer.cornerRadius = tabsCornerRadius
+                origin += button.frame.size.width + tabInnerMargin
+                index += 1
+            }
+            index = 0
         }
+        
         tabsScrollView.contentSize = CGSize(width: origin + tabOuterMargin - tabInnerMargin, height: tabsScrollView.frame.size.height)
         
         let tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
         indicatorView?.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
         
-        (tabsScrollView.subviews[0] as? UIButton)?.backgroundColor = activeTabColor
-        (tabsScrollView.subviews[0] as? UIButton)?.titleLabel?.font = activeTabFont
-        (tabsScrollView.subviews[0] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
+        var initialIndex = 0
+        if enableCycles {
+            initialIndex = viewControllersArray.count
+        }
+        
+        (tabsScrollView.subviews[initialIndex] as? UIButton)?.backgroundColor = activeTabColor
+        (tabsScrollView.subviews[initialIndex] as? UIButton)?.titleLabel?.font = activeTabFont
+        (tabsScrollView.subviews[initialIndex] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
     }
     
     fileprivate func addNavigationIndicator() {

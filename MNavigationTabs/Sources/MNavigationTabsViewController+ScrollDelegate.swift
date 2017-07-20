@@ -10,6 +10,15 @@ import Foundation
 extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == tabsScrollView {
+            if scrollView.contentOffset.x <= (CGFloat(viewControllersArray.count - 1) * calculatedTabWidth) {
+                scrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
+            } else if scrollView.contentOffset.x >= (CGFloat(viewControllersArray.count + 2) * calculatedTabWidth) || scrollView.contentOffset.x + tabsScrollView.bounds.width == tabsScrollView.contentSize.width {
+                scrollView.contentOffset.x = CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
+            }
+        }
+    }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if !isChangingOrientation {
@@ -27,6 +36,14 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
         if !enableCycles {
             return
+        }
+        
+        if scrollView == tabsScrollView {
+            if scrollView.contentOffset.x <= (CGFloat(viewControllersArray.count - 1) * calculatedTabWidth) {
+                scrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
+            } else if scrollView.contentOffset.x >= (CGFloat(viewControllersArray.count + 2) * calculatedTabWidth) || scrollView.contentOffset.x + tabsScrollView.bounds.width == tabsScrollView.contentSize.width {
+                scrollView.contentOffset.x = CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + tabInnerMargin + tabOuterMargin
+            }
         }
         
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
@@ -69,6 +86,10 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     }
     
     public func adjustTabsView(forPage currentPage:Int) {
+        
+        
+        var indexOfCurrentPage = mappingArray.index(of: currentPage)!
+        
         // Set font to inactivefont
         for view in tabsScrollView.subviews {
             (view as? UIButton)?.backgroundColor = inactiveTabColor
@@ -83,17 +104,19 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             
         }
         
-        var indexOfCurrentPage = mappingArray.index(of: currentPage)!
-        
-        // Set font to inactivefont
-        (tabsScrollView.subviews[indexOfCurrentPage] as? UIButton)?.backgroundColor = activeTabColor
-        (tabsScrollView.subviews[indexOfCurrentPage] as? UIButton)?.titleLabel?.font = activeTabFont
-        (tabsScrollView.subviews[indexOfCurrentPage] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
-        
-        if enableResizingAnimated {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.tabsScrollView.subviews[indexOfCurrentPage].transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
-            })
+        // Set font to activefont
+        let activeArr = tabsScrollView.subviews.filter{ $0.tag == indexOfCurrentPage }
+        for activeView in activeArr {
+            
+            (activeView as? UIButton)?.backgroundColor = activeTabColor
+            (activeView as? UIButton)?.titleLabel?.font = activeTabFont
+            (activeView as? UIButton)?.titleLabel?.textColor = activeTabTextColor
+            
+            if enableResizingAnimated {
+                UIView.animate(withDuration: 0.2, animations: {
+                    activeView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                })
+            }
         }
         
         
