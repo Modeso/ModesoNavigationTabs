@@ -42,8 +42,12 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 > 2: `.fit`: The default status, this will ignore tabWidth and adjust all tabs to fit inside single screen (not recommended for large numbers of tabs).<br />
 > 3: `.center`: Set active tabs to the center of the screen.<br />
 - `Tabs Bar Height`: Height of the Tabs Navigation bar.
+- `Tabs Bar Corner`: Corner radius of each Tab.
 - `Tabs Bkg Color`: Background color of Tabs Navigation bar.
+- `Tabs Animation`: Enlarge selected tab with animation.
+- `Scroll View Bkg Color`: UIViewcontrollers' Scrollview background color.
 - `Scroll Bounce`: Enable/disable bounce for the displayed UIViewControllers.
+- `Cycle`: Infinite Scrollview (ViewControllers will be cycled).
 
 
 ## Requirements
@@ -142,11 +146,13 @@ Finally, set necessary parameters for `mNavigationTabs` instance
 mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First"),NSAttributedString(string: "Second"),NSAttributedString(string: "Third"),NSAttributedString(string: "Forth")]
 mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
 mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
+mNavigationTabs.updateUI()
 ```
 > `viewControllersArray`: Array of UIViewControllers to display and navigate among.
 > `viewControllersTitlesArray`: Array of NSAttributedString represensts titles of the UIViewControllers which will be displayed in the top Tabs Navigation Bar.
 > `activeTabFont`: Font of the current selected tab.
 > `inactiveTabFont`: Font for the resu of the unselected tabs.
+> `updateUI`: A must be called method to reflect changes.
 
 ## Communication
 
