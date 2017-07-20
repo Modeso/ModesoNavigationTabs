@@ -113,7 +113,12 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 
                 
                 if Int(currentPage + 1) == viewControllersTitlesArray.count {
-                    tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
+                    if calculatedTabWidth == tabsScrollView.bounds.width {
+                        tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
+                    } else {
+                        tabsScrollView.setContentOffset(CGPoint(x: tabsScrollView.contentSize.width - tabsScrollView.bounds.width, y: 0), animated: true)
+                    }
+                    
                 }
                 else {
                     var movingStep = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin

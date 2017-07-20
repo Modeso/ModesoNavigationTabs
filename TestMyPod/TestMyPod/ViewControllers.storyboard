@@ -25,9 +25,9 @@
                                 <rect key="frame" x="50" y="120" width="275" height="447"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScW-CG-66Z">
-                                        <rect key="frame" x="128" y="199.5" width="18.5" height="48"/>
+                                        <rect key="frame" x="128" y="200" width="19" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -67,9 +67,9 @@
                                 <rect key="frame" x="50" y="120" width="275" height="447"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8o-g7-hYW">
-                                        <rect key="frame" x="125" y="199" width="23.5" height="48"/>
+                                        <rect key="frame" x="125" y="199" width="24" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -109,9 +109,9 @@
                                 <rect key="frame" x="50" y="120" width="275" height="447"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTe-Sb-Vcv">
-                                        <rect key="frame" x="125" y="199" width="24.5" height="48"/>
+                                        <rect key="frame" x="125" y="199" width="25" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -153,11 +153,11 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="He9-qb-ma2">
                                         <rect key="frame" x="125" y="199" width="25" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.16862745098039217" green="0.58823529411764708" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.16862745100000001" green="0.58823529409999997" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="He9-qb-ma2" firstAttribute="centerY" secondItem="TwI-J8-VPb" secondAttribute="centerY" id="PN4-tf-fyL"/>
                                     <constraint firstItem="He9-qb-ma2" firstAttribute="centerX" secondItem="TwI-J8-VPb" secondAttribute="centerX" id="xij-p5-5hh"/>
