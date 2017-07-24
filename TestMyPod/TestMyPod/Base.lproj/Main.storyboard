@@ -84,7 +84,7 @@
                             <color key="value" red="0.0039215686269999999" green="0.39607843139999999" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="scrollBounce" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="cycle" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="cycle" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="tabsBarCorner">
                             <real key="value" value="15"/>
                         </userDefinedRuntimeAttribute>

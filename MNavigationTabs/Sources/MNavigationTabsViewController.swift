@@ -162,7 +162,7 @@ public class MNavigationTabsViewController: UIViewController {
         adjustTitlesScrollView()
         addNavigationIndicator()
         
-        if enableResizingAnimated {
+        if enableResizingAnimated || enableCycles {
             indicatorView.isHidden = true
         }
         
@@ -171,6 +171,7 @@ public class MNavigationTabsViewController: UIViewController {
             tabsScrollView.isScrollEnabled = true
             tabsScrollView.setContentOffset(CGPoint.zero, animated: true)
         }
+        adjustTabsView(forPage: 0)
     }
     override public func loadView() {
         super.loadView()
@@ -329,7 +330,7 @@ public class MNavigationTabsViewController: UIViewController {
         
         currentPage = mappingArray[sender.tag]
         
-        viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(mappingArray[sender.tag]) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
+        viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
         adjustTabsView(forPage: currentPage)
     }
     
