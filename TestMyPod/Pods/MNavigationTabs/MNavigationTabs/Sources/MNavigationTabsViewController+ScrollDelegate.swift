@@ -74,14 +74,14 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 }
             }
         } else {
-            let currentIndex = mappingArray.index(of: currentPage)!
-            var scrollBounds = tabsScrollView.bounds
-            if  currentIndex == viewControllersArray.count - 1 && translation.x < 0 {
-                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin, y: 0)
-            } else if currentIndex == 0 && translation.x > 0{
-                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count * 2) * calculatedTabWidth + CGFloat(viewControllersArray.count * 2) * tabInnerMargin + tabOuterMargin, y: 0)
-            }
-            tabsScrollView.bounds = scrollBounds
+//            let currentIndex = mappingArray.index(of: currentPage)!
+//            var scrollBounds = tabsScrollView.bounds
+//            if  currentIndex == viewControllersArray.count - 1 && translation.x < 0 {
+//                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin, y: 0)
+//            } else if currentIndex == 0 && translation.x > 0{
+//                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count * 2) * calculatedTabWidth + CGFloat(viewControllersArray.count * 2) * tabInnerMargin + tabOuterMargin, y: 0)
+//            }
+//            tabsScrollView.bounds = scrollBounds
             
         }
 
@@ -125,10 +125,11 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
     }
     
-    public func adjustTabsView(forPage currentPage:Int) {
+    public func adjustTabsView(forPage currentPage:Int, direction: Int = 0) {
        
         
         var indexOfCurrentPage = mappingArray.index(of: currentPage)!
+        let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
         
         // Set font to inactivefont
         for view in tabsScrollView.subviews {
@@ -145,7 +146,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         }
         
         // Set font to activefont
-        let activeArr = tabsScrollView.subviews.filter{ $0.tag == indexOfCurrentPage }
+        let activeArr = tabsScrollView.subviews.filter{ $0.tag % viewControllersArray.count == indexOfCurrentPage }
         for activeView in activeArr {
          
             (activeView as? UIButton)?.backgroundColor = activeTabColor
@@ -197,7 +198,12 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 if indexOfCurrentPage == 0 {
                     if enableCycles {
                         let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + 2 * tabOuterMargin
-                        tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin + startingIndex, y: 0), animated: true)
+                        let point = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin + startingIndex
+                        if (direction == 0 && translation.x < 0) || direction == -1 {
+                            setScrollView(scrollView: tabsScrollView, toOffset: point)
+                        }
+                        
+                        tabsScrollView.setContentOffset(CGPoint(x: point, y: 0), animated: true)
                     }
                     else {
                         tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
@@ -207,7 +213,12 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     if enableCycles {
                         
                         let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + 2 * tabOuterMargin
-                        tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin + startingIndex, y: 0), animated: true)
+                        let point  = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin + startingIndex
+                        if (direction == 0 && indexOfCurrentPage == viewControllersArray.count - 1 && translation.x > 0) || (direction == 1 && indexOfCurrentPage == viewControllersArray.count - 1) {
+                            setScrollView(scrollView: tabsScrollView, toOffset: point)
+                        }
+                        
+                        tabsScrollView.setContentOffset(CGPoint(x: point, y: 0), animated: true)
                         
                     } else {
                         tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
@@ -226,7 +237,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
     }
     
-    fileprivate func shiftViewsToRight() {
+    public func shiftViewsToRight() {
         
         viewControllersScrollView.delegate = nil
         let length = viewControllersArray.count - 1
@@ -247,7 +258,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
     }
     
-    fileprivate func shiftViewsToLeft() {
+    public func shiftViewsToLeft() {
         
         viewControllersArray.shiftLeftInPlace()
         mappingArray.shiftRightInPlace()
@@ -270,6 +281,18 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         viewControllersScrollView.delegate = self
     }
     
+    fileprivate func setScrollView(scrollView: UIScrollView, toOffset offset: CGFloat) {
+        if scrollView == tabsScrollView {
+            var scrollBounds = tabsScrollView.bounds
+            if offset < scrollView.contentOffset.x { // Navigate to point in the left side
+                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin, y: 0)
+            } else {
+                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count * 2) * calculatedTabWidth + CGFloat(viewControllersArray.count * 2) * tabInnerMargin + tabOuterMargin, y: 0)
+            }
+            tabsScrollView.bounds = scrollBounds
+        }
+    }
+
 }
 
 

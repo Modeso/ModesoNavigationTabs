@@ -83,6 +83,7 @@ public class MNavigationTabsViewController: UIViewController {
     internal var isChangingOrientation: Bool = false
     internal var mappingArray: [Int] = []
     
+    fileprivate var lastSelectedTag = 0
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
     @IBOutlet weak var viewControllersScrollView: UIScrollView!
@@ -224,7 +225,7 @@ public class MNavigationTabsViewController: UIViewController {
         }
         var numberOfDummyRepetitions = 1
         if enableCycles {
-            numberOfDummyRepetitions = 3
+            numberOfDummyRepetitions = 4
         }
         for i in 0 ..< numberOfDummyRepetitions {
             for title in viewControllersTitlesArray {
@@ -241,7 +242,7 @@ public class MNavigationTabsViewController: UIViewController {
                 origin += button.frame.size.width + tabInnerMargin
                 index += 1
             }
-            index = 0
+//            index = 0
         }
         
         tabsScrollView.contentSize = CGSize(width: origin + tabOuterMargin - tabInnerMargin, height: tabsScrollView.frame.size.height)
@@ -328,10 +329,26 @@ public class MNavigationTabsViewController: UIViewController {
         viewControllersScrollView.contentOffset.x =  CGFloat(mappingArray.index(of: currentPage)!) * viewControllersScrollView.frame.size.width
         mappingArray = Array(0 ..< viewControllersArray.count)
         
-        currentPage = mappingArray[sender.tag]
+        currentPage = mappingArray[sender.tag % viewControllersArray.count]
         
-        viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
-        adjustTabsView(forPage: currentPage)
+        var direction = 0
+        print(sender.tag)
+        if sender.tag >= viewControllersArray.count * 2 { // drag to left
+            shiftViewsToRight()
+            currentPage = 1
+            viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
+        } else if sender.tag <= viewControllersArray.count - 1 { //drag to right
+            shiftViewsToLeft()
+            currentPage = viewControllersArray.count - 2
+            viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
+        } else{
+            viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
+        }
+        
+        sender.tag > lastSelectedTag ? (direction = -1) : (direction = 1)
+        
+        lastSelectedTag = sender.tag % viewControllersArray.count
+        adjustTabsView(forPage: currentPage, direction: direction)
     }
     
 }
