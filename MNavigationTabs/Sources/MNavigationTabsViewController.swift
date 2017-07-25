@@ -83,7 +83,7 @@ public class MNavigationTabsViewController: UIViewController {
     internal var isChangingOrientation: Bool = false
     internal var mappingArray: [Int] = []
     
-    fileprivate var lastSelectedTag = 0
+    internal var lastSelectedTag = 0
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
     @IBOutlet weak var viewControllersScrollView: UIScrollView!
@@ -93,6 +93,10 @@ public class MNavigationTabsViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        if enableCycles {
+            enableBounce = false
+            tabsBarStatus = .scrollable
+        }
         if tabsBarStatus == .scrollable {
             tabsScrollView.isScrollEnabled = true
         }
@@ -101,13 +105,8 @@ public class MNavigationTabsViewController: UIViewController {
         tabsScrollView.backgroundColor = tabsBkgColor
         viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
         
-        if enableCycles {
-            enableBounce = false
-        }
         
         viewControllersScrollView.bounces = enableBounce
-        
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
@@ -303,7 +302,7 @@ public class MNavigationTabsViewController: UIViewController {
         indicatorView.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
         
         if enableCycles {
-            tabsScrollView.contentOffset.x = CGFloat(viewControllersArray.count + viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count + viewControllersArray.count - 2) * tabInnerMargin + tabOuterMargin
+            tabsScrollView.contentOffset.x = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin
         }
         
     }
@@ -332,7 +331,7 @@ public class MNavigationTabsViewController: UIViewController {
         currentPage = mappingArray[sender.tag % viewControllersArray.count]
         
         var direction = 0
-        print(sender.tag)
+        
         if sender.tag >= viewControllersArray.count * 2 { // drag to left
             shiftViewsToRight()
             currentPage = 1
@@ -347,7 +346,7 @@ public class MNavigationTabsViewController: UIViewController {
         
         sender.tag > lastSelectedTag ? (direction = -1) : (direction = 1)
         
-        lastSelectedTag = sender.tag % viewControllersArray.count
+        lastSelectedTag = sender.tag
         adjustTabsView(forPage: currentPage, direction: direction)
     }
     

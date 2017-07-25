@@ -73,20 +73,8 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     scrollView.contentOffset.x = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin + tabOuterMargin
                 }
             }
-        } else {
-//            let currentIndex = mappingArray.index(of: currentPage)!
-//            var scrollBounds = tabsScrollView.bounds
-//            if  currentIndex == viewControllersArray.count - 1 && translation.x < 0 {
-//                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin, y: 0)
-//            } else if currentIndex == 0 && translation.x > 0{
-//                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count * 2) * calculatedTabWidth + CGFloat(viewControllersArray.count * 2) * tabInnerMargin + tabOuterMargin, y: 0)
-//            }
-//            tabsScrollView.bounds = scrollBounds
-            
         }
 
-        
-        
         
         let length = viewControllersArray.count - 1
         if translation.x < 0 && currentPage == length { //drag to the left, show first in the last
@@ -197,13 +185,14 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 
                 if indexOfCurrentPage == 0 {
                     if enableCycles {
-                        let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + 2 * tabOuterMargin
+                        let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin
                         let point = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin + startingIndex
                         if (direction == 0 && translation.x < 0) || direction == -1 {
                             setScrollView(scrollView: tabsScrollView, toOffset: point)
                         }
                         
-                        tabsScrollView.setContentOffset(CGPoint(x: point, y: 0), animated: true)
+                        tabsScrollView.setContentOffset(CGPoint(x: point, y: 0), animated: true)                        
+                        
                     }
                     else {
                         tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
@@ -212,13 +201,14 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 } else {
                     if enableCycles {
                         
-                        let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + 2 * tabOuterMargin
+                        let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin
                         let point  = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin + startingIndex
                         if (direction == 0 && indexOfCurrentPage == viewControllersArray.count - 1 && translation.x > 0) || (direction == 1 && indexOfCurrentPage == viewControllersArray.count - 1) {
                             setScrollView(scrollView: tabsScrollView, toOffset: point)
                         }
                         
                         tabsScrollView.setContentOffset(CGPoint(x: point, y: 0), animated: true)
+                        
                         
                     } else {
                         tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
@@ -284,10 +274,15 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     fileprivate func setScrollView(scrollView: UIScrollView, toOffset offset: CGFloat) {
         if scrollView == tabsScrollView {
             var scrollBounds = tabsScrollView.bounds
+            let count = viewControllersArray.count
+            var  diff = CGFloat(count) * calculatedTabWidth + CGFloat(count) * tabInnerMargin // Must be stopped at a specific point [1,2,3,4,1,2,3,|4,1,2,3|,4]
+            diff = scrollView.contentOffset.x - diff
             if offset < scrollView.contentOffset.x { // Navigate to point in the left side
-                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count - 1) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin, y: 0)
+                scrollBounds.origin = CGPoint(x: diff, y: 0)
+                lastSelectedTag -= viewControllersArray.count
             } else {
-                scrollBounds.origin = CGPoint(x: CGFloat(viewControllersArray.count * 2) * calculatedTabWidth + CGFloat(viewControllersArray.count * 2) * tabInnerMargin + tabOuterMargin, y: 0)
+                scrollBounds.origin = CGPoint(x: diff, y: 0)
+                lastSelectedTag += viewControllersArray.count
             }
             tabsScrollView.bounds = scrollBounds
         }
