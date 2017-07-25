@@ -33,6 +33,12 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         }
     }
     
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if scrollView == tabsScrollView {
+            scrollView.isUserInteractionEnabled = true
+        }
+        
+    }
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if !isChangingOrientation {
             if scrollView != viewControllersScrollView {
@@ -183,16 +189,23 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 
             } else if currentTabOrigin <= tabsScrollView.contentOffset.x {
                 
+                tabsScrollView.isUserInteractionEnabled = false
+                
                 if indexOfCurrentPage == 0 {
                     if enableCycles {
+                        
                         let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin
                         let point = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin + startingIndex
                         if (direction == 0 && translation.x < 0) || direction == -1 {
                             setScrollView(scrollView: tabsScrollView, toOffset: point)
                         }
                         
-                        tabsScrollView.setContentOffset(CGPoint(x: point, y: 0), animated: true)                        
                         
+                        UIView.animate(withDuration: 0.3, animations: { //walkaround as setContentOffset with Animation causes unexpected behavior sometimes.
+                            self.tabsScrollView.contentOffset.x = point
+                        }, completion: { _ in
+                            self.tabsScrollView.isUserInteractionEnabled = true
+                        })
                     }
                     else {
                         tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
@@ -207,8 +220,11 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                             setScrollView(scrollView: tabsScrollView, toOffset: point)
                         }
                         
-                        tabsScrollView.setContentOffset(CGPoint(x: point, y: 0), animated: true)
-                        
+                        UIView.animate(withDuration: 0.3, animations: { //walkaround as setContentOffset with Animation causes unexpected behavior sometimes.
+                            self.tabsScrollView.contentOffset.x = point
+                        }, completion: { _ in
+                            self.tabsScrollView.isUserInteractionEnabled = true
+                        })
                         
                     } else {
                         tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
@@ -273,18 +289,19 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     fileprivate func setScrollView(scrollView: UIScrollView, toOffset offset: CGFloat) {
         if scrollView == tabsScrollView {
-            var scrollBounds = tabsScrollView.bounds
             let count = viewControllersArray.count
             var  diff = CGFloat(count) * calculatedTabWidth + CGFloat(count) * tabInnerMargin // Must be stopped at a specific point [1,2,3,4,1,2,3,|4,1,2,3|,4]
-            diff = scrollView.contentOffset.x - diff
+            
+            tabsScrollView.delegate = nil
             if offset < scrollView.contentOffset.x { // Navigate to point in the left side
-                scrollBounds.origin = CGPoint(x: diff, y: 0)
-                lastSelectedTag -= viewControllersArray.count
+
+                diff = scrollView.contentOffset.x - diff
+                tabsScrollView.setContentOffset(CGPoint(x: diff, y: 0), animated: false)
             } else {
-                scrollBounds.origin = CGPoint(x: diff, y: 0)
-                lastSelectedTag += viewControllersArray.count
+                diff = scrollView.contentOffset.x + diff
+                tabsScrollView.setContentOffset(CGPoint(x: diff, y: 0), animated: false)
             }
-            tabsScrollView.bounds = scrollBounds
+            tabsScrollView.delegate = self
         }
     }
 
