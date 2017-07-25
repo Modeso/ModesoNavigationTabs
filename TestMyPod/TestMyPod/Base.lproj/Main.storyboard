@@ -74,7 +74,7 @@
                             <color key="value" red="1" green="0.86274509799999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="titlesScroll">
-                            <integer key="value" value="1"/>
+                            <integer key="value" value="0"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="tabsBkgColor">
                             <color key="value" red="0.0039215686269999999" green="0.39607843139999999" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>

@@ -93,20 +93,11 @@ public class MNavigationTabsViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        if enableCycles {
-            enableBounce = false
-            tabsBarStatus = .scrollable
-        }
-        if tabsBarStatus == .scrollable {
-            tabsScrollView.isScrollEnabled = true
-        }
+        
         
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBkgColor
         viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
-        
-        
-        viewControllersScrollView.bounces = enableBounce
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
@@ -162,15 +153,21 @@ public class MNavigationTabsViewController: UIViewController {
         adjustTitlesScrollView()
         addNavigationIndicator()
         
-        if enableResizingAnimated || enableCycles {
-            indicatorView.isHidden = true
+        if enableCycles {
+            enableBounce = false
+            tabsBarStatus = .scrollable
         }
-        
-        
         if tabsBarStatus == .scrollable {
             tabsScrollView.isScrollEnabled = true
             tabsScrollView.setContentOffset(CGPoint.zero, animated: true)
         }
+        
+        if enableResizingAnimated || enableCycles {
+            indicatorView.isHidden = true
+        }
+        
+        viewControllersScrollView.bounces = enableBounce
+        
         adjustTabsView(forPage: 0)
     }
     override public func loadView() {
@@ -222,6 +219,7 @@ public class MNavigationTabsViewController: UIViewController {
         } else {
             calculatedTabWidth = navigationTabWidth
         }
+        
         var numberOfDummyRepetitions = 1
         if enableCycles {
             numberOfDummyRepetitions = 4
@@ -323,30 +321,38 @@ public class MNavigationTabsViewController: UIViewController {
     // MARK:- IBActions
     @objc fileprivate func selectPage(sender: UIButton) {
         
+        if enableCycles && abs(sender.tag - lastSelectedTag) % viewControllersArray.count == 0 { // Tab same selected page
+            return
+        }
         adjustViewControllersFrames()
         viewControllersArray = viewControllersArray.sorted( by: { $0.view.tag < $1.view.tag })
         viewControllersScrollView.contentOffset.x =  CGFloat(mappingArray.index(of: currentPage)!) * viewControllersScrollView.frame.size.width
         mappingArray = Array(0 ..< viewControllersArray.count)
         
         currentPage = mappingArray[sender.tag % viewControllersArray.count]
-        
         var direction = 0
         
-        if sender.tag >= viewControllersArray.count * 2 { // drag to left
-            shiftViewsToRight()
-            currentPage = 1
-            viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
-        } else if sender.tag <= viewControllersArray.count - 1 { //drag to right
-            shiftViewsToLeft()
-            currentPage = viewControllersArray.count - 2
-            viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
-        } else{
+        if enableCycles {
+            
+            if sender.tag >= viewControllersArray.count * 2 { // drag to left
+                shiftViewsToRight()
+                currentPage = 1
+                viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
+            } else if sender.tag <= viewControllersArray.count - 1 { //drag to right
+                shiftViewsToLeft()
+                currentPage = viewControllersArray.count - 2
+                viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
+            } else{
+                viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
+            }
+            
+            sender.tag > lastSelectedTag ? (direction = -1) : (direction = 1)
+            lastSelectedTag = sender.tag % viewControllersArray.count
+            
+        } else {
             viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
         }
         
-        sender.tag > lastSelectedTag ? (direction = -1) : (direction = 1)
-        
-        lastSelectedTag = sender.tag
         adjustTabsView(forPage: currentPage, direction: direction)
     }
     

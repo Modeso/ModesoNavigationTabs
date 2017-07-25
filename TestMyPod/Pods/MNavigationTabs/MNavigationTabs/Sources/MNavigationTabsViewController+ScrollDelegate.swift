@@ -30,6 +30,11 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     scrollView.contentOffset.x = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin + tabOuterMargin
                 }
             }
+        } else if scrollView == viewControllersScrollView {
+            
+//            oldPage = currentPage
+//            currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
+//            adjustTabsView(forPage: currentPage)
         }
     }
     
@@ -54,6 +59,14 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
         if !enableCycles {
+        
+            if scrollView == viewControllersScrollView {
+                
+                oldPage = currentPage
+                currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
+                adjustTabsView(forPage: currentPage)
+            }
+            
             return
         }
         
