@@ -159,6 +159,9 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             (activeView as? UIButton)?.backgroundColor = activeTabColor
             (activeView as? UIButton)?.titleLabel?.font = activeTabFont
             (activeView as? UIButton)?.titleLabel?.textColor = activeTabTextColor
+            if activeView.tag >= viewControllersArray.count && activeView.tag < viewControllersArray.count * 2 {
+                lastSelectedTag = activeView.tag
+            }
             
             if enableResizingAnimated {
                 UIView.animate(withDuration: 0.2, animations: {

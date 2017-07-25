@@ -336,7 +336,7 @@ public class MNavigationTabsViewController: UIViewController {
             
             if sender.tag >= viewControllersArray.count * 2 { // drag to left
                 shiftViewsToRight()
-                currentPage = 1
+                currentPage = (1 + (sender.tag % viewControllersArray.count)) % viewControllersArray.count
                 viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
             } else if sender.tag <= viewControllersArray.count - 1 { //drag to right
                 shiftViewsToLeft()
@@ -347,7 +347,7 @@ public class MNavigationTabsViewController: UIViewController {
             }
             
             sender.tag > lastSelectedTag ? (direction = -1) : (direction = 1)
-            lastSelectedTag = sender.tag % viewControllersArray.count
+            lastSelectedTag = sender.tag
             
         } else {
             viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
