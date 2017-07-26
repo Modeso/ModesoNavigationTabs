@@ -75,15 +75,18 @@ public class MNavigationTabsViewController: UIViewController {
     public var inactiveTabFont: UIFont = UIFont.systemFont(ofSize: 12)
     public var activeTabFont: UIFont = UIFont.systemFont(ofSize: 12)
     
+    /// A small view appears on the current active tab
     internal var indicatorView: UIView!
     internal var currentPage: Int = 0
     internal var oldPage: Int = 0
     internal var viewIsSetup = false
     /// Orientation is not supporting in the library and it causes issues that it moves to first Tab.
     internal var isChangingOrientation: Bool = false
+    /// Used only in case of cyclic case, useing this array to know where does each viewcontroller locate relative to each other, example it starts as [1,2,3,4,...] but it can ends as [2,3,4,1,..] so it used to get current position of viewcotroller #4 which is 2.
     internal var mappingArray: [Int] = []
-    
+    /// Last tab selected, used to get whether user tab another tab on the left or on the right to it can be moved to the left or to the right.
     internal var lastSelectedTag = 0
+    
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
     @IBOutlet weak var viewControllersScrollView: UIScrollView!
@@ -92,8 +95,6 @@ public class MNavigationTabsViewController: UIViewController {
     // MARK:- Views cycle
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBkgColor
@@ -136,28 +137,30 @@ public class MNavigationTabsViewController: UIViewController {
             updateUI()
         }
     }
-    
+    /// To be called everytime user add/remove to ViewControllers array or tabs array
     public func updateUI() {
         // Error checking
-        if viewControllersArray.count == 0 || viewControllersTitlesArray.count == 0 {
+        if viewControllersArray.count == 0 || viewControllersTitlesArray.count == 0 || viewControllersTitlesArray.count != viewControllersArray.count {
+            assertionFailure("Make sure you have the same amount of non-zero items in viewControllersTitlesArray and viewControllersArray")
             return
         }
         
         mappingArray = Array(0 ..< viewControllersArray.count)
         adjustViewControllersScrollView()
-        adjustTitlesScrollView()
+        addTitlesScrollViews()
         addNavigationIndicator()
         
         if enableCycles {
             enableBounce = false
             tabsBarStatus = .scrollable
+            indicatorView.isHidden = true
         }
         if tabsBarStatus == .scrollable {
             tabsScrollView.isScrollEnabled = true
             tabsScrollView.setContentOffset(CGPoint.zero, animated: true)
         }
         
-        if enableResizingAnimated || enableCycles {
+        if enableResizingAnimated {
             indicatorView.isHidden = true
         }
         
@@ -202,7 +205,7 @@ public class MNavigationTabsViewController: UIViewController {
         viewIsSetup = true
     }
     /// Add titles to tabsScrollView
-    fileprivate func adjustTitlesScrollView() {
+    fileprivate func addTitlesScrollViews() {
         
         for view in tabsScrollView.subviews{
             view.removeFromSuperview()
@@ -220,9 +223,9 @@ public class MNavigationTabsViewController: UIViewController {
         
         var numberOfDummyRepetitions = 1
         if enableCycles {
-            numberOfDummyRepetitions = 4
+            numberOfDummyRepetitions = 4 // In case of cycles, add dummy tabs to the left and to the right so user feels it's circular.
         }
-        for i in 0 ..< numberOfDummyRepetitions {
+        for _ in 0 ..< numberOfDummyRepetitions {
             for title in viewControllersTitlesArray {
                 let button = UIButton(frame: CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight))
                 button.backgroundColor = inactiveTabColor
@@ -237,24 +240,11 @@ public class MNavigationTabsViewController: UIViewController {
                 origin += button.frame.size.width + tabInnerMargin
                 index += 1
             }
-//            index = 0
         }
         
-        tabsScrollView.contentSize = CGSize(width: origin + tabOuterMargin - tabInnerMargin, height: tabsScrollView.frame.size.height)
-        
-        let tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
-        indicatorView?.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
-        
-        var initialIndex = 0
-        if enableCycles {
-            initialIndex = viewControllersArray.count
-        }
-        
-        (tabsScrollView.subviews[initialIndex] as? UIButton)?.backgroundColor = activeTabColor
-        (tabsScrollView.subviews[initialIndex] as? UIButton)?.titleLabel?.font = activeTabFont
-        (tabsScrollView.subviews[initialIndex] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
     }
     
+    /// Add indicator view to tabsScrollView
     fileprivate func addNavigationIndicator() {
         
         if indicatorView != nil {
@@ -268,7 +258,7 @@ public class MNavigationTabsViewController: UIViewController {
         tabsScrollView.addSubview(indicatorView)
     }
     
-    // MARK:- Adjusting views
+    // MARK:- Adjusting frames
     fileprivate func adjustTitleViewsFrames() {
         
         var origin: CGFloat = tabOuterMargin
@@ -285,6 +275,8 @@ public class MNavigationTabsViewController: UIViewController {
                 origin += button.frame.size.width + tabInnerMargin
             }
         }
+        
+        // origin here equals width of all tabs + inner margin on the right so we subtract it from total width
         tabsScrollView.contentSize = CGSize(width: origin + tabOuterMargin - tabInnerMargin, height: tabsScrollView.frame.size.height)
         
         var tabOrigin = (CGFloat(currentPage) * calculatedTabWidth) + (CGFloat(currentPage) * tabInnerMargin) + tabOuterMargin
@@ -295,11 +287,19 @@ public class MNavigationTabsViewController: UIViewController {
             tabOrigin = tabInnerMargin
         }
         
+        // Set indicator to the first tab
         indicatorView.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
+        
+        var initialIndex = 0
         
         if enableCycles {
             tabsScrollView.contentOffset.x = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin
+            initialIndex = viewControllersArray.count // In case of circular, we add dummy tabs to the left and to the right and always visoble to the user the chunk in the middle so our starting index is the # of tabs
         }
+        
+        (tabsScrollView.subviews[initialIndex] as? UIButton)?.backgroundColor = activeTabColor
+        (tabsScrollView.subviews[initialIndex] as? UIButton)?.titleLabel?.font = activeTabFont
+        (tabsScrollView.subviews[initialIndex] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
         
     }
     fileprivate func adjustViewControllersFrames() {
@@ -311,8 +311,6 @@ public class MNavigationTabsViewController: UIViewController {
         }
         
         viewControllersScrollView.contentSize = CGSize(width: index, height: self.view.frame.size.height - navigationBarHeight)
-        
-        
         viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: false)
         
     }
@@ -322,28 +320,31 @@ public class MNavigationTabsViewController: UIViewController {
         if enableCycles && abs(sender.tag - lastSelectedTag) % viewControllersArray.count == 0 { // Tab same selected page
             return
         }
+        // When user tab any button, it should reprder all viewcontroller to its initial state
+        let currentIndex = sender.tag % viewControllersArray.count
         adjustViewControllersFrames()
         viewControllersArray = viewControllersArray.sorted( by: { $0.view.tag < $1.view.tag })
         viewControllersScrollView.contentOffset.x =  CGFloat(mappingArray.index(of: currentPage)!) * viewControllersScrollView.frame.size.width
         mappingArray = Array(0 ..< viewControllersArray.count)
+        currentPage = currentIndex
         
-        currentPage = mappingArray[sender.tag % viewControllersArray.count]
         var direction = 0
         
         if enableCycles {
             
-            if sender.tag >= viewControllersArray.count * 2 { // drag to left
+            if sender.tag >= viewControllersArray.count * 2 { // User selects tab on the far right, shifting to right [1,2,3,4] -> [4,1,2,3] switching from 4 to 1 runs smoothly (forward).
                 shiftViewsToRight()
-                currentPage = (1 + (sender.tag % viewControllersArray.count)) % viewControllersArray.count
+                currentPage = (1 + currentIndex) % viewControllersArray.count // As view shifts by 1 to the right, currentPage will be increased by 1 too.
                 viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
-            } else if sender.tag <= viewControllersArray.count - 1 { //drag to right
+            } else if sender.tag <= viewControllersArray.count - 1 { // User selects tab on the far left, shifting to left [1,2,3,4] -> [2,3,4,1] switching from 1 to 4 runs smoothly (backward).
                 shiftViewsToLeft()
-                currentPage = viewControllersArray.count - 2
+                currentPage = viewControllersArray.count - 2 // The current index of the "to go to page, here in the previous comment the index of 4 is count - 2"
                 viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
             } else{
                 viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
             }
             
+            // If user selects tab on the right, direction = -1 otherwise direction = 1
             sender.tag > lastSelectedTag ? (direction = -1) : (direction = 1)
             lastSelectedTag = sender.tag
             
