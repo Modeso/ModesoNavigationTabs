@@ -99,26 +99,9 @@ public class MNavigationTabsViewController: UIViewController {
         
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBkgColor
-        viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
+        viewControllersScrollView.backgroundColor = scrollViewBackgroundColor        
         
-//        let gradient = CAGradientLayer()
-//        
-//        gradient.frame = shadowView.bounds
-//        let startColor = UIColor.white.cgColor
-//        let endColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 0).cgColor
-//        
-//        gradient.colors = [startColor, endColor]
-//        
-//        shadowView.layer.insertSublayer(gradient, at: 0)
-        
-//        let mask = CAGradientLayer()
-//        mask.startPoint = CGPoint(x: 0.5, y: 0)
-//        mask.endPoint = CGPoint(x:0.5, y:1.0)
-//
-//        let blackColor = UIColor.black
-//        mask.colors = [blackColor.withAlphaComponent(0.0).cgColor,blackColor.withAlphaComponent(1.0).cgColor]
-//        mask.frame = shadowView.bounds
-//        shadowView.layer.mask = mask
+        print(tabsScrollView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
@@ -126,6 +109,7 @@ public class MNavigationTabsViewController: UIViewController {
     
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print(tabsScrollView)
         rotated()
     }
     deinit {
@@ -141,6 +125,8 @@ public class MNavigationTabsViewController: UIViewController {
     }
     
     func rotated() {
+        
+        
         self.adjustTitleViewsFrames()
         self.adjustViewControllersFrames()
         
@@ -149,7 +135,7 @@ public class MNavigationTabsViewController: UIViewController {
                 self.adjustTabsView(forPage: 0)
             }
         }
-    }    
+    }
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()

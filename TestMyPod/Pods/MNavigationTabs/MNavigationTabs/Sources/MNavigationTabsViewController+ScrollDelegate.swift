@@ -105,7 +105,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         if scrollView == tabsScrollView {
             resetTabsScrollView()
         }
-
+        
         
         let length = viewControllersArray.count - 1
         if translation.x < 0 && currentPage == length { // User drag to the left, show first in the last position [1,2,3,4] -> [2,3,4,1]
@@ -124,7 +124,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         if viewControllersScrollView.isDragging || viewControllersScrollView.isDecelerating {
             return
         }
-        startNavigating(toPage: currentPage)        
+        startNavigating(toPage: currentPage)
     }
     
     /**
@@ -135,7 +135,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
      */
     
     internal func adjustTabsView(forPage currentPage:Int, direction: Int = 0) {
-       
+        
         
         var indexOfCurrentPage = mappingArray.index(of: currentPage)!
         
@@ -159,7 +159,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         // Set font to activefont
         let activeArr = tabsScrollView.subviews.filter{ ($0.tag - indexOfCurrentPage) % viewControllersArray.count == 0 }
         for activeView in activeArr {
-         
+            
             (activeView as? UIButton)?.backgroundColor = activeTabColor
             (activeView as? UIButton)?.titleLabel?.font = activeTabFont
             (activeView as? UIButton)?.titleLabel?.textColor = activeTabTextColor
@@ -172,7 +172,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     activeView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
                 })
             }
-        }                
+        }
         
         
         var currentTabOrigin: CGFloat = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabOuterMargin
@@ -356,7 +356,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 tabsScrollView.contentOffset.x = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin + tabOuterMargin
             }
         }
-
+        
         
     }
 }

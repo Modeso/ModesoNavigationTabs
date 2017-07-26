@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MNavigationTabs:
-    :commit: d58e7045c22999168a282bb660c74d93f04bb84e
+    :commit: acad3b418abb45fe2a16b0792c65efd9afe16593
     :git: https://github.com/Modeso/MNavigationTabs.git
 
 SPEC CHECKSUMS:
