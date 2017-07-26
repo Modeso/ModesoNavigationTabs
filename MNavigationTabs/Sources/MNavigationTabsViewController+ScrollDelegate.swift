@@ -7,12 +7,60 @@
 //
 
 import Foundation
+
+enum ScrollDirection : Int {
+    case none
+    case crazy
+    case left
+    case right
+    case up
+    case down
+    case horizontal
+    case vertical
+}
+
 extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == tabsScrollView && enableCycles {
             resetTabsScrollView()
+        } else if scrollView == viewControllersScrollView {
+            var scrollDirection: ScrollDirection = determineScrollDirectionAxis(scrollView)
+            if scrollDirection == .vertical {
+                let index = mappingArray.index(of: currentPage)!
+                if scrollView.subviews[index].bounds.height <= scrollView.bounds.height + tabsScrollView.bounds.height {
+                    scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
+                }
+                
+                scrollView.isPagingEnabled = false
+                if scrollView.contentOffset.y < 0 { //Hide shadow
+                    shadowView.alpha = 0
+                } else { //Display shadow
+                    shadowView.alpha = 1
+                }
+            }
+            else if scrollDirection == .horizontal {
+                scrollView.isPagingEnabled = true
+                scrollView.contentOffset.y = 0
+            }
+            else if scrollDirection == .none && scrollView.contentOffset.y == 0 {
+                // Hide shadow
+                shadowView.alpha = 0
+            }
+            else {
+                // This is probably crazy movement: diagonal scrolling
+                var newOffset = CGPoint.zero
+                if abs(scrollView.contentOffset.x) > abs(scrollView.contentOffset.y) {
+                    newOffset = CGPoint(x: scrollView.contentOffset.x, y: initialContentOffset.y)
+                }
+                else {
+                    newOffset = CGPoint(x: initialContentOffset.x, y: scrollView.contentOffset.y)
+                }
+                // Setting the new offset to the scrollView makes it behave like a proper
+                // directional lock, that allows you to scroll in only one direction at any given time
+                scrollView.contentOffset = newOffset
+            }
         }
     }
     
@@ -36,6 +84,9 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
+        if scrollView == viewControllersScrollView {
+            initialContentOffset = scrollView.contentOffset
+        }
         if !enableCycles {
             if scrollView == viewControllersScrollView {
                 
@@ -326,5 +377,47 @@ extension Array {
     
     mutating func shiftLeftInPlace() {
         self = shiftLeft()
+    }
+}
+
+extension MNavigationTabsViewController {
+    
+    func determineScrollDirection(_ scrollView: UIScrollView) -> ScrollDirection {
+        var scrollDirection: ScrollDirection
+        // If the scrolling direction is changed on both X and Y it means the
+        // scrolling started in one corner and goes diagonal. This will be
+        // called ScrollDirectionCrazy
+        if initialContentOffset.x != scrollView.contentOffset.x && initialContentOffset.y != scrollView.contentOffset.y {
+            scrollDirection = .crazy
+        }
+        else {
+            if initialContentOffset.x > scrollView.contentOffset.x {
+                scrollDirection = .left
+            }
+            else if initialContentOffset.x < scrollView.contentOffset.x {
+                scrollDirection = .right
+            }
+            else if initialContentOffset.y > scrollView.contentOffset.y {
+                scrollDirection = .up
+            }
+            else if initialContentOffset.y < scrollView.contentOffset.y {
+                scrollDirection = .down
+            }
+            else {
+                scrollDirection = .none
+            }
+        }
+        return scrollDirection
+    }
+    func determineScrollDirectionAxis(_ scrollView: UIScrollView) -> ScrollDirection {
+        let scrollDirection = determineScrollDirection(scrollView)
+        switch scrollDirection {
+        case .left, .right:
+            return .horizontal
+        case .up, .down:
+            return .vertical
+        default:
+            return .none
+        }
     }
 }

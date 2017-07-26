@@ -86,11 +86,12 @@ public class MNavigationTabsViewController: UIViewController {
     internal var mappingArray: [Int] = []
     /// Last tab selected, used to get whether user tab another tab on the left or on the right to it can be moved to the left or to the right.
     internal var lastSelectedTag = 0
-    
+    internal var initialContentOffset: CGPoint = .zero
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
     @IBOutlet weak var viewControllersScrollView: UIScrollView!
     @IBOutlet weak var tabsBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var shadowView: UIView!
     
     // MARK:- Views cycle
     override public func viewDidLoad() {
@@ -99,6 +100,25 @@ public class MNavigationTabsViewController: UIViewController {
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBkgColor
         viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
+        
+//        let gradient = CAGradientLayer()
+//        
+//        gradient.frame = shadowView.bounds
+//        let startColor = UIColor.white.cgColor
+//        let endColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 0).cgColor
+//        
+//        gradient.colors = [startColor, endColor]
+//        
+//        shadowView.layer.insertSublayer(gradient, at: 0)
+        
+//        let mask = CAGradientLayer()
+//        mask.startPoint = CGPoint(x: 0.5, y: 0)
+//        mask.endPoint = CGPoint(x:0.5, y:1.0)
+//
+//        let blackColor = UIColor.black
+//        mask.colors = [blackColor.withAlphaComponent(0.0).cgColor,blackColor.withAlphaComponent(1.0).cgColor]
+//        mask.frame = shadowView.bounds
+//        shadowView.layer.mask = mask
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
@@ -129,7 +149,7 @@ public class MNavigationTabsViewController: UIViewController {
                 self.adjustTabsView(forPage: 0)
             }
         }
-    }
+    }    
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -191,7 +211,7 @@ public class MNavigationTabsViewController: UIViewController {
         var origin: CGFloat = 0.0
         var index: Int = 0
         for viewController in viewControllersArray {
-            viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+            viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewController.view.bounds.height)
             self.addChildViewController(viewController)
             viewControllersScrollView.addSubview(viewController.view)
             viewController.didMove(toParentViewController: self)
@@ -305,12 +325,14 @@ public class MNavigationTabsViewController: UIViewController {
     fileprivate func adjustViewControllersFrames() {
         
         var index: CGFloat = 0.0
+        var maximumHeight = viewControllersScrollView.bounds.width
         for newView in viewControllersScrollView.subviews {
-            newView.frame = CGRect(x: index, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+            newView.frame = CGRect(x: index, y: 0.0, width: viewControllersScrollView.bounds.width, height: newView.bounds.height)
             index += viewControllersScrollView.bounds.width
+            maximumHeight = max(maximumHeight, newView.bounds.height)
         }
         
-        viewControllersScrollView.contentSize = CGSize(width: index, height: self.view.frame.size.height - navigationBarHeight)
+        viewControllersScrollView.contentSize = CGSize(width: index, height: maximumHeight)
         viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: false)
         
     }
