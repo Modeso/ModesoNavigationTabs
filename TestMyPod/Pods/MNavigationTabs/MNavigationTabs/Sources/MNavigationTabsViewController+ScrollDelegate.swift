@@ -34,7 +34,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 }
                 
                 scrollView.isPagingEnabled = false
-                if scrollView.contentOffset.y < 0 { //Hide shadow
+                if scrollView.contentOffset.y <= 0 { //Hide shadow
                     shadowView.alpha = 0
                 } else { //Display shadow
                     shadowView.alpha = 1
@@ -268,11 +268,11 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         viewControllersScrollView.delegate = nil
         let length = viewControllersArray.count - 1
         var origin: CGFloat = 0.0
-        viewControllersArray[length].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+        viewControllersArray[length].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersArray[length].view.bounds.height)
         origin += viewControllersScrollView.bounds.width
         
         for i in 0..<length  {
-            viewControllersArray[i].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+            viewControllersArray[i].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersArray[i].view.bounds.height)
             origin += viewControllersScrollView.bounds.width
         }
         viewControllersArray.shiftRightInPlace()
@@ -293,10 +293,10 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         var origin: CGFloat = 0.0
         
         for i in 0..<length  {
-            viewControllersArray[i].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+            viewControllersArray[i].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersArray[i].view.bounds.height)
             origin += viewControllersScrollView.bounds.width
         }
-        viewControllersArray[length].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.bounds.height)
+        viewControllersArray[length].view.frame = CGRect(x: origin, y: 0, width: viewControllersScrollView.bounds.width, height: viewControllersArray[length].view.bounds.height)
         viewControllersScrollView.contentOffset.x = viewControllersScrollView.bounds.width * CGFloat(length)
         viewControllersScrollView.delegate = self
     }

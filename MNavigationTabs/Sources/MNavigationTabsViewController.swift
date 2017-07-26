@@ -36,6 +36,8 @@ public class MNavigationTabsViewController: UIViewController {
     public var indicatorColor: UIColor = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
     /// Navigation bar height
     public var navigationBarHeight: CGFloat = 33
+    /// Single tab height
+    public var navigationTabHeight: CGFloat = 33
     /// Tabs corner radius
     public var tabsCornerRadius: CGFloat = 0
     /// Navigation bar color
@@ -99,7 +101,7 @@ public class MNavigationTabsViewController: UIViewController {
         
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBkgColor
-        viewControllersScrollView.backgroundColor = scrollViewBackgroundColor        
+        viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
@@ -228,7 +230,7 @@ public class MNavigationTabsViewController: UIViewController {
         }
         for _ in 0 ..< numberOfDummyRepetitions {
             for title in viewControllersTitlesArray {
-                let button = UIButton(frame: CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight))
+                let button = UIButton(frame: CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationTabHeight))
                 button.backgroundColor = inactiveTabColor
                 button.setAttributedTitle(title, for: .normal)
                 button.titleLabel?.font = inactiveTabFont
@@ -272,7 +274,7 @@ public class MNavigationTabsViewController: UIViewController {
         
         for button in tabsScrollView.subviews {
             if let button = button as? UIButton {
-                button.frame = CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationBarHeight)
+                button.frame = CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationTabHeight)
                 origin += button.frame.size.width + tabInnerMargin
             }
         }

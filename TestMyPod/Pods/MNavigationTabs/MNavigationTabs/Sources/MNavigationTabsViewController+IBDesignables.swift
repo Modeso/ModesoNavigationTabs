@@ -20,6 +20,14 @@ import Foundation
             return navigationTabWidth
         }
     }
+    @IBInspectable var tabHeight: CGFloat {
+        set {
+            navigationTabHeight = newValue
+        }
+        get {
+            return navigationTabHeight
+        }
+    }
     @IBInspectable var activeBkgColor: UIColor {
         set {
             activeTabColor = newValue
