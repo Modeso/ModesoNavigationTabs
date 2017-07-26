@@ -125,12 +125,7 @@ public class MNavigationTabsViewController: UIViewController {
         
         if enableResizingAnimated {
             DispatchQueue.main.async {
-                for view in self.tabsScrollView.subviews {
-                    UIView.animate(withDuration: 0.2, animations: {
-                        view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-                    })
-                }
-                self.tabsScrollView.subviews[0].transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                self.adjustTabsView(forPage: 0)
             }
         }
     }
@@ -168,7 +163,10 @@ public class MNavigationTabsViewController: UIViewController {
         
         viewControllersScrollView.bounces = enableBounce
         
-        adjustTabsView(forPage: 0)
+        DispatchQueue.main.async {
+            self.adjustTabsView(forPage: 0)
+        }
+        
     }
     override public func loadView() {
         super.loadView()
@@ -353,7 +351,10 @@ public class MNavigationTabsViewController: UIViewController {
             viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
         }
         
-        adjustTabsView(forPage: currentPage, direction: direction)
+        DispatchQueue.main.async {
+            self.adjustTabsView(forPage: self.currentPage, direction: direction)
+        }
+        
     }
     
 }

@@ -79,7 +79,7 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="tabsBkgColor">
                             <color key="value" red="0.0039215686269999999" green="0.39607843139999999" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="tabsAnimation" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="tabsAnimation" value="YES"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="scrollViewBkgColor">
                             <color key="value" red="0.0039215686269999999" green="0.39607843139999999" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>

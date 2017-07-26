@@ -30,11 +30,6 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     scrollView.contentOffset.x = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin + tabOuterMargin
                 }
             }
-        } else if scrollView == viewControllersScrollView {
-            
-            //            oldPage = currentPage
-            //            currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
-            //            adjustTabsView(forPage: currentPage)
         }
     }
     
@@ -64,7 +59,10 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 
                 oldPage = currentPage
                 currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
-                adjustTabsView(forPage: currentPage)
+                DispatchQueue.main.async {
+                    self.adjustTabsView(forPage: self.currentPage)
+                }
+                
             }
             
             return
@@ -128,7 +126,10 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
             viewControllersScrollView.contentOffset.x = CGFloat(currentPage) * viewControllersScrollView.bounds.width
         }
         
-        adjustTabsView(forPage: currentPage)
+        DispatchQueue.main.async {
+            self.adjustTabsView(forPage: currentPage)
+        }
+        
         
     }
     
@@ -140,6 +141,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
         // Set font to inactivefont
         for view in tabsScrollView.subviews {
+            
             (view as? UIButton)?.backgroundColor = inactiveTabColor
             (view as? UIButton)?.titleLabel?.font = inactiveTabFont
             (view as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
@@ -153,7 +155,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         }
         
         // Set font to activefont
-        let activeArr = tabsScrollView.subviews.filter{ $0.tag % viewControllersArray.count == indexOfCurrentPage }
+        let activeArr = tabsScrollView.subviews.filter{ ($0.tag - indexOfCurrentPage) % viewControllersArray.count == 0 }
         for activeView in activeArr {
             
             (activeView as? UIButton)?.backgroundColor = activeTabColor
@@ -169,7 +171,6 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 })
             }
         }
-        
         
         var currentTabOrigin: CGFloat = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabOuterMargin
         var indicatorFrame = indicatorView.frame
@@ -210,8 +211,8 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 if indexOfCurrentPage == 0 {
                     if enableCycles {
                         
-                        let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin
-                        let point = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin + startingIndex
+                        let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin
+                        let point = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + startingIndex
                         if (direction == 0 && translation.x < 0) || direction == -1 {
                             setScrollView(scrollView: tabsScrollView, toOffset: point)
                         }
@@ -230,8 +231,8 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 } else {
                     if enableCycles {
                         
-                        let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count - 1) * tabInnerMargin + tabOuterMargin
-                        let point  = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin + startingIndex
+                        let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin
+                        let point  = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + startingIndex
                         if (direction == 0 && indexOfCurrentPage == viewControllersArray.count - 1 && translation.x > 0) || (direction == 1 && indexOfCurrentPage == viewControllersArray.count - 1) {
                             setScrollView(scrollView: tabsScrollView, toOffset: point)
                         }
