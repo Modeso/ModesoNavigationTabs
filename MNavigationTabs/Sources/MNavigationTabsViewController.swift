@@ -104,7 +104,6 @@ public class MNavigationTabsViewController: UIViewController {
         viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
-        
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -128,8 +127,10 @@ public class MNavigationTabsViewController: UIViewController {
         currentPage = 0
         oldPage = 0
         lastSelectedTag = 0
-        self.adjustTitleViewsFrames()
-        self.adjustViewControllersFrames()
+        
+        addTitlesScrollViews()
+        adjustTitleViewsFrames()
+        adjustViewControllersFrames()
         
         if enableResizingAnimated {
             DispatchQueue.main.async {
@@ -155,7 +156,7 @@ public class MNavigationTabsViewController: UIViewController {
         }
         
         mappingArray = Array(0 ..< viewControllersArray.count)
-        adjustViewControllersScrollView()
+        addViewControllersScrollViews()
         addTitlesScrollViews()
         addNavigationIndicator()
         
@@ -187,7 +188,7 @@ public class MNavigationTabsViewController: UIViewController {
     
     // MARK:- Creating views
     /// Add ViewControllers to viewControllersScrollView
-    fileprivate func adjustViewControllersScrollView() {
+    fileprivate func addViewControllersScrollViews() {
         
         for view in viewControllersScrollView.subviews{
             view.removeFromSuperview()
@@ -332,7 +333,6 @@ public class MNavigationTabsViewController: UIViewController {
             if enableResizingAnimated {
                 UIView.animate(withDuration: 0.2, animations: {
                     view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-                    
                 })
             }
             
