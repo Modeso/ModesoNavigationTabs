@@ -124,13 +124,19 @@ public class MNavigationTabsViewController: UIViewController {
     }
     
     func rotated() {
+        
+        currentPage = 0
+        oldPage = 0
+        lastSelectedTag = 0
         self.adjustTitleViewsFrames()
         self.adjustViewControllersFrames()
         
         if enableResizingAnimated {
             DispatchQueue.main.async {
-                self.adjustTabsView(forPage: 0)
+                self.adjustTabsView(forPage: 0)                
             }
+        } else {
+            adjustTabsViewStyle()
         }
     }
     
@@ -293,16 +299,9 @@ public class MNavigationTabsViewController: UIViewController {
         // Set indicator to the first tab
         indicatorView.frame = CGRect(x: tabOrigin, y: tabsScrollView.frame.size.height - indicatorViewHeight, width: calculatedTabWidth, height: indicatorViewHeight)
         
-        var initialIndex = 0
-        
         if enableCycles {
             tabsScrollView.contentOffset.x = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin
-            initialIndex = viewControllersArray.count // In case of circular, we add dummy tabs to the left and to the right and always visoble to the user the chunk in the middle so our starting index is the # of tabs
         }
-        
-        (tabsScrollView.subviews[initialIndex] as? UIButton)?.backgroundColor = activeTabColor
-        (tabsScrollView.subviews[initialIndex] as? UIButton)?.titleLabel?.font = activeTabFont
-        (tabsScrollView.subviews[initialIndex] as? UIButton)?.titleLabel?.textColor = activeTabTextColor
         
     }
     fileprivate func adjustViewControllersFrames() {
@@ -318,6 +317,45 @@ public class MNavigationTabsViewController: UIViewController {
         viewControllersScrollView.contentSize = CGSize(width: index, height: maximumHeight)
         viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: false)
         
+    }
+    public func adjustTabsViewStyle() {
+        
+        var indexOfCurrentPage = mappingArray.index(of: currentPage)!
+        
+        // Set font to inactivefont
+        for view in tabsScrollView.subviews {
+            
+            (view as? UIButton)?.backgroundColor = inactiveTabColor
+            (view as? UIButton)?.titleLabel?.font = inactiveTabFont
+            (view as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
+            
+            if enableResizingAnimated {
+                UIView.animate(withDuration: 0.2, animations: {
+                    view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
+                    
+                })
+            }
+            
+        }
+        
+        // Set font to activefont
+        let activeArr = tabsScrollView.subviews.filter{ ($0.tag - indexOfCurrentPage) % viewControllersArray.count == 0 }
+        for activeView in activeArr {
+            
+            (activeView as? UIButton)?.backgroundColor = activeTabColor
+            (activeView as? UIButton)?.titleLabel?.font = activeTabFont
+            (activeView as? UIButton)?.titleLabel?.textColor = activeTabTextColor
+            if activeView.tag >= viewControllersArray.count && activeView.tag < viewControllersArray.count * 2 {
+                lastSelectedTag = activeView.tag
+            }
+            
+            if enableResizingAnimated {
+                UIView.animate(withDuration: 0.2, animations: {
+                    activeView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                })
+            }
+        }
+
     }
     // MARK:- IBActions
     @objc fileprivate func selectPage(sender: UIButton) {

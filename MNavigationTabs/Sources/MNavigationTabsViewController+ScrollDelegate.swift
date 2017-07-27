@@ -141,39 +141,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         
         let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
         
-        // Set font to inactivefont
-        for view in tabsScrollView.subviews {
-            
-            (view as? UIButton)?.backgroundColor = inactiveTabColor
-            (view as? UIButton)?.titleLabel?.font = inactiveTabFont
-            (view as? UIButton)?.titleLabel?.textColor = inactiveTabTextColor
-            
-            if enableResizingAnimated {
-                UIView.animate(withDuration: 0.2, animations: {
-                    view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
-                })
-            }
-            
-        }
-        
-        // Set font to activefont
-        let activeArr = tabsScrollView.subviews.filter{ ($0.tag - indexOfCurrentPage) % viewControllersArray.count == 0 }
-        for activeView in activeArr {
-            
-            (activeView as? UIButton)?.backgroundColor = activeTabColor
-            (activeView as? UIButton)?.titleLabel?.font = activeTabFont
-            (activeView as? UIButton)?.titleLabel?.textColor = activeTabTextColor
-            if activeView.tag >= viewControllersArray.count && activeView.tag < viewControllersArray.count * 2 {
-                lastSelectedTag = activeView.tag
-            }
-            
-            if enableResizingAnimated {
-                UIView.animate(withDuration: 0.2, animations: {
-                    activeView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
-                })
-            }
-        }
-        
+        adjustTabsViewStyle()
         
         var currentTabOrigin: CGFloat = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabOuterMargin
         var indicatorFrame = indicatorView.frame
