@@ -25,7 +25,7 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 
 ## Options
 
-<img src="https://github.com/Modeso/MNavigationTabs/blob/master/Options.png" alt="Options">
+<img src="https://github.com/Modeso/MNavigationTabs/blob/Supporting_Cycles/Options.png" alt="Options">
 
 - `Tab Width`: Define width of single tabs which holds titles of the viewControllers objects.
 - `Tab Height`: Define height of single tabs which holds titles of the viewControllers objects.
