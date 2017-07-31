@@ -202,10 +202,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                         
                         if (direction == 0 && indexOfCurrentPage == viewControllersArray.count - 1 && translation.x > 0) || (direction == 1 && indexOfCurrentPage == viewControllersArray.count - 1) {
                             setScrollView(scrollView: tabsScrollView, toOffset: pointToNavigateTo)
-                        }
-                        if direction == -1 {
-                            print(indexOfCurrentPage)
-                        }
+                        }                        
                         
                         
                         UIView.animate(withDuration: 0.3, animations: { //walkaround as setContentOffset with Animation causes unexpected behavior sometimes.
@@ -276,8 +273,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         if currentPage > viewControllersTitlesArray.count - 1 || oldPage > viewControllersTitlesArray.count - 1 {
             return
         }
-        
-        
+            
         if Int(viewControllersScrollView.contentOffset.x / viewControllersScrollView.bounds.width) < currentPage {
             viewControllersScrollView.contentOffset.x = CGFloat(currentPage) * viewControllersScrollView.bounds.width
         }
@@ -298,7 +294,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                 
                 diff = scrollView.contentOffset.x - diff
                 tabsScrollView.setContentOffset(CGPoint(x: diff, y: 0), animated: false)
-            } else {
+            } else if offset > scrollView.contentOffset.x {
                 diff = scrollView.contentOffset.x + diff
                 tabsScrollView.setContentOffset(CGPoint(x: diff, y: 0), animated: false)
             }
