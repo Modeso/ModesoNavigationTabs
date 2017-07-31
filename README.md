@@ -147,11 +147,13 @@ Finally, set necessary parameters for `mNavigationTabs` instance
 mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First"),NSAttributedString(string: "Second"),NSAttributedString(string: "Third"),NSAttributedString(string: "Forth")]
 mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
 mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
+mNavigationTabs.updateUI()
 ```
 > `viewControllersArray`: Array of UIViewControllers to display and navigate among.
 > `viewControllersTitlesArray`: Array of NSAttributedString represensts titles of the UIViewControllers which will be displayed in the top Tabs Navigation Bar.
 > `activeTabFont`: Font of the current selected tab.
 > `inactiveTabFont`: Font for the resu of the unselected tabs.
+> `updateUI`: is a must to-be-called method, this will update all MNavigationTabs attributes and adjust views.
 
 ## Communication
 
