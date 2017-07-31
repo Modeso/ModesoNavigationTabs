@@ -13,7 +13,7 @@
 
 MNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
 
-<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/MNavigationTabsGif.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
+<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/Supporting_Cycles/2.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 
 - [Options](#options)
 - [Requirements](#requirements)
@@ -28,6 +28,7 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 <img src="https://github.com/Modeso/MNavigationTabs/blob/master/Options.png" alt="Options">
 
 - `Tab Width`: Define width of single tabs which holds titles of the viewControllers objects.
+- `Tab Height`: Define height of single tabs which holds titles of the viewControllers objects.
 - `Active Bkg Color`: Background color for the current selected tab.
 - `InActive Bkg Color`: Background color for the rest of the unselected tabs.
 - `Active Text Color`: Text color of the current selected tab.
@@ -42,9 +43,12 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 > 2: `.fit`: The default status, this will ignore tabWidth and adjust all tabs to fit inside single screen (not recommended for large numbers of tabs).<br />
 > 3: `.center`: Set active tabs to the center of the screen.<br />
 - `Tabs Bar Height`: Height of the Tabs Navigation bar.
+- `Tabs Bar Corner`: Corner radius of each Tab.
 - `Tabs Bkg Color`: Background color of Tabs Navigation bar.
+- `Tabs Animation`: Enlarge selected tab with animation.
+- `Scroll View Bkg Color`: UIViewcontrollers' Scrollview background color.
 - `Scroll Bounce`: Enable/disable bounce for the displayed UIViewControllers.
-
+- `Cycle`: Infinite Scrollview (ViewControllers will be cycled).
 
 ## Requirements
 
