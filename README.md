@@ -13,6 +13,7 @@
 
 MNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
 
+<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/Supporting_Cycles/1.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 <img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/Supporting_Cycles/2.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 
 - [Options](#options)
