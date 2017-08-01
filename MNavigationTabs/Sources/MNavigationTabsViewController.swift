@@ -178,7 +178,6 @@ public class MNavigationTabsViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.adjustTabsView(forPage: 0)
-            self.tabsScrollView.isUserInteractionEnabled = true
         }
         
     }

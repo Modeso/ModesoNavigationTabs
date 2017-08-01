@@ -124,7 +124,10 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         if viewControllersScrollView.isDragging || viewControllersScrollView.isDecelerating {
             return
         }
-        startNavigating(toPage: currentPage)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.startNavigating(toPage: currentPage)
+        }
     }
     
     /**
@@ -195,6 +198,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     }
                     else {
                         tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                        self.tabsScrollView.isUserInteractionEnabled = true
                     }
                     
                 } else {
@@ -213,6 +217,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                         
                     } else {
                         tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
+                        self.tabsScrollView.isUserInteractionEnabled = true
                     }
                     
                 }
