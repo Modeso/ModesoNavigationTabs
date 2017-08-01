@@ -101,7 +101,7 @@ public class MNavigationTabsViewController: UIViewController {
         
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBkgColor
-        viewControllersScrollView.backgroundColor = scrollViewBackgroundColor        
+        viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
@@ -332,7 +332,7 @@ public class MNavigationTabsViewController: UIViewController {
             
             if enableResizingAnimated {
                 UIView.animate(withDuration: 0.2, animations: {
-                    view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)                    
+                    view.transform = CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8)
                 })
             }
             
@@ -355,7 +355,7 @@ public class MNavigationTabsViewController: UIViewController {
                 })
             }
         }
-
+        
     }
     // MARK:- IBActions
     @objc fileprivate func selectPage(sender: UIButton) {

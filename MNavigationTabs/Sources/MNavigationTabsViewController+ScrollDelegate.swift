@@ -26,7 +26,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         if scrollView == tabsScrollView && enableCycles {
             resetTabsScrollView()
         } else if scrollView == viewControllersScrollView {
-            var scrollDirection: ScrollDirection = determineScrollDirectionAxis(scrollView)
+            let scrollDirection: ScrollDirection = determineScrollDirectionAxis(scrollView)
             if scrollDirection == .vertical {
                 let index = mappingArray.index(of: currentPage)!
                 if scrollView.subviews[index].bounds.height <= scrollView.bounds.height + tabsScrollView.bounds.height {
@@ -137,7 +137,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     internal func adjustTabsView(forPage currentPage:Int, direction: Int = 0) {
         
         
-        var indexOfCurrentPage = mappingArray.index(of: currentPage)!
+        let indexOfCurrentPage = mappingArray.index(of: currentPage)!
         
         let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
         

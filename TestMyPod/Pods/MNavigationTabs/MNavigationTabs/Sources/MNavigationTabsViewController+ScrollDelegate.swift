@@ -140,7 +140,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         var indexOfCurrentPage = mappingArray.index(of: currentPage)!
         
         let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
-                            
+        
         adjustTabsViewStyle()
         
         var currentTabOrigin: CGFloat = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabOuterMargin
@@ -202,7 +202,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                         
                         if (direction == 0 && indexOfCurrentPage == viewControllersArray.count - 1 && translation.x > 0) || (direction == 1 && indexOfCurrentPage == viewControllersArray.count - 1) {
                             setScrollView(scrollView: tabsScrollView, toOffset: pointToNavigateTo)
-                        }                        
+                        }
                         
                         
                         UIView.animate(withDuration: 0.3, animations: { //walkaround as setContentOffset with Animation causes unexpected behavior sometimes.
@@ -273,7 +273,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
         if currentPage > viewControllersTitlesArray.count - 1 || oldPage > viewControllersTitlesArray.count - 1 {
             return
         }
-            
+        
         if Int(viewControllersScrollView.contentOffset.x / viewControllersScrollView.bounds.width) < currentPage {
             viewControllersScrollView.contentOffset.x = CGFloat(currentPage) * viewControllersScrollView.bounds.width
         }

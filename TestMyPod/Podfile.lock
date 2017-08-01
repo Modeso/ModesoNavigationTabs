@@ -11,12 +11,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MNavigationTabs:
-    :commit: 4bc753f50f3389ded37e171e9b5acac8f928a4fb
+    :commit: 9c8341bbf10c6c4fb304971c63b0739b951f36a2
     :git: https://github.com/Modeso/MNavigationTabs.git
 
 SPEC CHECKSUMS:
   MNavigationTabs: 4d08ac5a8e23bf19e229ae44d9189221bbbee532
 
-PODFILE CHECKSUM: 2bd55c8dfea173624a62d5614e96047c2ce472d5
+PODFILE CHECKSUM: 957188a6482e2cf3f10ded51215efae2a5f4a83d
 
 COCOAPODS: 1.2.0

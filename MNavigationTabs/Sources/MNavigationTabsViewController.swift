@@ -65,7 +65,7 @@ public class MNavigationTabsViewController: UIViewController {
      * fixed: Navigation tabs will use tabWidth property and extend beyond screen bounds without scrolling ability.
      * scrollable: Navigation tabs will use tabWidth property and extend beyond screen bounds with scrolling ability.
      * fit: Navigation tabs will adjust its width so all tabs fit in a single screen without scrolling ability.
-     *
+     * center: Navigation tabs will adjust its width so all tabs fit in a single screen without scrolling ability.
      **/
     public var tabsBarStatus: TabsScrollStatus = .fit
     
@@ -129,6 +129,7 @@ public class MNavigationTabsViewController: UIViewController {
         lastSelectedTag = 0
         
         addTitlesScrollViews()
+        addNavigationIndicator()
         adjustTitleViewsFrames()
         adjustViewControllersFrames()
         
@@ -151,7 +152,6 @@ public class MNavigationTabsViewController: UIViewController {
     public func updateUI() {
         // Error checking
         if viewControllersArray.count == 0 || viewControllersTitlesArray.count == 0 || viewControllersTitlesArray.count != viewControllersArray.count {
-            assertionFailure("Make sure you have the same amount of non-zero items in viewControllersTitlesArray and viewControllersArray")
             return
         }
         
@@ -178,6 +178,7 @@ public class MNavigationTabsViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.adjustTabsView(forPage: 0)
+            self.tabsScrollView.isUserInteractionEnabled = true
         }
         
     }
@@ -321,7 +322,7 @@ public class MNavigationTabsViewController: UIViewController {
     }
     public func adjustTabsViewStyle() {
         
-        var indexOfCurrentPage = mappingArray.index(of: currentPage)!
+        let indexOfCurrentPage = mappingArray.index(of: currentPage)!
         
         // Set font to inactivefont
         for view in tabsScrollView.subviews {
