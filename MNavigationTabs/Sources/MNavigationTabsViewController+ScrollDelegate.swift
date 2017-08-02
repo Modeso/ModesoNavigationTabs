@@ -117,15 +117,17 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     /**
      Public method to scroll to current page
      
-     - Parameter currentPage:  Page index to navigate to.
+     - Parameter currentPage: Page index to navigate to.
+     - Parameter isScrollDelayed: Most of the time this API is getting called right after updateUI and initialization is done, so in order to avoid conflicted animations this parameter is used. Default is `true` which will scroll to currentPage after 1 second. If you call this method after creation of the MNavigationTabs and after calling updateUI() method by sometimes, set this flag to `false`
      */
-    public func scrollToCurrentPage(currentPage: Int) {
+    public func scrollToCurrentPage(currentPage: Int, isScrollDelayed: Bool = true) {
         
         if viewControllersScrollView.isDragging || viewControllersScrollView.isDecelerating {
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        let time = isScrollDelayed ? 1.0 : 0.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + time) {
             self.startNavigating(toPage: currentPage)
         }
     }
@@ -140,7 +142,9 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     internal func adjustTabsView(forPage currentPage:Int, direction: Int = 0) {
         
         
-        let indexOfCurrentPage = mappingArray.index(of: currentPage)!
+        guard let indexOfCurrentPage = mappingArray.index(of: currentPage) else {
+            return
+        }
         
         let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
         
