@@ -25,8 +25,8 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == tabsScrollView && enableCycles {
             resetTabsScrollView()
-        } else if scrollView == viewControllersScrollView {
-            var scrollDirection: ScrollDirection = determineScrollDirectionAxis(scrollView)
+        } else if scrollView == viewControllersScrollView && enableGScrollAndShadow {
+            let scrollDirection: ScrollDirection = determineScrollDirectionAxis(scrollView)
             if scrollDirection == .vertical {
                 let index = mappingArray.index(of: currentPage)!
                 if scrollView.subviews[index].bounds.height <= scrollView.bounds.height + tabsScrollView.bounds.height {
@@ -117,14 +117,19 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     /**
      Public method to scroll to current page
      
-     - Parameter currentPage:  Page index to navigate to.
+     - Parameter currentPage: Page index to navigate to.
+     - Parameter isScrollDelayed: Most of the time this API is getting called right after updateUI and initialization is done, so in order to avoid conflicted animations this parameter is used. Default is `true` which will scroll to currentPage after 1 second. If you call this method after creation of the MNavigationTabs and after calling updateUI() method by sometimes, set this flag to `false`
      */
-    public func scrollToCurrentPage(currentPage: Int) {
+    public func scrollToCurrentPage(currentPage: Int, isScrollDelayed: Bool = true) {
         
         if viewControllersScrollView.isDragging || viewControllersScrollView.isDecelerating {
             return
         }
-        startNavigating(toPage: currentPage)
+        
+        let time = isScrollDelayed ? 1.0 : 0.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+            self.startNavigating(toPage: currentPage)
+        }
     }
     
     /**
@@ -137,7 +142,9 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     internal func adjustTabsView(forPage currentPage:Int, direction: Int = 0) {
         
         
-        var indexOfCurrentPage = mappingArray.index(of: currentPage)!
+        guard let indexOfCurrentPage = mappingArray.index(of: currentPage) else {
+            return
+        }
         
         let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
         
@@ -195,6 +202,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                     }
                     else {
                         tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                        self.tabsScrollView.isUserInteractionEnabled = true
                     }
                     
                 } else {
@@ -213,6 +221,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
                         
                     } else {
                         tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
+                        self.tabsScrollView.isUserInteractionEnabled = true
                     }
                     
                 }

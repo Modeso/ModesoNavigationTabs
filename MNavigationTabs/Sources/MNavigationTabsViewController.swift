@@ -127,18 +127,18 @@ public class MNavigationTabsViewController: UIViewController {
     
     func rotated() {
         
-        currentPage = 0
-        oldPage = 0
-        lastSelectedTag = 0
-        
         addTitlesScrollViews()
         addNavigationIndicator()
         adjustTitleViewsFrames()
         adjustViewControllersFrames()
         
+        if enableCycles {
+            indicatorView.isHidden = true
+        }
+        
         if enableResizingAnimated {
             DispatchQueue.main.async {
-                self.adjustTabsView(forPage: 0)
+                self.adjustTabsView(forPage: self.currentPage)
             }
         } else {
             adjustTabsViewStyle()

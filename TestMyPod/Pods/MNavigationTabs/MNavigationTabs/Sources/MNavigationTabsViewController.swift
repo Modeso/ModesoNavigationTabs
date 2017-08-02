@@ -60,12 +60,15 @@ public class MNavigationTabsViewController: UIViewController {
     /// Allow tabs resizing with animation
     public var enableResizingAnimated: Bool = false
     
+    /// Allow global scroll and shadow, this is when the whole viewcontroller has to be scrolled vertically and shadow appears (default is false if viewcontroller includes UIScrollView/UItableview/..)
+    public var enableGScrollAndShadow: Bool = false
+    
     /**
      * State of the Navigation tabs views.
      * fixed: Navigation tabs will use tabWidth property and extend beyond screen bounds without scrolling ability.
      * scrollable: Navigation tabs will use tabWidth property and extend beyond screen bounds with scrolling ability.
      * fit: Navigation tabs will adjust its width so all tabs fit in a single screen without scrolling ability.
-     *
+     * center: Navigation tabs will adjust its width so all tabs fit in a single screen without scrolling ability.
      **/
     public var tabsBarStatus: TabsScrollStatus = .fit
     
@@ -124,17 +127,18 @@ public class MNavigationTabsViewController: UIViewController {
     
     func rotated() {
         
-        currentPage = 0
-        oldPage = 0
-        lastSelectedTag = 0
-        
         addTitlesScrollViews()
+        addNavigationIndicator()
         adjustTitleViewsFrames()
         adjustViewControllersFrames()
         
+        if enableCycles {
+            indicatorView.isHidden = true
+        }
+        
         if enableResizingAnimated {
             DispatchQueue.main.async {
-                self.adjustTabsView(forPage: 0)
+                self.adjustTabsView(forPage: self.currentPage)
             }
         } else {
             adjustTabsViewStyle()
@@ -151,7 +155,6 @@ public class MNavigationTabsViewController: UIViewController {
     public func updateUI() {
         // Error checking
         if viewControllersArray.count == 0 || viewControllersTitlesArray.count == 0 || viewControllersTitlesArray.count != viewControllersArray.count {
-            assertionFailure("Make sure you have the same amount of non-zero items in viewControllersTitlesArray and viewControllersArray")
             return
         }
         
@@ -179,7 +182,6 @@ public class MNavigationTabsViewController: UIViewController {
         DispatchQueue.main.async {
             self.adjustTabsView(forPage: 0)
         }
-        
     }
     override public func loadView() {
         super.loadView()
@@ -315,13 +317,18 @@ public class MNavigationTabsViewController: UIViewController {
             maximumHeight = max(maximumHeight, newView.bounds.height)
         }
         
+        if !enableGScrollAndShadow {
+            maximumHeight = viewControllersScrollView.frame.size.height
+            viewControllersScrollView.isDirectionalLockEnabled = false
+            
+        }
         viewControllersScrollView.contentSize = CGSize(width: index, height: maximumHeight)
         viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: false)
         
     }
     public func adjustTabsViewStyle() {
         
-        var indexOfCurrentPage = mappingArray.index(of: currentPage)!
+        let indexOfCurrentPage = mappingArray.index(of: currentPage)!
         
         // Set font to inactivefont
         for view in tabsScrollView.subviews {
