@@ -47,6 +47,7 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 - `Tabs Bar Corner`: Corner radius of each Tab.
 - `Tabs Bkg Color`: Background color of Tabs Navigation bar.
 - `Tabs Animation`: Enlarge selected tab with animation.
+- `Enable Global Scrolling`: The whole viewController is scrolled and shadow appears.
 - `Scroll View Bkg Color`: UIViewcontrollers' Scrollview background color.
 - `Scroll Bounce`: Enable/disable bounce for the displayed UIViewControllers.
 - `Cycle`: Infinite Scrollview (ViewControllers will be cycled).
