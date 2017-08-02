@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MNavigationTabsViewController" customModule="MNavigationTabs" customModuleProvider="target">
             <connections>
+                <outlet property="shadowView" destination="8qg-YI-VP9" id="1yD-oe-Chf"/>
                 <outlet property="tabsBarHeightConstraint" destination="xex-sh-Hh0" id="FSc-5H-VYf"/>
                 <outlet property="tabsScrollView" destination="uDp-tq-YPN" id="iqP-Yg-HX1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -22,7 +23,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDp-tq-YPN" userLabel="Tabs Scroll View">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ax5-yD-bA2" userLabel="ViewController Scroll View">
+                    <rect key="frame" x="0.0" y="33" width="375" height="634"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="iQ0-Ge-0oz"/>
+                    </connections>
+                </scrollView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDp-tq-YPN" userLabel="Tabs Scroll View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="33"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="33" id="xex-sh-Hh0"/>
@@ -31,17 +38,21 @@
                         <outlet property="delegate" destination="-1" id="IY3-be-3jx"/>
                     </connections>
                 </scrollView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ax5-yD-bA2" userLabel="ViewController Scroll View">
-                    <rect key="frame" x="0.0" y="33" width="375" height="634"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="iQ0-Ge-0oz"/>
-                    </connections>
-                </scrollView>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8qg-YI-VP9" userLabel="Shadow View">
+                    <rect key="frame" x="0.0" y="33" width="375" height="9"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.24676262842465754" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="9" id="6W5-n7-gHp"/>
+                    </constraints>
+                </view>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="8qg-YI-VP9" secondAttribute="trailing" id="28v-5k-57V"/>
                 <constraint firstItem="Ax5-yD-bA2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="76O-2j-P0g"/>
                 <constraint firstItem="uDp-tq-YPN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Imp-hV-V8G"/>
                 <constraint firstAttribute="bottom" secondItem="Ax5-yD-bA2" secondAttribute="bottom" id="MZu-XG-Hbr"/>
+                <constraint firstItem="8qg-YI-VP9" firstAttribute="top" secondItem="uDp-tq-YPN" secondAttribute="bottom" id="OTU-eV-zBU"/>
+                <constraint firstItem="8qg-YI-VP9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="U6B-OQ-Ox7"/>
                 <constraint firstAttribute="trailing" secondItem="Ax5-yD-bA2" secondAttribute="trailing" id="cUr-Sh-XiA"/>
                 <constraint firstItem="uDp-tq-YPN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eH1-jF-nhq"/>
                 <constraint firstItem="Ax5-yD-bA2" firstAttribute="top" secondItem="uDp-tq-YPN" secondAttribute="bottom" id="u1F-d1-96x"/>

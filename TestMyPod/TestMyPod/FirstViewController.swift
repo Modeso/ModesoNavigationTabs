@@ -22,8 +22,7 @@ class FirstViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(1)
+        super.viewWillAppear(animated)        
     }
     /*
     // MARK: - Navigation

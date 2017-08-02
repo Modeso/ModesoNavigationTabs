@@ -8,7 +8,7 @@
 
 import Foundation
 
-    
+
 @IBDesignable extension MNavigationTabsViewController {
     
     // MARK:- Tabs
@@ -18,6 +18,14 @@ import Foundation
         }
         get {
             return navigationTabWidth
+        }
+    }
+    @IBInspectable var tabHeight: CGFloat {
+        set {
+            navigationTabHeight = newValue
+        }
+        get {
+            return navigationTabHeight
         }
     }
     @IBInspectable var activeBkgColor: UIColor {
@@ -108,12 +116,39 @@ import Foundation
         }
     }
     
+    @IBInspectable var tabsBarCorner: CGFloat {
+        set {
+            tabsCornerRadius = newValue
+        }
+        get {
+            return tabsCornerRadius
+        }
+    }
+    
     @IBInspectable var tabsBkgColor: UIColor {
         set {
             navigationBarColor = newValue
         }
         get {
             return navigationBarColor
+        }
+    }
+    
+    @IBInspectable var tabsAnimation: Bool {
+        set {
+            enableResizingAnimated = newValue
+        }
+        get {
+            return enableResizingAnimated
+        }
+    }
+    
+    @IBInspectable var scrollViewBkgColor: UIColor {
+        set {
+            scrollViewBackgroundColor = newValue
+        }
+        get {
+            return scrollViewBackgroundColor
         }
     }
     // MARK:- ViewControllers scrollview
@@ -126,4 +161,12 @@ import Foundation
         }
     }
     
+    @IBInspectable var cycle: Bool {
+        set {
+            enableCycles = newValue
+        }
+        get {
+            return enableCycles
+        }
+    }
 }
