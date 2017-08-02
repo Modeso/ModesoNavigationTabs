@@ -125,7 +125,7 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 
 ### Code
 
-Iin the `viewController.m` class import `MNavigationTabs`
+In the `viewController.m` class import `MNavigationTabs`
 ```swift
 import MNavigationTabs
 ```
@@ -144,7 +144,7 @@ Assign it in `prepaerforSegue` method
 ```
 Finally, set necessary parameters for `mNavigationTabs` instance
 ```swift
- mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
+mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
 mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First"),NSAttributedString(string: "Second"),NSAttributedString(string: "Third"),NSAttributedString(string: "Forth")]
 mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
 mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
