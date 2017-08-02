@@ -142,6 +142,14 @@ import Foundation
             return enableResizingAnimated
         }
     }
+    @IBInspectable var enableGlobalScrolling: Bool {
+        set {
+            enableGScrollAndShadow = newValue
+        }
+        get {
+            return enableGScrollAndShadow
+        }
+    }
     
     @IBInspectable var scrollViewBkgColor: UIColor {
         set {

@@ -60,6 +60,9 @@ public class MNavigationTabsViewController: UIViewController {
     /// Allow tabs resizing with animation
     public var enableResizingAnimated: Bool = false
     
+    /// Allow global scroll and shadow, this is when the whole viewcontroller has to be scrolled vertically and shadow appears (default is false if viewcontroller includes UIScrollView/UItableview/..)
+    public var enableGScrollAndShadow: Bool = false
+    
     /**
      * State of the Navigation tabs views.
      * fixed: Navigation tabs will use tabWidth property and extend beyond screen bounds without scrolling ability.
@@ -179,7 +182,6 @@ public class MNavigationTabsViewController: UIViewController {
         DispatchQueue.main.async {
             self.adjustTabsView(forPage: 0)
         }
-        
     }
     override public func loadView() {
         super.loadView()
@@ -315,6 +317,11 @@ public class MNavigationTabsViewController: UIViewController {
             maximumHeight = max(maximumHeight, newView.bounds.height)
         }
         
+        if !enableGScrollAndShadow {
+            maximumHeight = viewControllersScrollView.frame.size.height
+            viewControllersScrollView.isDirectionalLockEnabled = false
+            
+        }
         viewControllersScrollView.contentSize = CGSize(width: index, height: maximumHeight)
         viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: false)
         
