@@ -129,6 +129,7 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
         
         let time = isScrollDelayed ? 1.0 : 0.0
         DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+            self.currentPage = currentPage
             self.startNavigating(toPage: currentPage)
         }
     }
