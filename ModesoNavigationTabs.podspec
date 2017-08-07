@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   Allow transition between dynamic number of ViewControllers using navigationtabs in the top.
                    DESC
 
-  s.homepage     = "https://github.com/Modeso/MNavigationTabs"
+  s.homepage     = "https://github.com/Modeso/ModesoNavigationTabs"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -76,7 +76,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/Modeso/MNavigationTabs.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/Modeso/ModesoNavigationTabs.git", :tag => s.version.to_s }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
