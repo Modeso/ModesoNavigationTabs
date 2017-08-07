@@ -2,21 +2,20 @@ PODS:
   - ModesoNavigationTabs (1.0.0)
 
 DEPENDENCIES:
-  - ModesoNavigationTabs (from `https://github.com/Modeso/MNavigationTabs.git`, branch `Renaming_To_Modeso`)
+  - ModesoNavigationTabs (from `https://github.com/Modeso/ModesoNavigationTabs.git`)
 
 EXTERNAL SOURCES:
   ModesoNavigationTabs:
-    :branch: Renaming_To_Modeso
-    :git: https://github.com/Modeso/MNavigationTabs.git
+    :git: https://github.com/Modeso/ModesoNavigationTabs.git
 
 CHECKOUT OPTIONS:
   ModesoNavigationTabs:
-    :commit: 80674913871563c588f979b95a450e2a10df60ce
-    :git: https://github.com/Modeso/MNavigationTabs.git
+    :commit: 38f56f017fbd8e26c8f47bd8ab957628b856fe75
+    :git: https://github.com/Modeso/ModesoNavigationTabs.git
 
 SPEC CHECKSUMS:
-  ModesoNavigationTabs: 4241745e4852357a9ecb5f26ec811250a53185d2
+  ModesoNavigationTabs: b9be1b8d05fc6eb8bd5604cd3898965a35b2fc5f
 
-PODFILE CHECKSUM: 7e90d2b414b80875029ccca4aec35e143a7e3854
+PODFILE CHECKSUM: 4fa1515ce8cf88d4bdf86199f639e931cea38af7
 
 COCOAPODS: 1.2.0
