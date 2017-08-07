@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import MNavigationTabs
+import ModesoNavigationTabs
 
 class ViewController: UIViewController {
 
-    var mNavigationTabs: MNavigationTabsViewController!
+    var mNavigationTabs: ModesoNavigationTabsViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +40,9 @@ class ViewController: UIViewController {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "MNavigationTabs" {
+        if segue.identifier == "ModesoNavigationTabs" {
             
-            mNavigationTabs = segue.destination as? MNavigationTabsViewController
+            mNavigationTabs = segue.destination as? ModesoNavigationTabsViewController
             
         }
     }

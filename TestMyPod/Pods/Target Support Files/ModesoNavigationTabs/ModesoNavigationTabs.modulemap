@@ -1,0 +1,6 @@
+framework module ModesoNavigationTabs {
+  umbrella header "ModesoNavigationTabs-umbrella.h"
+
+  export *
+  module * { export * }
+}

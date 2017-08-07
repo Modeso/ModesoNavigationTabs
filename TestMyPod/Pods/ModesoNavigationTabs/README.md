@@ -13,8 +13,8 @@
 
 MNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
 
-<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/1.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 <img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/2.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
+<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/1.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 
 - [Options](#options)
 - [Requirements](#requirements)
@@ -47,6 +47,7 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 - `Tabs Bar Corner`: Corner radius of each Tab.
 - `Tabs Bkg Color`: Background color of Tabs Navigation bar.
 - `Tabs Animation`: Enlarge selected tab with animation.
+- `Enable Global Scrolling`: The whole viewController is scrolled and shadow appears.
 - `Scroll View Bkg Color`: UIViewcontrollers' Scrollview background color.
 - `Scroll Bounce`: Enable/disable bounce for the displayed UIViewControllers.
 - `Cycle`: Infinite Scrollview (ViewControllers will be cycled).
@@ -124,7 +125,7 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 
 ### Code
 
-Iin the `viewController.m` class import `MNavigationTabs`
+In `viewController.m` class import `MNavigationTabs`
 ```swift
 import MNavigationTabs
 ```
@@ -143,16 +144,16 @@ Assign it in `prepaerforSegue` method
 ```
 Finally, set necessary parameters for `mNavigationTabs` instance
 ```swift
- mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
+mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
 mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First"),NSAttributedString(string: "Second"),NSAttributedString(string: "Third"),NSAttributedString(string: "Forth")]
 mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
 mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
 mNavigationTabs.updateUI()
 ```
 > `viewControllersArray`: Array of UIViewControllers to display and navigate among.
-> `viewControllersTitlesArray`: Array of NSAttributedString represensts titles of the UIViewControllers which will be displayed in the top Tabs Navigation Bar.
-> `activeTabFont`: Font of the current selected tab.
-> `inactiveTabFont`: Font for the resu of the unselected tabs.
+> `viewControllersTitlesArray`: Array of NSAttributedString represensts titles of the UIViewControllers which will be displayed in the top Tabs Navigation Bar.</br>
+> `activeTabFont`: Font of the current selected tab.</br>
+> `inactiveTabFont`: Font for the resu of the unselected tabs.</br>
 > `updateUI`: is a must to-be-called method, this will update all MNavigationTabs attributes and adjust views.
 
 ## Communication

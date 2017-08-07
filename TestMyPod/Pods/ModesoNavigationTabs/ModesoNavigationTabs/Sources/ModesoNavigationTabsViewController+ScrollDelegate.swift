@@ -1,6 +1,6 @@
 //
-//  MNavigationTabsViewController+ScrollDelegate.swift
-//  MNavigationTabs
+//  ModesoNavigationTabsViewController+ScrollDelegate.swift
+//  ModesoNavigationTabs
 //
 //  Created by Mohammed Elsammak on 3/24/17.
 //  Copyright © 2017 Modeso. All rights reserved.
@@ -19,7 +19,7 @@ enum ScrollDirection : Int {
     case vertical
 }
 
-extension MNavigationTabsViewController: UIScrollViewDelegate {
+extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -119,7 +119,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
      Public method to scroll to current page
      
      - Parameter currentPage: Page index to navigate to.
-     - Parameter isScrollDelayed: Most of the time this API is getting called right after updateUI and initialization is done, so in order to avoid conflicted animations this parameter is used. Default is `true` which will scroll to currentPage after 1 second. If you call this method after creation of the MNavigationTabs and after calling updateUI() method by sometimes, set this flag to `false`
+     - Parameter isScrollDelayed: Most of the time this API is getting called right after updateUI and initialization is done, so in order to avoid conflicted animations this parameter is used. Default is `true` which will scroll to currentPage after 1 second. If you call this method after creation of the ModesoNavigationTabs and after calling updateUI() method by sometimes, set this flag to `false`
      */
     public func scrollToCurrentPage(currentPage: Int, isScrollDelayed: Bool = true) {
         
@@ -354,7 +354,7 @@ extension Array {
     }
 }
 
-extension MNavigationTabsViewController {
+extension ModesoNavigationTabsViewController {
     
     func determineScrollDirection(_ scrollView: UIScrollView) -> ScrollDirection {
         var scrollDirection: ScrollDirection

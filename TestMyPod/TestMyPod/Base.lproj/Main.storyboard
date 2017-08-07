@@ -24,7 +24,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jiw-HB-KUB">
                                 <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                                 <connections>
-                                    <segue destination="uey-2v-Uos" kind="embed" identifier="MNavigationTabs" id="crS-oM-Sa9"/>
+                                    <segue destination="uey-2v-Uos" kind="embed" identifier="ModesoNavigationTabs" id="crS-oM-Sa9"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--Navigation Tabs View Controller-->
+        <!--Modeso Navigation Tabs View Controller-->
         <scene sceneID="Y0N-1V-tuw">
             <objects>
-                <viewController id="uey-2v-Uos" customClass="MNavigationTabsViewController" customModule="MNavigationTabs" sceneMemberID="viewController">
+                <viewController id="uey-2v-Uos" customClass="ModesoNavigationTabsViewController" customModule="ModesoNavigationTabs" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IAT-dY-QAw"/>
                         <viewControllerLayoutGuide type="bottom" id="yeQ-hu-7Nh"/>
