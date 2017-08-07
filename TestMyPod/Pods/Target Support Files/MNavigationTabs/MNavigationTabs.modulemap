@@ -1,6 +1,0 @@
-framework module MNavigationTabs {
-  umbrella header "MNavigationTabs-umbrella.h"
-
-  export *
-  module * { export * }
-}

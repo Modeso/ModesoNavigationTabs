@@ -1,6 +1,6 @@
 //
-//  MNavigationTabsViewController.swift
-//  MNavigationTabs
+//  ModesoNavigationTabsViewController.swift
+//  ModesoNavigationTabs
 //
 //  Created by Mohammed Elsammak on 3/22/17.
 //  Copyright © 2017 Modeso. All rights reserved.
@@ -13,7 +13,7 @@ public enum TabsScrollStatus: Int {
     case fit
     case center
 }
-public class MNavigationTabsViewController: UIViewController {
+public class ModesoNavigationTabsViewController: UIViewController {
     
     /// Single tab width
     public var navigationTabWidth: CGFloat = 111.0
@@ -185,7 +185,7 @@ public class MNavigationTabsViewController: UIViewController {
     }
     override public func loadView() {
         super.loadView()
-        Bundle(for: MNavigationTabsViewController.self).loadNibNamed("MNavigationTabsViewController", owner: self, options: nil)
+        Bundle(for: ModesoNavigationTabsViewController.self).loadNibNamed("ModesoNavigationTabsViewController", owner: self, options: nil)
     }
     
     // MARK:- Creating views

@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A59261141E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59261131E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift */; };
-		A5BDAB621E866090008AE5D3 /* MNavigationTabsViewController+IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDAB611E866090008AE5D3 /* MNavigationTabsViewController+IBDesignables.swift */; };
-		A5F2666F1E82B8730021EEB9 /* MNavigationTabs.h in Headers */ = {isa = PBXBuildFile; fileRef = A5F2666D1E82B8730021EEB9 /* MNavigationTabs.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A5F2669C1E82D48E0021EEB9 /* MNavigationTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2669A1E82D48E0021EEB9 /* MNavigationTabsViewController.swift */; };
-		A5F2669D1E82D48E0021EEB9 /* MNavigationTabsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F2669B1E82D48E0021EEB9 /* MNavigationTabsViewController.xib */; };
+		A5BDAB621E866090008AE5D3 /* ModesoNavigationTabsViewController+IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDAB611E866090008AE5D3 /* ModesoNavigationTabsViewController+IBDesignables.swift */; };
+		A5F2666F1E82B8730021EEB9 /* ModesoNavigationTabs.h in Headers */ = {isa = PBXBuildFile; fileRef = A5F2666D1E82B8730021EEB9 /* ModesoNavigationTabs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A5F2669C1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2669A1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift */; };
+		A5F2669D1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F2669B1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.xib */; };
+		A5FE394C1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE394B1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A59261131E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MNavigationTabsViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
-		A5BDAB611E866090008AE5D3 /* MNavigationTabsViewController+IBDesignables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MNavigationTabsViewController+IBDesignables.swift"; sourceTree = "<group>"; };
-		A5F2666A1E82B8730021EEB9 /* MNavigationTabs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MNavigationTabs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5F2666D1E82B8730021EEB9 /* MNavigationTabs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNavigationTabs.h; sourceTree = "<group>"; };
+		A5BDAB611E866090008AE5D3 /* ModesoNavigationTabsViewController+IBDesignables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModesoNavigationTabsViewController+IBDesignables.swift"; sourceTree = "<group>"; };
+		A5F2666A1E82B8730021EEB9 /* MNavigationTabs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MNavigationTabs.framework; path = ModesoNavigationTabs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5F2666D1E82B8730021EEB9 /* ModesoNavigationTabs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModesoNavigationTabs.h; sourceTree = "<group>"; };
 		A5F2666E1E82B8730021EEB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5F2669A1E82D48E0021EEB9 /* MNavigationTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MNavigationTabsViewController.swift; sourceTree = "<group>"; };
-		A5F2669B1E82D48E0021EEB9 /* MNavigationTabsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MNavigationTabsViewController.xib; sourceTree = "<group>"; };
+		A5F2669A1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModesoNavigationTabsViewController.swift; sourceTree = "<group>"; };
+		A5F2669B1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModesoNavigationTabsViewController.xib; sourceTree = "<group>"; };
+		A5FE394B1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModesoNavigationTabsViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +38,7 @@
 		A5F266601E82B8730021EEB9 = {
 			isa = PBXGroup;
 			children = (
-				A5F2666C1E82B8730021EEB9 /* MNavigationTabs */,
+				A5F2666C1E82B8730021EEB9 /* ModesoNavigationTabs */,
 				A5F2666B1E82B8730021EEB9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,23 +51,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A5F2666C1E82B8730021EEB9 /* MNavigationTabs */ = {
+		A5F2666C1E82B8730021EEB9 /* ModesoNavigationTabs */ = {
 			isa = PBXGroup;
 			children = (
 				A5F266751E82BC5B0021EEB9 /* Sources */,
-				A5F2666D1E82B8730021EEB9 /* MNavigationTabs.h */,
+				A5F2666D1E82B8730021EEB9 /* ModesoNavigationTabs.h */,
 				A5F2666E1E82B8730021EEB9 /* Info.plist */,
 			);
-			path = MNavigationTabs;
+			path = ModesoNavigationTabs;
 			sourceTree = "<group>";
 		};
 		A5F266751E82BC5B0021EEB9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A5F2669B1E82D48E0021EEB9 /* MNavigationTabsViewController.xib */,
-				A5F2669A1E82D48E0021EEB9 /* MNavigationTabsViewController.swift */,
-				A59261131E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift */,
-				A5BDAB611E866090008AE5D3 /* MNavigationTabsViewController+IBDesignables.swift */,
+				A5F2669B1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.xib */,
+				A5F2669A1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift */,
+				A5FE394B1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */,
+				A5BDAB611E866090008AE5D3 /* ModesoNavigationTabsViewController+IBDesignables.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -79,16 +79,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5F2666F1E82B8730021EEB9 /* MNavigationTabs.h in Headers */,
+				A5F2666F1E82B8730021EEB9 /* ModesoNavigationTabs.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		A5F266691E82B8730021EEB9 /* MNavigationTabs */ = {
+		A5F266691E82B8730021EEB9 /* ModesoNavigationTabs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A5F266721E82B8730021EEB9 /* Build configuration list for PBXNativeTarget "MNavigationTabs" */;
+			buildConfigurationList = A5F266721E82B8730021EEB9 /* Build configuration list for PBXNativeTarget "ModesoNavigationTabs" */;
 			buildPhases = (
 				A5F266651E82B8730021EEB9 /* Sources */,
 				A5F266661E82B8730021EEB9 /* Frameworks */,
@@ -99,7 +99,7 @@
 			);
 			dependencies = (
 			);
-			name = MNavigationTabs;
+			name = ModesoNavigationTabs;
 			productName = MNavigationTabs;
 			productReference = A5F2666A1E82B8730021EEB9 /* MNavigationTabs.framework */;
 			productType = "com.apple.product-type.framework";
@@ -121,7 +121,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A5F266641E82B8730021EEB9 /* Build configuration list for PBXProject "MNavigationTabs" */;
+			buildConfigurationList = A5F266641E82B8730021EEB9 /* Build configuration list for PBXProject "ModesoNavigationTabs" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -133,7 +133,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A5F266691E82B8730021EEB9 /* MNavigationTabs */,
+				A5F266691E82B8730021EEB9 /* ModesoNavigationTabs */,
 			);
 		};
 /* End PBXProject section */
@@ -143,7 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5F2669D1E82D48E0021EEB9 /* MNavigationTabsViewController.xib in Resources */,
+				A5F2669D1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,9 +154,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5BDAB621E866090008AE5D3 /* MNavigationTabsViewController+IBDesignables.swift in Sources */,
-				A5F2669C1E82D48E0021EEB9 /* MNavigationTabsViewController.swift in Sources */,
-				A59261141E84FF97003BEA37 /* MNavigationTabsViewController+ScrollDelegate.swift in Sources */,
+				A5BDAB621E866090008AE5D3 /* ModesoNavigationTabsViewController+IBDesignables.swift in Sources */,
+				A5FE394C1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift in Sources */,
+				A5F2669C1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,10 +272,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MNavigationTabs/Info.plist;
+				INFOPLIST_FILE = ModesoNavigationTabs/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = modeso.MNavigationTabs;
+				PRODUCT_BUNDLE_IDENTIFIER = modeso.ModesoNavigationTabs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -293,10 +293,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = MNavigationTabs/Info.plist;
+				INFOPLIST_FILE = ModesoNavigationTabs/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = modeso.MNavigationTabs;
+				PRODUCT_BUNDLE_IDENTIFIER = modeso.ModesoNavigationTabs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -306,7 +306,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A5F266641E82B8730021EEB9 /* Build configuration list for PBXProject "MNavigationTabs" */ = {
+		A5F266641E82B8730021EEB9 /* Build configuration list for PBXProject "ModesoNavigationTabs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A5F266701E82B8730021EEB9 /* Debug */,
@@ -315,7 +315,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A5F266721E82B8730021EEB9 /* Build configuration list for PBXNativeTarget "MNavigationTabs" */ = {
+		A5F266721E82B8730021EEB9 /* Build configuration list for PBXNativeTarget "ModesoNavigationTabs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A5F266731E82B8730021EEB9 /* Debug */,

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A5F266691E82B8730021EEB9"
-               BuildableName = "MNavigationTabs.framework"
-               BlueprintName = "MNavigationTabs"
-               ReferencedContainer = "container:MNavigationTabs.xcodeproj">
+               BuildableName = "ModesoNavigationTabs.framework"
+               BlueprintName = "ModesoNavigationTabs"
+               ReferencedContainer = "container:ModesoNavigationTabs.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A5F266691E82B8730021EEB9"
-            BuildableName = "MNavigationTabs.framework"
-            BlueprintName = "MNavigationTabs"
-            ReferencedContainer = "container:MNavigationTabs.xcodeproj">
+            BuildableName = "ModesoNavigationTabs.framework"
+            BlueprintName = "ModesoNavigationTabs"
+            ReferencedContainer = "container:ModesoNavigationTabs.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A5F266691E82B8730021EEB9"
-            BuildableName = "MNavigationTabs.framework"
-            BlueprintName = "MNavigationTabs"
-            ReferencedContainer = "container:MNavigationTabs.xcodeproj">
+            BuildableName = "ModesoNavigationTabs.framework"
+            BlueprintName = "ModesoNavigationTabs"
+            ReferencedContainer = "container:ModesoNavigationTabs.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

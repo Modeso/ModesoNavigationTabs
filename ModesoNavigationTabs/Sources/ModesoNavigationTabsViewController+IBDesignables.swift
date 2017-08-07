@@ -1,6 +1,6 @@
 //
-//  MNavigationTabsViewController+IBDesignables.swift
-//  MNavigationTabs
+//  ModesoNavigationTabsViewController+IBDesignables.swift
+//  ModesoNavigationTabs
 //
 //  Created by Mohammed Elsammak on 3/25/17.
 //  Copyright © 2017 Modeso. All rights reserved.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-@IBDesignable extension MNavigationTabsViewController {
+@IBDesignable extension ModesoNavigationTabsViewController {
     
     // MARK:- Tabs
     @IBInspectable var tabWidth: CGFloat {
