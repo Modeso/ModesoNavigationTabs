@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         firstViewController.view.frame = frame
         
         mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
-        mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "1"),NSAttributedString(string: "2"),NSAttributedString(string: "3"),NSAttributedString(string: "4")]
+        mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: ""),NSAttributedString(string: ""),NSAttributedString(string: ""),NSAttributedString(string: "")]
         mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
         mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
         mNavigationTabs.updateUI()
