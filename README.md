@@ -1,4 +1,4 @@
-# MNavigationTabs
+# ModesoNavigationTabs
 <p align="center">
   <img src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAZsAAAAJDM2NTU0MDA1LTA3YmEtNGUyMC05YmZjLTIxMDNlZWZlM2ZkMQ.png">
 </p>
@@ -11,7 +11,7 @@
 [![Platform](https://img.shields.io/badge/Platform-iOS-d3d3d3.svg)]()
 [![Twitter](https://img.shields.io/badge/twitter-@modeso_ch-0B0032.svg?style=flat)](http://twitter.com/AlamofireSF)
 
-MNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
+ModesoNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
 
 <img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/2.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 <img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/1.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
