@@ -25,6 +25,7 @@ extension MNavigationTabsViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == tabsScrollView && enableCycles {
             resetTabsScrollView()
+            shadowView.alpha = 0
         } else if scrollView == viewControllersScrollView && enableGScrollAndShadow {
             let scrollDirection: ScrollDirection = determineScrollDirectionAxis(scrollView)
             if scrollDirection == .vertical {

@@ -105,24 +105,24 @@ public class MNavigationTabsViewController: UIViewController {
         tabsBarHeightConstraint.constant = navigationBarHeight
         tabsScrollView.backgroundColor = tabsBkgColor
         viewControllersScrollView.backgroundColor = scrollViewBackgroundColor
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         rotated()
     }
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+    
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
+        
         isChangingOrientation = true
         
-        coordinator.animate(alongsideTransition: nil, completion: { _ in
+        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
+            self.rotated()
+        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
             self.isChangingOrientation = false
         })
+        
+        super.viewWillTransition(to: size, with: coordinator)
     }
     
     func rotated() {
@@ -130,7 +130,7 @@ public class MNavigationTabsViewController: UIViewController {
         addTitlesScrollViews()
         addNavigationIndicator()
         adjustTitleViewsFrames()
-        adjustViewControllersFrames()
+        adjustViewControllersFrames(keepOrder: false)
         
         if enableCycles {
             indicatorView.isHidden = true
@@ -307,11 +307,16 @@ public class MNavigationTabsViewController: UIViewController {
         }
         
     }
-    fileprivate func adjustViewControllersFrames() {
+    fileprivate func adjustViewControllersFrames(keepOrder: Bool = true) {
         
         var index: CGFloat = 0.0
         var maximumHeight = viewControllersScrollView.bounds.width
-        for newView in viewControllersScrollView.subviews {
+        var viewsArray = viewControllersScrollView.subviews
+        if !keepOrder {
+            viewsArray = viewControllersArray.flatMap({ $0.view })
+        }
+        
+        for newView in viewsArray {
             newView.frame = CGRect(x: index, y: 0.0, width: viewControllersScrollView.bounds.width, height: newView.bounds.height)
             index += viewControllersScrollView.bounds.width
             maximumHeight = max(maximumHeight, newView.bounds.height)
@@ -372,7 +377,7 @@ public class MNavigationTabsViewController: UIViewController {
         }
         // When user tab any button, it should reprder all viewcontroller to its initial state
         let currentIndex = sender.tag % viewControllersArray.count
-        adjustViewControllersFrames()
+        adjustViewControllersFrames(keepOrder: true)
         viewControllersArray = viewControllersArray.sorted( by: { $0.view.tag < $1.view.tag })
         viewControllersScrollView.contentOffset.x =  CGFloat(mappingArray.index(of: currentPage)!) * viewControllersScrollView.frame.size.width
         mappingArray = Array(0 ..< viewControllersArray.count)
