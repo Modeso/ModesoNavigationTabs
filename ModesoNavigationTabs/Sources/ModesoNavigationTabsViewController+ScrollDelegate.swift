@@ -27,41 +27,7 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
             resetTabsScrollView()
             shadowView.alpha = 0
         } else if scrollView == viewControllersScrollView && enableGScrollAndShadow {
-            let scrollDirection: ScrollDirection = determineScrollDirectionAxis(scrollView)
-            if scrollDirection == .vertical {
-                let index = mappingArray.index(of: currentPage)!
-                if scrollView.subviews[index].bounds.height <= scrollView.bounds.height + tabsScrollView.bounds.height {
-                    scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
-                }
-                
-                scrollView.isPagingEnabled = false
-                if scrollView.contentOffset.y <= 0 { //Hide shadow
-                    shadowView.alpha = 0
-                } else { //Display shadow
-                    shadowView.alpha = 1
-                }
-            }
-            else if scrollDirection == .horizontal {
-                scrollView.isPagingEnabled = true
-                scrollView.contentOffset.y = 0
-            }
-            else if scrollDirection == .none && scrollView.contentOffset.y == 0 {
-                // Hide shadow
-                shadowView.alpha = 0
-            }
-            else {
-                // This is probably crazy movement: diagonal scrolling
-                var newOffset = CGPoint.zero
-                if abs(scrollView.contentOffset.x) > abs(scrollView.contentOffset.y) {
-                    newOffset = CGPoint(x: scrollView.contentOffset.x, y: initialContentOffset.y)
-                }
-                else {
-                    newOffset = CGPoint(x: initialContentOffset.x, y: scrollView.contentOffset.y)
-                }
-                // Setting the new offset to the scrollView makes it behave like a proper
-                // directional lock, that allows you to scroll in only one direction at any given time
-                scrollView.contentOffset = newOffset
-            }
+            handleScrollView(scrollView)
         }
     }
     
@@ -69,25 +35,18 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
         if scrollView == tabsScrollView {
             scrollView.isUserInteractionEnabled = true
         }
-        
     }
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if !isChangingOrientation {
-            if scrollView != viewControllersScrollView {
-                return
-            }
-            
-            oldPage = currentPage
-            currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
+            setupCurrentPage(scrollView)
             startNavigating(toPage: currentPage)
         }
     }
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
-        if scrollView == viewControllersScrollView {
-            initialContentOffset = scrollView.contentOffset
-        }
+        updateContentOffset(scrollView)
+        
         if !enableCycles {
             if scrollView == viewControllersScrollView {
                 
@@ -101,19 +60,7 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
             return
         }
         
-        let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
-        
-        if scrollView == tabsScrollView {
-            resetTabsScrollView()
-        }
-        
-        
-        let length = viewControllersArray.count - 1
-        if translation.x < 0 && currentPage == length { // User drag to the left, show first in the last position [1,2,3,4] -> [2,3,4,1]
-            shiftViewsToRight()
-        } else if translation.x > 0 && currentPage == 0 {// User drag to the right, show last in the first position [1,2,3,4] -> [4,1,2,3]
-            shiftViewsToLeft()
-        }
+        handleTransitionWithDragging(scrollView)
     }
     /**
      Public method to scroll to current page
@@ -143,100 +90,13 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
     
     internal func adjustTabsView(forPage currentPage:Int, direction: Int = 0) {
         
-        
         guard let indexOfCurrentPage = mappingArray.index(of: currentPage) else {
             return
         }
         
-        let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
-        
         adjustTabsViewStyle()
         
-        var currentTabOrigin: CGFloat = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabOuterMargin
-        var indicatorFrame = indicatorView.frame
-        
-        if tabsBarStatus == .center {
-            currentTabOrigin = -tabsScrollView.bounds.width * 0.5 + 0.5 * calculatedTabWidth
-            currentTabOrigin += calculatedTabWidth * CGFloat(indexOfCurrentPage) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabInnerMargin
-            tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
-            
-            //Adjust indicator origin
-            indicatorFrame.origin.x = currentTabOrigin + tabsScrollView.bounds.width * 0.5 - indicatorFrame.size.width / 2.0
-        }
-        else {
-            if currentTabOrigin + calculatedTabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x { // Tab is Out of bounds of the screen
-                
-                if Int(indexOfCurrentPage + 1) == viewControllersTitlesArray.count {
-                    if calculatedTabWidth == tabsScrollView.bounds.width {
-                        tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
-                    } else {
-                        tabsScrollView.setContentOffset(CGPoint(x: tabsScrollView.contentSize.width - tabsScrollView.bounds.width, y: 0), animated: true)
-                    }
-                }
-                else {
-                    var movingStep = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin
-                    if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
-                        movingStep = tabsScrollView.contentOffset.x + calculatedTabWidth
-                    }
-                    tabsScrollView.setContentOffset(CGPoint(x: movingStep, y: 0), animated: true)
-                }
-                
-                
-            } else if currentTabOrigin <= tabsScrollView.contentOffset.x {
-                
-                tabsScrollView.isUserInteractionEnabled = false
-                let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin
-                let pointToNavigateTo = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + startingIndex
-                
-                if indexOfCurrentPage == 0 {
-                    if enableCycles {
-                        
-                        if (direction == 0 && translation.x < 0) || direction == -1 {
-                            setScrollView(scrollView: tabsScrollView, toOffset: pointToNavigateTo)
-                        }
-                        
-                        
-                        UIView.animate(withDuration: 0.3, animations: { //walkaround as setContentOffset with Animation causes unexpected behavior sometimes.
-                            self.tabsScrollView.contentOffset.x = pointToNavigateTo
-                        }, completion: { _ in
-                            self.tabsScrollView.isUserInteractionEnabled = true
-                        })
-                    }
-                    else {
-                        tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-                        self.tabsScrollView.isUserInteractionEnabled = true
-                    }
-                    
-                } else {
-                    if enableCycles {
-                        
-                        if (direction == 0 && indexOfCurrentPage == viewControllersArray.count - 1 && translation.x > 0) || (direction == 1 && indexOfCurrentPage == viewControllersArray.count - 1) {
-                            setScrollView(scrollView: tabsScrollView, toOffset: pointToNavigateTo)
-                        }
-                        
-                        
-                        UIView.animate(withDuration: 0.3, animations: { //walkaround as setContentOffset with Animation causes unexpected behavior sometimes.
-                            self.tabsScrollView.contentOffset.x = pointToNavigateTo
-                        }, completion: { _ in
-                            self.tabsScrollView.isUserInteractionEnabled = true
-                        })
-                        
-                    } else {
-                        tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
-                        self.tabsScrollView.isUserInteractionEnabled = true
-                    }
-                    
-                }
-            }
-            
-            //Adjust indicator origin
-            indicatorFrame.origin.x = currentTabOrigin
-        }
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            self.indicatorView.frame = indicatorFrame
-        })
-        
+        adjustCurrentTabOrigin(indexOfCurrentPage, direction: direction)
     }
     /// Shifting views to right [1,2,3,4] -> [4,1,2,3]
     public func shiftViewsToRight() {
@@ -333,6 +193,164 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
         }
         
         
+    }
+
+    fileprivate func handleScrollView(_ scrollView: UIScrollView) {
+        let scrollDirection: ScrollDirection = determineScrollDirectionAxis(scrollView)
+        if scrollDirection == .vertical {
+            let index = mappingArray.index(of: currentPage)!
+            if scrollView.subviews[index].bounds.height <= scrollView.bounds.height + tabsScrollView.bounds.height {
+                scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
+            }
+            
+            scrollView.isPagingEnabled = false
+            if scrollView.contentOffset.y <= 0 { //Hide shadow
+                shadowView.alpha = 0
+            } else { //Display shadow
+                shadowView.alpha = 1
+            }
+        }
+        else if scrollDirection == .horizontal {
+            scrollView.isPagingEnabled = true
+            scrollView.contentOffset.y = 0
+        }
+        else if scrollDirection == .none && scrollView.contentOffset.y == 0 {
+            // Hide shadow
+            shadowView.alpha = 0
+        }
+        else {
+            // This is probably crazy movement: diagonal scrolling
+            var newOffset = CGPoint.zero
+            if abs(scrollView.contentOffset.x) > abs(scrollView.contentOffset.y) {
+                newOffset = CGPoint(x: scrollView.contentOffset.x, y: initialContentOffset.y)
+            }
+            else {
+                newOffset = CGPoint(x: initialContentOffset.x, y: scrollView.contentOffset.y)
+            }
+            // Setting the new offset to the scrollView makes it behave like a proper
+            // directional lock, that allows you to scroll in only one direction at any given time
+            scrollView.contentOffset = newOffset
+        }
+    }
+
+    fileprivate func setupCurrentPage(_ scrollView: UIScrollView) {
+        if scrollView != viewControllersScrollView {
+            return
+        }
+        
+        oldPage = currentPage
+        currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
+    }
+
+    fileprivate func updateContentOffset(_ scrollView: UIScrollView) {
+        if scrollView == viewControllersScrollView {
+            initialContentOffset = scrollView.contentOffset
+        }
+    }
+
+    fileprivate func handleTransitionWithDragging(_ scrollView: UIScrollView) {
+        let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
+        
+        if scrollView == tabsScrollView {
+            resetTabsScrollView()
+        }
+        
+        
+        let length = viewControllersArray.count - 1
+        if translation.x < 0 && currentPage == length { // User drag to the left, show first in the last position [1,2,3,4] -> [2,3,4,1]
+            shiftViewsToRight()
+        } else if translation.x > 0 && currentPage == 0 {// User drag to the right, show last in the first position [1,2,3,4] -> [4,1,2,3]
+            shiftViewsToLeft()
+        }
+    }
+
+    fileprivate func adjustCurrentTabOrigin(_ indexOfCurrentPage: Int, direction: Int) {
+
+        let translation = viewControllersScrollView.panGestureRecognizer.translation(in: viewControllersScrollView.superview)
+
+        var currentTabOrigin: CGFloat = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabOuterMargin
+        var indicatorFrame = indicatorView.frame
+        
+        if tabsBarStatus == .center {
+            currentTabOrigin = -tabsScrollView.bounds.width * 0.5 + 0.5 * calculatedTabWidth
+            currentTabOrigin += calculatedTabWidth * CGFloat(indexOfCurrentPage) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + tabInnerMargin
+            tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
+            
+            //Adjust indicator origin
+            indicatorFrame.origin.x = currentTabOrigin + tabsScrollView.bounds.width * 0.5 - indicatorFrame.size.width / 2.0
+        }
+        else {
+            if currentTabOrigin + calculatedTabWidth >= tabsScrollView.bounds.width + tabsScrollView.contentOffset.x { // Tab is Out of bounds of the screen
+                
+                if Int(indexOfCurrentPage + 1) == viewControllersTitlesArray.count {
+                    if calculatedTabWidth == tabsScrollView.bounds.width {
+                        tabsScrollView.setContentOffset(CGPoint(x: currentTabOrigin, y: 0), animated: true)
+                    } else {
+                        tabsScrollView.setContentOffset(CGPoint(x: tabsScrollView.contentSize.width - tabsScrollView.bounds.width, y: 0), animated: true)
+                    }
+                }
+                else {
+                    var movingStep = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin
+                    if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
+                        movingStep = tabsScrollView.contentOffset.x + calculatedTabWidth
+                    }
+                    tabsScrollView.setContentOffset(CGPoint(x: movingStep, y: 0), animated: true)
+                }
+                
+                
+            } else if currentTabOrigin <= tabsScrollView.contentOffset.x {
+                
+                tabsScrollView.isUserInteractionEnabled = false
+                let startingIndex = CGFloat(viewControllersArray.count) * calculatedTabWidth + CGFloat(viewControllersArray.count) * tabInnerMargin
+                let pointToNavigateTo = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage) * tabInnerMargin) + startingIndex
+                
+                if indexOfCurrentPage == 0 {
+                    if enableCycles {
+                        
+                        if (direction == 0 && translation.x < 0) || direction == -1 {
+                            setScrollView(scrollView: tabsScrollView, toOffset: pointToNavigateTo)
+                        }
+                        
+                        
+                        UIView.animate(withDuration: 0.3, animations: { //walkaround as setContentOffset with Animation causes unexpected behavior sometimes.
+                            self.tabsScrollView.contentOffset.x = pointToNavigateTo
+                        }, completion: { _ in
+                            self.tabsScrollView.isUserInteractionEnabled = true
+                        })
+                    }
+                    else {
+                        tabsScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                        self.tabsScrollView.isUserInteractionEnabled = true
+                    }
+                    
+                } else {
+                    if enableCycles {
+                        
+                        if (direction == 0 && indexOfCurrentPage == viewControllersArray.count - 1 && translation.x > 0) || (direction == 1 && indexOfCurrentPage == viewControllersArray.count - 1) {
+                            setScrollView(scrollView: tabsScrollView, toOffset: pointToNavigateTo)
+                        }
+                        
+                        UIView.animate(withDuration: 0.3, animations: { //walkaround as setContentOffset with Animation causes unexpected behavior sometimes.
+                            self.tabsScrollView.contentOffset.x = pointToNavigateTo
+                        }, completion: { _ in
+                            self.tabsScrollView.isUserInteractionEnabled = true
+                        })
+                        
+                    } else {
+                        tabsScrollView.setContentOffset(CGPoint(x: (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin, y: 0), animated: true)
+                        self.tabsScrollView.isUserInteractionEnabled = true
+                    }
+                    
+                }
+            }
+            
+            //Adjust indicator origin
+            indicatorFrame.origin.x = currentTabOrigin
+        }
+
+        UIView.animate(withDuration: 0.2, animations: {
+            self.indicatorView.frame = indicatorFrame
+        })
     }
 }
 
