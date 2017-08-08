@@ -85,8 +85,6 @@ public class ModesoNavigationTabsViewController: UIViewController {
     internal var currentPage: Int = 0
     internal var oldPage: Int = 0
     internal var viewIsSetup = false
-    /// Orientation is not supporting in the library and it causes issues that it moves to first Tab.
-    internal var isChangingOrientation: Bool = false
     /// Used only in case of cyclic case, useing this array to know where does each viewcontroller locate relative to each other, example it starts as [1,2,3,4,...] but it can ends as [2,3,4,1,..] so it used to get current position of viewcotroller #4 which is 2.
     internal var mappingArray: [Int] = []
     /// Last tab selected, used to get whether user tab another tab on the left or on the right to it can be moved to the left or to the right.
@@ -114,25 +112,22 @@ public class ModesoNavigationTabsViewController: UIViewController {
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
-        isChangingOrientation = true
-        
         coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
             self.rotated()
         }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-            self.isChangingOrientation = false
         })
         
         super.viewWillTransition(to: size, with: coordinator)
     }
     
-    func rotated() {
+    func rotated() { // Called with every rotation to resize all views
         
         addTitlesScrollViews()
         addNavigationIndicator()
         adjustTitleViewsFrames()
         adjustViewControllersFrames(keepOrder: false)
         
-        if enableCycles {
+        if enableCycles { // In case of cycles, hide the indicator
             indicatorView.isHidden = true
         }
         
@@ -140,7 +135,7 @@ public class ModesoNavigationTabsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.adjustTabsView(forPage: self.currentPage)
             }
-        } else {
+        } else { //If animatoin is disabled, just change font and format
             adjustTabsViewStyle()
         }
     }
@@ -275,12 +270,6 @@ public class ModesoNavigationTabsViewController: UIViewController {
         
         var origin: CGFloat = tabOuterMargin
         
-        if tabsBarStatus == .fit {
-            calculatedTabWidth = (tabsScrollView.bounds.width -  ((2 * tabOuterMargin) + CGFloat(viewControllersTitlesArray.count - 1) * tabInnerMargin)) / CGFloat(viewControllersTitlesArray.count)
-        } else {
-            calculatedTabWidth = navigationTabWidth
-        }
-        
         for button in tabsScrollView.subviews {
             if let button = button as? UIButton {
                 button.frame = CGRect(x: origin, y: 0, width: calculatedTabWidth, height: navigationTabHeight)
@@ -307,6 +296,11 @@ public class ModesoNavigationTabsViewController: UIViewController {
         }
         
     }
+    /**
+     Adjust ViewControllers frame
+     
+     - Parameter keepOrder: In case of enableCycle = true, order of viewcontrollers is changed. This flag indicates either to keep it or not. Default is true.
+     */
     fileprivate func adjustViewControllersFrames(keepOrder: Bool = true) {
         
         var index: CGFloat = 0.0
@@ -331,6 +325,7 @@ public class ModesoNavigationTabsViewController: UIViewController {
         viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: false)
         
     }
+    /// Adjust format of tabs view for both active/inactive tabs.
     public func adjustTabsViewStyle() {
         
         let indexOfCurrentPage = mappingArray.index(of: currentPage)!
@@ -375,7 +370,7 @@ public class ModesoNavigationTabsViewController: UIViewController {
         if enableCycles && abs(sender.tag - lastSelectedTag) % viewControllersArray.count == 0 { // Tab same selected page
             return
         }
-        // When user tab any button, it should reprder all viewcontroller to its initial state
+        // When user tab any button, it should reorder all viewcontroller to its initial state
         let currentIndex = sender.tag % viewControllersArray.count
         adjustViewControllersFrames(keepOrder: true)
         viewControllersArray = viewControllersArray.sorted( by: { $0.view.tag < $1.view.tag })
@@ -403,7 +398,7 @@ public class ModesoNavigationTabsViewController: UIViewController {
             sender.tag > lastSelectedTag ? (direction = -1) : (direction = 1)
             lastSelectedTag = sender.tag
             
-        } else {
+        } else { // Default case, jump according to current selected page.
             viewControllersScrollView.setContentOffset(CGPoint(x: CGFloat(currentPage) * viewControllersScrollView.frame.size.width, y: 0), animated: true)
         }
         

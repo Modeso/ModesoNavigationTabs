@@ -1,4 +1,4 @@
-# MNavigationTabs
+# ModesoNavigationTabs
 <p align="center">
   <img src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAZsAAAAJDM2NTU0MDA1LTA3YmEtNGUyMC05YmZjLTIxMDNlZWZlM2ZkMQ.png">
 </p>
@@ -11,10 +11,10 @@
 [![Platform](https://img.shields.io/badge/Platform-iOS-d3d3d3.svg)]()
 [![Twitter](https://img.shields.io/badge/twitter-@modeso_ch-0B0032.svg?style=flat)](http://twitter.com/AlamofireSF)
 
-MNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
+ModesoNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
 
-<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/2.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
-<img src="https://raw.githubusercontent.com/Modeso/MNavigationTabs/master/1.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
+<img src="https://raw.githubusercontent.com/Modeso/ModesoNavigationTabs/master/2.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
+<img src="https://raw.githubusercontent.com/Modeso/ModesoNavigationTabs/master/1.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 
 - [Options](#options)
 - [Requirements](#requirements)
@@ -26,7 +26,7 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 
 ## Options
 
-<img src="https://github.com/Modeso/MNavigationTabs/blob/master/Options.png" alt="Options">
+<img src="https://github.com/Modeso/ModesoNavigationTabs/blob/master/Options.png" alt="Options">
 
 - `Tab Width`: Define width of single tabs which holds titles of the viewControllers objects.
 - `Tab Height`: Define height of single tabs which holds titles of the viewControllers objects.
@@ -69,9 +69,9 @@ MNavigationTabs is a Navigation Tabs library written in Swift. It enables switch
 $ gem install cocoapods
 ```
 
-> CocoaPods 1.2.0+ is required to build MNavigationTabs.
+> CocoaPods 1.2.0+ is required to build ModesoNavigationTabs.
 
-To integrate MNavigationTabs into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate ModesoNavigationTabs into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
@@ -79,7 +79,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'MNavigationTabs', :git => 'https://github.com/Modeso/MNavigationTabs.git'
+    pod 'ModesoNavigationTabs', :git => 'https://github.com/Modeso/ModesoNavigationTabs.git'
 end
 ```
 
@@ -100,17 +100,17 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate MNavigationTabs into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate ModesoNavigationTabs into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Modeso/MNavigationTabs"
+github "Modeso/ModesoNavigationTabs"
 ```
 
-Run `carthage update` to build the framework and drag the built `MNavigationTabs.framework` into your Xcode project.
+Run `carthage update` to build the framework and drag the built `ModesoNavigationTabs.framework` into your Xcode project.
 
 ### Manually
 
-If you prefer not to use either of the aforementioned dependency managers, you can integrate MNavigationTabs into your project manually.
+If you prefer not to use either of the aforementioned dependency managers, you can integrate ModesoNavigationTabs into your project manually.
 > Simply download zip folder and unarchieve it, drag the directory `Sources/` into your project navigation and that's it.
 ---
 
@@ -118,43 +118,43 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 
 ### Xib file
 
-<img src="https://github.com/Modeso/MNavigationTabs/blob/master/Xib.png" alt="Xib">
+<img src="https://github.com/Modeso/ModesoNavigationTabs/blob/master/Xib.png" alt="Xib">
 - Embed a UIViewController inside ContainerView.
-- Call the SegueIdentifier any suitable name ex. MNavigationTabs.
-- Change the class of the new added UIViewController to `MNavigationTabsViewController`
+- Call the SegueIdentifier any suitable name ex. ModesoNavigationTabs.
+- Change the class of the new added UIViewController to `ModesoNavigationTabsViewController`
 
 ### Code
 
-In `viewController.m` class import `MNavigationTabs`
+In `viewController.m` class import `ModesoNavigationTabs`
 ```swift
-import MNavigationTabs
+import ModesoNavigationTabs
 ```
-Define a new MNavigationTabsViewController instance.
+Define a new ModesoNavigationTabsViewController instance.
 ```swift
-var mNavigationTabs: MNavigationTabsViewController
+var modesoNavigationTabs: ModesoNavigationTabsViewController
 ```
 Assign it in `prepaerforSegue` method
 ```swift
 // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MNavigationTabs" {
-            mNavigationTabs = segue.destination as? MNavigationTabsViewController
+        if segue.identifier == "ModesoNavigationTabs" {
+            modesoNavigationTabs = segue.destination as? ModesoNavigationTabsViewController
         }
     }
 ```
-Finally, set necessary parameters for `mNavigationTabs` instance
+Finally, set necessary parameters for `modesoNavigationTabs` instance
 ```swift
-mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
-mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First"),NSAttributedString(string: "Second"),NSAttributedString(string: "Third"),NSAttributedString(string: "Forth")]
-mNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
-mNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
-mNavigationTabs.updateUI()
+modesoNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
+modesoNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: "First"),NSAttributedString(string: "Second"),NSAttributedString(string: "Third"),NSAttributedString(string: "Forth")]
+modesoNavigationTabs.activeTabFont = UIFont(name: "ArialHebrew", size: 12)!
+modesoNavigationTabs.inactiveTabFont = UIFont(name: "ArialHebrew", size: 10)!
+modesoNavigationTabs.updateUI()
 ```
 > `viewControllersArray`: Array of UIViewControllers to display and navigate among.
 > `viewControllersTitlesArray`: Array of NSAttributedString represensts titles of the UIViewControllers which will be displayed in the top Tabs Navigation Bar.</br>
 > `activeTabFont`: Font of the current selected tab.</br>
 > `inactiveTabFont`: Font for the resu of the unselected tabs.</br>
-> `updateUI`: is a must to-be-called method, this will update all MNavigationTabs attributes and adjust views.
+> `updateUI`: is a must to-be-called method, this will update all ModesoNavigationTabs attributes and adjust views.
 
 ## Communication
 
@@ -164,8 +164,8 @@ mNavigationTabs.updateUI()
 
 ## Credits
 
-MNavigationTabs is owned and maintained by [Modeso](http://modeso.ch). You can follow them on Twitter at [@modeso_ch](https://twitter.com/modeso_ch) for project updates and releases.
+ModesoNavigationTabs is owned and maintained by [Modeso](http://modeso.ch). You can follow them on Twitter at [@modeso_ch](https://twitter.com/modeso_ch) for project updates and releases.
 
 ## License
 
-MNavigationTabs is released under the MIT license. See LICENSE for details.
+ModesoNavigationTabs is released under the MIT license. See LICENSE for details.
