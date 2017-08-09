@@ -336,6 +336,9 @@ extension ModesoNavigationTabsViewController {
     
     fileprivate func adjustScrollViewTabs(_ indexOfCurrentPage: Int) {
         // Any other tab
+        if Int(indexOfCurrentPage + 1) == viewControllersTitlesArray.count {
+            return
+        }        
         var movingStep = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin
         if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
             movingStep = tabsScrollView.contentOffset.x + calculatedTabWidth
