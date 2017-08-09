@@ -12,6 +12,8 @@
 		A5F2669C1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F2669A1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift */; };
 		A5F2669D1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F2669B1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.xib */; };
 		A5FE394C1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE394B1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */; };
+		E96A5D411F3B04C300BD3994 /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A5D401F3B04C300BD3994 /* Array+extension.swift */; };
+		E96A5D431F3B053C00BD3994 /* ModesoNavigationTabsViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96A5D421F3B053C00BD3994 /* ModesoNavigationTabsViewController+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		A5F2669A1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModesoNavigationTabsViewController.swift; sourceTree = "<group>"; };
 		A5F2669B1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModesoNavigationTabsViewController.xib; sourceTree = "<group>"; };
 		A5FE394B1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModesoNavigationTabsViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
+		E96A5D401F3B04C300BD3994 /* Array+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+extension.swift"; sourceTree = "<group>"; };
+		E96A5D421F3B053C00BD3994 /* ModesoNavigationTabsViewController+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModesoNavigationTabsViewController+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 				A5F2669A1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift */,
 				A5FE394B1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */,
 				A5BDAB611E866090008AE5D3 /* ModesoNavigationTabsViewController+IBDesignables.swift */,
+				E96A5D401F3B04C300BD3994 /* Array+extension.swift */,
+				E96A5D421F3B053C00BD3994 /* ModesoNavigationTabsViewController+extension.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -157,6 +163,8 @@
 				A5BDAB621E866090008AE5D3 /* ModesoNavigationTabsViewController+IBDesignables.swift in Sources */,
 				A5FE394C1F38875100317A97 /* ModesoNavigationTabsViewController+ScrollDelegate.swift in Sources */,
 				A5F2669C1E82D48E0021EEB9 /* ModesoNavigationTabsViewController.swift in Sources */,
+				E96A5D431F3B053C00BD3994 /* ModesoNavigationTabsViewController+extension.swift in Sources */,
+				E96A5D411F3B04C300BD3994 /* Array+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

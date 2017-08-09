@@ -132,9 +132,7 @@ public class ModesoNavigationTabsViewController: UIViewController {
         }
         
         if enableResizingAnimated {
-            DispatchQueue.main.async {
-                self.adjustTabsView(forPage: self.currentPage)
-            }
+            startNavigating(toPage: self.currentPage)
         } else { //If animatoin is disabled, just change font and format
             adjustTabsViewStyle()
         }
@@ -174,9 +172,7 @@ public class ModesoNavigationTabsViewController: UIViewController {
         
         viewControllersScrollView.bounces = enableBounce
         
-        DispatchQueue.main.async {
-            self.adjustTabsView(forPage: 0)
-        }
+        startNavigating(toPage: 0)
     }
     override public func loadView() {
         super.loadView()
