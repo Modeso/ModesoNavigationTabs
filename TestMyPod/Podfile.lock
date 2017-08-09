@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ModesoNavigationTabs:
-    :commit: 99bc853477847819004d7306a782e26c4b414228
+    :commit: 2633d331e132d754dee2dd4ec96fa8313165499d
     :git: https://github.com/Modeso/ModesoNavigationTabs.git
 
 SPEC CHECKSUMS:
