@@ -60,8 +60,8 @@ public class ModesoNavigationTabsViewController: UIViewController {
     /// Allow tabs resizing with animation
     public var enableResizingAnimated: Bool = false
     
-    /// Allow global scroll and shadow, this is when the whole viewcontroller has to be scrolled vertically and shadow appears (default is false if viewcontroller includes UIScrollView/UItableview/..)
-    public var enableGScrollAndShadow: Bool = false
+    /// Allow shadow while scrolling
+    public var enableScrollingShadow: Bool = false
     
     /**
      * State of the Navigation tabs views.
@@ -88,8 +88,7 @@ public class ModesoNavigationTabsViewController: UIViewController {
     /// Used only in case of cyclic case, useing this array to know where does each viewcontroller locate relative to each other, example it starts as [1,2,3,4,...] but it can ends as [2,3,4,1,..] so it used to get current position of viewcotroller #4 which is 2.
     internal var mappingArray: [Int] = []
     /// Last tab selected, used to get whether user tab another tab on the left or on the right to it can be moved to the left or to the right.
-    internal var lastSelectedTag = 0
-    internal var initialContentOffset: CGPoint = .zero
+    internal var lastSelectedTag = 0    
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
     @IBOutlet weak var viewControllersScrollView: UIScrollView!
@@ -194,7 +193,7 @@ public class ModesoNavigationTabsViewController: UIViewController {
         var origin: CGFloat = 0.0
         var index: Int = 0
         for viewController in viewControllersArray {
-            viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewController.view.bounds.height)
+            viewController.view.frame = CGRect(x: origin, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.frame.height)
             self.addChildViewController(viewController)
             viewControllersScrollView.addSubview(viewController.view)
             viewController.didMove(toParentViewController: self)
@@ -307,17 +306,11 @@ public class ModesoNavigationTabsViewController: UIViewController {
         }
         
         for newView in viewsArray {
-            newView.frame = CGRect(x: index, y: 0.0, width: viewControllersScrollView.bounds.width, height: newView.bounds.height)
+            newView.frame = CGRect(x: index, y: 0.0, width: viewControllersScrollView.bounds.width, height: viewControllersScrollView.frame.height)
             index += viewControllersScrollView.bounds.width
-            maximumHeight = max(maximumHeight, newView.bounds.height)
         }
         
-        if !enableGScrollAndShadow {
-            maximumHeight = viewControllersScrollView.frame.size.height
-            viewControllersScrollView.isDirectionalLockEnabled = false
-            
-        }
-        viewControllersScrollView.contentSize = CGSize(width: index, height: maximumHeight)
+        viewControllersScrollView.contentSize = CGSize(width: index, height: viewControllersScrollView.frame.height)
         viewControllersScrollView.setContentOffset(CGPoint(x: viewControllersScrollView.bounds.width * CGFloat(currentPage), y: 0), animated: false)
         
     }

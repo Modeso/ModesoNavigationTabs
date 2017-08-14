@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import ModesoNavigationTabs
+class ForthViewController: UIViewController, UIScrollViewDelegate {
 
-class ForthViewController: UIViewController {
-
+    @IBOutlet weak var mainScrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,4 +35,7 @@ class ForthViewController: UIViewController {
     }
     */
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        (self.parent as? ModesoNavigationTabsViewController)?.handleScrollView(scrollView)
+    }
 }

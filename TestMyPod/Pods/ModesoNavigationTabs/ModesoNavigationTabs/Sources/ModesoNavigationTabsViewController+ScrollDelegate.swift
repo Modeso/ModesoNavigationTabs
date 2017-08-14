@@ -8,17 +8,6 @@
 
 import Foundation
 
-enum ScrollDirection : Int {
-    case none
-    case crazy
-    case left
-    case right
-    case up
-    case down
-    case horizontal
-    case vertical
-}
-
 extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
     
     // MARK: - UIScrollView Methods
@@ -26,7 +15,7 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
         if scrollView == tabsScrollView && enableCycles { // Reset tabsScrollView to give the illusion of infinite scrollview.
             resetTabsScrollView()
             shadowView.alpha = 0
-        } else if scrollView == viewControllersScrollView && enableGScrollAndShadow {
+        } else if scrollView == viewControllersScrollView {
 
             handleScrollView(scrollView)
 
@@ -43,8 +32,6 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
     }
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
-        updateContentOffset(scrollView)
 
         if !enableCycles {
             if scrollView == viewControllersScrollView {

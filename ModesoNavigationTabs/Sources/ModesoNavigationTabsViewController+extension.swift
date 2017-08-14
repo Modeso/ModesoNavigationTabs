@@ -8,48 +8,8 @@
 
 import Foundation
 
-/// used to detect current scrolling direction
 extension ModesoNavigationTabsViewController {
     
-    func determineScrollDirection(_ scrollView: UIScrollView) -> ScrollDirection {
-        var scrollDirection: ScrollDirection
-        // If the scrolling direction is changed on both X and Y it means the
-        // scrolling started in one corner and goes diagonal. This will be
-        // called ScrollDirectionCrazy
-        if initialContentOffset.x != scrollView.contentOffset.x && initialContentOffset.y != scrollView.contentOffset.y {
-            scrollDirection = .crazy
-        }
-        else {
-            if initialContentOffset.x > scrollView.contentOffset.x {
-                scrollDirection = .left
-            }
-            else if initialContentOffset.x < scrollView.contentOffset.x {
-                scrollDirection = .right
-            }
-            else if initialContentOffset.y > scrollView.contentOffset.y {
-                scrollDirection = .up
-            }
-            else if initialContentOffset.y < scrollView.contentOffset.y {
-                scrollDirection = .down
-            }
-            else {
-                scrollDirection = .none
-            }
-        }
-        return scrollDirection
-    }
-    func determineScrollDirectionAxis(_ scrollView: UIScrollView) -> ScrollDirection {
-        let scrollDirection = determineScrollDirection(scrollView)
-        switch scrollDirection {
-        case .left, .right:
-            return .horizontal
-        case .up, .down:
-            return .vertical
-        default:
-            return .none
-        }
-    }
-
     /**
      Public method to scroll to current page
      
@@ -173,20 +133,14 @@ extension ModesoNavigationTabsViewController {
     }
     
     public func handleScrollView(_ scrollView: UIScrollView) {
-        let scrollDirection: ScrollDirection = determineScrollDirectionAxis(scrollView)
-        if scrollDirection == .vertical { // User move viewcontroller itself vertically.
+        
+        if !enableScrollingShadow {
+            return
+        }
+        let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        
+        if translation.y != 0 { // Vertical move
             handleViewControllerShadow(scrollView)
-        }
-        else if scrollDirection == .horizontal {
-            scrollView.isPagingEnabled = true
-            scrollView.contentOffset.y = 0
-        }
-        else if scrollDirection == .none && scrollView.contentOffset.y == 0 {
-            // Hide shadow
-            shadowView.alpha = 0
-        }
-        else {
-            freezScrollView(scrollView)
         }
     }
     
@@ -198,12 +152,6 @@ extension ModesoNavigationTabsViewController {
         oldPage = currentPage
         currentPage = Int(scrollView.contentOffset.x / viewControllersScrollView.bounds.width)
         startNavigating(toPage: self.currentPage)
-    }
-    
-    public func updateContentOffset(_ scrollView: UIScrollView) {
-        if scrollView == viewControllersScrollView {
-            initialContentOffset = scrollView.contentOffset // USed to get direction of scrolling
-        }
     }
     
     public func handleTransitionWithDragging(_ scrollView: UIScrollView) {
@@ -270,31 +218,12 @@ extension ModesoNavigationTabsViewController {
     }
     
     fileprivate func handleViewControllerShadow(_ scrollView: UIScrollView) {
-        let index = mappingArray.index(of: currentPage)!
-        if scrollView.subviews[index].bounds.height <= scrollView.bounds.height + tabsScrollView.bounds.height { // Do nothing if height of current viewcontroller < content height
-            scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0)
-        }
         
-        scrollView.isPagingEnabled = false // Disable paging for vertical scrolling
         if scrollView.contentOffset.y <= 0 { //Hide shadow
             shadowView.alpha = 0
         } else { //Display shadow
             shadowView.alpha = 1
         }
-    }
-    
-    fileprivate func freezScrollView(_ scrollView: UIScrollView) {
-        // This is probably crazy movement: diagonal scrolling
-        var newOffset = CGPoint.zero
-        if abs(scrollView.contentOffset.x) > abs(scrollView.contentOffset.y) {
-            newOffset = CGPoint(x: scrollView.contentOffset.x, y: initialContentOffset.y)
-        }
-        else {
-            newOffset = CGPoint(x: initialContentOffset.x, y: scrollView.contentOffset.y)
-        }
-        // Setting the new offset to the scrollView makes it behave like a proper
-        // directional lock, that allows you to scroll in only one direction at any given time
-        scrollView.contentOffset = newOffset
     }
     
     fileprivate func handleOutboundsCases(_ indexOfCurrentPage: Int, currentTabOrigin: CGFloat) {
@@ -338,7 +267,7 @@ extension ModesoNavigationTabsViewController {
         // Any other tab
         if Int(indexOfCurrentPage + 1) == viewControllersTitlesArray.count {
             return
-        }        
+        }
         var movingStep = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin
         if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
             movingStep = tabsScrollView.contentOffset.x + calculatedTabWidth

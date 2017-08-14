@@ -100,7 +100,8 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="tabWidth">
                             <real key="value" value="130"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableGlobalScrolling" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableGlobalScrolling" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableShadowOnScrolling" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Su5-wl-Kye" userLabel="First Responder" sceneMemberID="firstResponder"/>
