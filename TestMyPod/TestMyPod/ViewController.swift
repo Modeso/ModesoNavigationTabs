@@ -23,13 +23,7 @@ class ViewController: UIViewController {
         let thirdViewController = UIStoryboard(name: "ViewControllers", bundle: nil).instantiateViewController(withIdentifier: "ThirdViewController")
         let forthViewController = UIStoryboard(name: "ViewControllers", bundle: nil).instantiateViewController(withIdentifier: "ForthViewController")
         
-        var frame1 = firstViewController.view.frame
-        frame1.size.height = 1000
-        firstViewController.view.frame = frame1
         
-        var frame4 = forthViewController.view.frame
-        frame4.size.height = 1000
-        forthViewController.view.frame = frame4
         
         mNavigationTabs.viewControllersArray = [firstViewController,secondViewController,thirdViewController, forthViewController]
         mNavigationTabs.viewControllersTitlesArray = [NSAttributedString(string: ""),NSAttributedString(string: ""),NSAttributedString(string: ""),NSAttributedString(string: "")]
