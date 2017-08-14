@@ -138,10 +138,10 @@ extension ModesoNavigationTabsViewController {
             return
         }
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
-            
+        
         if translation.y != 0 { // Vertical move
             handleViewControllerShadow(scrollView)
-        }    
+        }
     }
     
     public func setupCurrentPage(_ scrollView: UIScrollView) {
@@ -218,7 +218,7 @@ extension ModesoNavigationTabsViewController {
     }
     
     fileprivate func handleViewControllerShadow(_ scrollView: UIScrollView) {
-                
+        
         if scrollView.contentOffset.y <= 0 { //Hide shadow
             shadowView.alpha = 0
         } else { //Display shadow
@@ -267,7 +267,7 @@ extension ModesoNavigationTabsViewController {
         // Any other tab
         if Int(indexOfCurrentPage + 1) == viewControllersTitlesArray.count {
             return
-        }        
+        }
         var movingStep = (CGFloat(indexOfCurrentPage) * calculatedTabWidth) + (CGFloat(indexOfCurrentPage - 1) * tabInnerMargin) + tabOuterMargin
         if movingStep > abs(tabsScrollView.contentSize.width - tabsScrollView.bounds.width) {
             movingStep = tabsScrollView.contentOffset.x + calculatedTabWidth

@@ -88,7 +88,7 @@ public class ModesoNavigationTabsViewController: UIViewController {
     /// Used only in case of cyclic case, useing this array to know where does each viewcontroller locate relative to each other, example it starts as [1,2,3,4,...] but it can ends as [2,3,4,1,..] so it used to get current position of viewcotroller #4 which is 2.
     internal var mappingArray: [Int] = []
     /// Last tab selected, used to get whether user tab another tab on the left or on the right to it can be moved to the left or to the right.
-    internal var lastSelectedTag = 0    
+    internal var lastSelectedTag = 0
     // IBOutlets
     @IBOutlet weak var tabsScrollView: UIScrollView!
     @IBOutlet weak var viewControllersScrollView: UIScrollView!

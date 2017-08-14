@@ -16,9 +16,9 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
             resetTabsScrollView()
             shadowView.alpha = 0
         } else if scrollView == viewControllersScrollView {
-
+            
             handleScrollView(scrollView)
-
+            
         }
     }
     
@@ -32,7 +32,7 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
     }
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-
+        
         if !enableCycles {
             if scrollView == viewControllersScrollView {
                 
@@ -43,7 +43,7 @@ extension ModesoNavigationTabsViewController: UIScrollViewDelegate {
             return
         }
         
-
+        
         handleTransitionWithDragging(scrollView)
     }
 }
