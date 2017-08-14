@@ -42,15 +42,16 @@ extension ModesoNavigationTabsViewController {
             return
         }
         
-        
         adjustTabsViewStyle()
         
         adjustCurrentTabOrigin(indexOfCurrentPage, direction: direction)
+        
         
         // Special case, check current scrollview position inside current displayed viewController
         if let scrollView = viewControllersScrollView.subviews[indexOfCurrentPage].subviews[0] as? UIScrollView {
             handleViewControllerShadow(scrollView)
         }
+
     }
     /// Shifting views to right [1,2,3,4] -> [4,1,2,3]
     public func shiftViewsToRight() {
@@ -231,6 +232,7 @@ extension ModesoNavigationTabsViewController {
                 self.shadowView.alpha = 1
             }
         })
+
     }
     
     fileprivate func handleOutboundsCases(_ indexOfCurrentPage: Int, currentTabOrigin: CGFloat) {
