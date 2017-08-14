@@ -142,12 +142,12 @@ import Foundation
             return enableResizingAnimated
         }
     }
-    @IBInspectable var enableGlobalScrolling: Bool {
+    @IBInspectable var enableShadowOnScrolling: Bool {
         set {
-            enableGScrollAndShadow = newValue
+            enableScrollingShadow = newValue
         }
         get {
-            return enableGScrollAndShadow
+            return enableScrollingShadow
         }
     }
     
