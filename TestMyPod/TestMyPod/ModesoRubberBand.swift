@@ -85,7 +85,7 @@ extension ModesoRubberBand: ModesoInterceptor {
 class ModesoRubberBandDelegate: NSObject, UIScrollViewDelegate  {
     
     var receiver: UIScrollViewDelegate?
-    fileprivate var rubberBandViews = RubberBandViews()
+    fileprivate var rubberBandViews = ModesoRBCollection()
     var isDragging:Bool = false
     var location: CGPoint?
     
@@ -98,37 +98,24 @@ class ModesoRubberBandDelegate: NSObject, UIScrollViewDelegate  {
         self.isDragging = true
         self.location = scrollView.panGestureRecognizer.location(in: scrollView)
         loadConstraints(scrollView)
+        notifyDelegateWillBeginDraggin(scrollView)
+    }
+    
+    func notifyDelegateWillBeginDraggin(_ scrollView: UIScrollView) {
+        guard let delegate = self.receiver else {
+            return
+        }
+        if (delegate.responds(to: #selector(scrollViewWillBeginDragging(_:)))) {
+            delegate.scrollViewWillBeginDragging!(scrollView);
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if(self.isDragging) {
-            let directionUp = scrollView.panGestureRecognizer.velocity(in: scrollView).y < 0
-            if directionUp {
-                for i in 0..<rubberBandViews.getBelow().count {
-                    let rubberBand = rubberBandViews.getBelow()[i]
-                    
-                    guard let upperConstraint = rubberBand.upperConstraint else {
-                        continue
-                    }
-                    upperConstraint.constant = upperConstraint.constant + 0.85
-                    rubberBandViews.childViews.last?.lowerConstraint?.constant -= 0.85
-                }
-            }
-            if !directionUp {
-                for i in 0..<rubberBandViews.getAbove().count {
-                    let rubberBand = rubberBandViews.getAbove()[i]
-                    guard let upperConstraint = rubberBand.upperConstraint else {
-                        continue
-                    }
-                    upperConstraint.constant = upperConstraint.constant + 0.85
-                    rubberBandViews.childViews.last?.lowerConstraint?.constant  -= 0.85
-                }
-            }
-            
-            scrollView.updateConstraintsIfNeeded()
-            scrollView.layoutIfNeeded()
-        }
-        
+        stretchRubberBand(scrollView)
+        notifyDelegateDidScroll(scrollView)
+    }
+    
+    func notifyDelegateDidScroll(_ scrollView: UIScrollView) {
         guard let delegate = self.receiver else {
             return
         }
@@ -137,7 +124,49 @@ class ModesoRubberBandDelegate: NSObject, UIScrollViewDelegate  {
         }
     }
     
-    func animateEnd(_ scrollView: UIScrollView) {
+    func stretchRubberBand(_ scrollView: UIScrollView) {
+        if(self.isDragging) {
+            let directionUp = scrollView.panGestureRecognizer.velocity(in: scrollView).y < 0
+            if directionUp {
+                updateConstraintsOfViewsBelow()
+            }
+            if !directionUp {
+                updateConstraintsOfViewsAbove()
+            }
+            scrollView.updateConstraintsIfNeeded()
+            scrollView.layoutIfNeeded()
+        }
+    }
+    
+    fileprivate func updateConstraintsOfViewsBelow() {
+        for i in 0..<rubberBandViews.getBelow().count {
+            let rubberBand = rubberBandViews.getBelow()[i]
+            guard let upperConstraint = rubberBand.upperConstraint else {
+                continue
+            }
+            upperConstraint.constant = upperConstraint.constant + 0.85
+            rubberBandViews.views.last?.lowerConstraint?.constant -= 0.85
+        }
+    }
+    
+    fileprivate func updateConstraintsOfViewsAbove() {
+        for i in 0..<rubberBandViews.getAbove().count {
+            let rubberBand = rubberBandViews.getAbove()[i]
+            guard let upperConstraint = rubberBand.upperConstraint else {
+                continue
+            }
+            upperConstraint.constant = upperConstraint.constant + 0.85
+            rubberBandViews.views.last?.lowerConstraint?.constant  -= 0.85
+        }
+    }
+    
+    func rewindRubberBand(_ scrollView: UIScrollView) {
+        animateViewsAboveTouch(scrollView)
+        animateViewsBelowTouch(scrollView)
+        updateBottomSpaceWithAnimation(scrollView)
+    }
+    
+    func animateViewsAboveTouch(_ scrollView: UIScrollView) {
         for i in 0..<rubberBandViews.getAbove().count {
             let rubberBand = rubberBandViews.getAbove()[i]
             guard let upperConstraint = rubberBand.upperConstraint else {
@@ -151,6 +180,9 @@ class ModesoRubberBandDelegate: NSObject, UIScrollViewDelegate  {
                 if (ended) {}
             })
         }
+    }
+    
+    func animateViewsBelowTouch(_ scrollView: UIScrollView) {
         for i in 0..<rubberBandViews.getBelow().count {
             let rubberBand = rubberBandViews.getBelow()[i]
             guard let upperConstraint = rubberBand.upperConstraint else {
@@ -164,8 +196,10 @@ class ModesoRubberBandDelegate: NSObject, UIScrollViewDelegate  {
                 if (ended) {}
             })
         }
+    }
     
-        guard let rubberBandLastView = rubberBandViews.childViews.last else {
+    func updateBottomSpaceWithAnimation(_ scrollView: UIScrollView) {
+        guard let rubberBandLastView = rubberBandViews.views.last else {
             return
         }
         rubberBandLastView.lowerConstraint?.constant  = rubberBandLastView.lowerConstraintConstant
@@ -179,7 +213,7 @@ class ModesoRubberBandDelegate: NSObject, UIScrollViewDelegate  {
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
     {
         self.isDragging = false
-        animateEnd(scrollView)
+        rewindRubberBand(scrollView)
     }
     
     func loadConstraints(_ scrollView: UIScrollView) {
@@ -187,75 +221,74 @@ class ModesoRubberBandDelegate: NSObject, UIScrollViewDelegate  {
         
         for i in 0..<scrollView.subviews.count-2 {
             let view = scrollView.subviews[i]
-            let rubberBandView = RubberBandView(view)
+            let rubberBandView = ModesoRBView(view)
             self.rubberBandViews.append(rubberBandView)
         }
       
         for constraint in scrollView.constraints {
             
             if(constraint.firstAttribute == NSLayoutAttribute.top) {
-                let rubberBandView: RubberBandView? = rubberBandViews.getView(constraint.firstItem as? UIView)
+                let rubberBandView: ModesoRBView? = rubberBandViews.getView(constraint.firstItem as? UIView)
                 if rubberBandView != nil {
                     rubberBandView?.upperConstraint = constraint
                     rubberBandView?.upperConstraintConstant = constraint.constant
                 }
-                guard let location1: CGPoint = self.location else {
+                guard let hitLocation: CGPoint = self.location else {
                     continue
                 }
-                let location2: CGPoint = scrollView.convert(location1, to: rubberBandView?.view)
-                if location2.y > 0 {
-                    rubberBandView?.above = true
+                let viewLocation: CGPoint = scrollView.convert(hitLocation, to: rubberBandView?.view)
+                if viewLocation.y > 0 {
+                    rubberBandView?.aboveTouch = true
                 }  else {
-                    rubberBandView?.above = false
+                    rubberBandView?.aboveTouch = false
                 }
             }
             if(constraint.firstAttribute == NSLayoutAttribute.bottom) {
-                let rubberBandView: RubberBandView? = rubberBandViews.getView(constraint.firstItem as? UIView)
+                let rubberBandView: ModesoRBView? = rubberBandViews.getView(constraint.firstItem as? UIView)
                 if rubberBandView != nil {
                     rubberBandView?.lowerConstraint = constraint
                     rubberBandView?.lowerConstraintConstant = constraint.constant
                 }
-               
             }
         }
     }
 }
 
-private class RubberBandView {
+private class ModesoRBView {
     public var view: UIView
     public var upperConstraint: NSLayoutConstraint?
     public var lowerConstraint: NSLayoutConstraint?
     public var upperConstraintConstant: CGFloat = 0.0
     public var lowerConstraintConstant: CGFloat = 0.0
-    public var above: Bool = false
+    public var aboveTouch: Bool = false
     
     init(_ view: UIView) {
         self.view = view
     }
 }
 
-private struct RubberBandViews {
-    fileprivate var childViews = [RubberBandView]()
+private struct ModesoRBCollection {
+    fileprivate var views = [ModesoRBView]()
     
     init() {
-        self.childViews = [RubberBandView]()
+        self.views = [ModesoRBView]()
     }
     
     mutating func clear() {
-        self.childViews = [RubberBandView]()
+        self.views = [ModesoRBView]()
     }
     
-    mutating func append(_ rubberBandView: RubberBandView) {
+    mutating func append(_ rubberBandView: ModesoRBView) {
         if(self.getView(rubberBandView.view) == nil) {
-            self.childViews.append(rubberBandView)
+            self.views.append(rubberBandView)
         }
     }
     
-    func getView(_ view: UIView?) -> RubberBandView? {
+    func getView(_ view: UIView?) -> ModesoRBView? {
         if view == nil {
             return nil
         }
-        for rubberBandView in self.childViews {
+        for rubberBandView in self.views {
             if (rubberBandView.view.isEqual(view)) {
                 return rubberBandView
             }
@@ -263,20 +296,20 @@ private struct RubberBandViews {
         return nil
     }
     
-    func getAbove() -> [RubberBandView] {
-        var rubberBandViews =  [RubberBandView]()
-        for rubberBandView in self.childViews {
-            if (rubberBandView.above) {
+    func getAbove() -> [ModesoRBView] {
+        var rubberBandViews =  [ModesoRBView]()
+        for rubberBandView in self.views {
+            if (rubberBandView.aboveTouch) {
                 rubberBandViews.append(rubberBandView)
             }
         }
         return rubberBandViews
     }
     
-    func getBelow() -> [RubberBandView] {
-        var rubberBandViews = [RubberBandView]()
-        for rubberBandView in self.childViews {
-            if (!rubberBandView.above) {
+    func getBelow() -> [ModesoRBView] {
+        var rubberBandViews = [ModesoRBView]()
+        for rubberBandView in self.views {
+            if (!rubberBandView.aboveTouch) {
                 rubberBandViews.append(rubberBandView)
             }
         }
