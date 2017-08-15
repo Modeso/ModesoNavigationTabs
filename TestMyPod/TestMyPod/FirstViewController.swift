@@ -12,7 +12,7 @@ import ModesoNavigationTabs
 class FirstViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("scrollviewDid Scroll Delegate")
+        //print("scrollviewDid Scroll Delegate")
         (self.parent as? ModesoNavigationTabsViewController)?.handleScrollView(scrollView)
     }
 }
