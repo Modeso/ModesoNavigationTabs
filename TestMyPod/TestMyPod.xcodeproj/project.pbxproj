@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		459CB9611F41CB4E00A5EAC6 /* ModesoRubberBand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459CB9601F41CB4E00A5EAC6 /* ModesoRubberBand.swift */; };
 		630A38E4F4A74497DFB8B3D2 /* Pods_TestMyPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6415E9F9E757877D533E0D3F /* Pods_TestMyPod.framework */; };
 		A54545081E89133D00C3EB72 /* ForthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54545071E89133D00C3EB72 /* ForthViewController.swift */; };
 		A5F266851E82BF610021EEB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F266841E82BF610021EEB9 /* AppDelegate.swift */; };
@@ -23,7 +22,6 @@
 
 /* Begin PBXFileReference section */
 		112FDA0E0A50AB08C5D7E553 /* Pods-TestMyPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMyPod.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestMyPod/Pods-TestMyPod.release.xcconfig"; sourceTree = "<group>"; };
-		459CB9601F41CB4E00A5EAC6 /* ModesoRubberBand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModesoRubberBand.swift; sourceTree = "<group>"; };
 		6415E9F9E757877D533E0D3F /* Pods_TestMyPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMyPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		871252DC0D0F2FC066656B3F /* Pods-TestMyPod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMyPod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestMyPod/Pods-TestMyPod.debug.xcconfig"; sourceTree = "<group>"; };
 		A54545071E89133D00C3EB72 /* ForthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForthViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +87,6 @@
 				A5F2668B1E82BF610021EEB9 /* Assets.xcassets */,
 				A5F2668D1E82BF610021EEB9 /* LaunchScreen.storyboard */,
 				A5F266901E82BF610021EEB9 /* Info.plist */,
-				459CB9601F41CB4E00A5EAC6 /* ModesoRubberBand.swift */,
 			);
 			path = TestMyPod;
 			sourceTree = "<group>";
@@ -239,7 +236,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				459CB9611F41CB4E00A5EAC6 /* ModesoRubberBand.swift in Sources */,
 				A54545081E89133D00C3EB72 /* ForthViewController.swift in Sources */,
 				A5F266CC1E8423A20021EEB9 /* SecondViewController.swift in Sources */,
 				A5F266CA1E8423940021EEB9 /* FirstViewController.swift in Sources */,

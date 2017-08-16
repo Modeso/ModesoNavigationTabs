@@ -1,21 +1,29 @@
 PODS:
   - ModesoNavigationTabs (1.0.0)
+  - ModesoRubberBandScrollView (1.0.0)
 
 DEPENDENCIES:
   - ModesoNavigationTabs (from `https://github.com/Modeso/ModesoNavigationTabs.git`)
+  - ModesoRubberBandScrollView (from `https://github.com/Modeso/ModesoRubberBandScrollView.git`)
 
 EXTERNAL SOURCES:
   ModesoNavigationTabs:
     :git: https://github.com/Modeso/ModesoNavigationTabs.git
+  ModesoRubberBandScrollView:
+    :git: https://github.com/Modeso/ModesoRubberBandScrollView.git
 
 CHECKOUT OPTIONS:
   ModesoNavigationTabs:
     :commit: 44d3710a80b4bb8dafb143514b97e4fc833052cf
     :git: https://github.com/Modeso/ModesoNavigationTabs.git
+  ModesoRubberBandScrollView:
+    :commit: 2cc855a69c1c34a5c4d1d43cebf1eab7d3120ca7
+    :git: https://github.com/Modeso/ModesoRubberBandScrollView.git
 
 SPEC CHECKSUMS:
   ModesoNavigationTabs: b9be1b8d05fc6eb8bd5604cd3898965a35b2fc5f
+  ModesoRubberBandScrollView: 2387fa80931f6509042de595fab32ad99e1b62f7
 
-PODFILE CHECKSUM: 4fa1515ce8cf88d4bdf86199f639e931cea38af7
+PODFILE CHECKSUM: d1ca7a5f59cd13b3f3641e264f1687db82062503
 
 COCOAPODS: 1.2.0

@@ -1,5 +1,5 @@
 //
-//  ModesoRubberBand.swift
+//  ModesoRubberBandScrollView.swift
 //  TestMyPod
 //
 //  Created by Samuel Schmid on 14.08.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModesoRubberBand: UIScrollView {
+class ModesoRubberBandScrollView: UIScrollView {
     var receiver: UIScrollViewDelegate?
     var middleMan: ModesoRubberBandDelegate?
     
@@ -32,7 +32,7 @@ protocol ModesoInterceptor {
     func responds(to aSelector: Selector!) -> Bool
 }
 
-extension ModesoRubberBand: ModesoInterceptor {
+extension ModesoRubberBandScrollView: ModesoInterceptor {
     override func forwardingTarget(for aSelector: Selector!) -> Any? {
         guard let middleMan = self.middleMan else {
             guard let receiver = self.receiver else {

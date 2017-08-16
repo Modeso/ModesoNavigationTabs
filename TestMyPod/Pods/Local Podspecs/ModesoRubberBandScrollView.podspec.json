@@ -1,0 +1,24 @@
+{
+  "name": "ModesoRubberBandScrollView",
+  "version": "1.0.0",
+  "summary": "Adding rubber effect to UIScrollview.",
+  "description": "Adding rubber effect to elements inside UIScrollview when user scroll.",
+  "homepage": "https://github.com/Modeso/ModesoRubberBandScrollView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Mohammed Elsammak": "mohammed.elsammak@modeso.ch"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "https://github.com/Modeso/ModesoRubberBandScrollView.git",
+    "tag": "1.0.0"
+  },
+  "source_files": "ModesoRubberBandScrollView/Sources/**/*",
+  "exclude_files": "Classes/Exclude",
+  "resources": "ModesoRubberBandScrollView/Sources/**/*"
+}

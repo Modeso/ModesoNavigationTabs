@@ -7,28 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		011AC5611E96E75DA86B22E05A19621E /* Pods-TestMyPod-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D87FF7C64371EE99C5987A8911B47A3D /* Pods-TestMyPod-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		089C922E08155B2911DD59B3FF51C23D /* ModesoNavigationTabsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8332890566033369F58EBADF18B03609 /* ModesoNavigationTabsViewController.xib */; };
-		0BF17D2A4270C86E43DD6DD86FA93574 /* ModesoNavigationTabsViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF27F20867BACFDCC13F13D8703B6C33 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */; };
-		2D2031D9048441F3EB5E6A721AA54F60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		2E3DBCC9E13E57298736932C3E6AA6EC /* ModesoNavigationTabsViewController+extension.swift in Resources */ = {isa = PBXBuildFile; fileRef = 258340990F20394EDE1DF072D5849618 /* ModesoNavigationTabsViewController+extension.swift */; };
-		400A5FF6B041AAAF9CEFEB47290280A4 /* ModesoNavigationTabsViewController+IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4BD4905554BC88809296AFFB1B3EDD /* ModesoNavigationTabsViewController+IBDesignables.swift */; };
-		6A24DE798159AF35B352703C0A6B4C8C /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25AC712CD7C3CC8E7A8705B4D7F62C2 /* Array+extension.swift */; };
-		7874FF1B6587858AA9CDF9AB0EDD17C2 /* Array+extension.swift in Resources */ = {isa = PBXBuildFile; fileRef = B25AC712CD7C3CC8E7A8705B4D7F62C2 /* Array+extension.swift */; };
-		7EF3E63E7C8813DB21469DAC68C75DF7 /* ModesoNavigationTabsViewController+IBDesignables.swift in Resources */ = {isa = PBXBuildFile; fileRef = 4B4BD4905554BC88809296AFFB1B3EDD /* ModesoNavigationTabsViewController+IBDesignables.swift */; };
-		8ED3D19FB83A82B63BD98A2EDE180521 /* Pods-TestMyPod-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D6611F6D993844C0A728ED207DFCCCCD /* Pods-TestMyPod-dummy.m */; };
-		97B9905A9BFFA5A73BAA0CE1030F624B /* ModesoNavigationTabsViewController+ScrollDelegate.swift in Resources */ = {isa = PBXBuildFile; fileRef = DF27F20867BACFDCC13F13D8703B6C33 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */; };
-		9C0FB57C730FC9868AA7E4E140496702 /* ModesoNavigationTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD10FF43DCDBB1686E7774AB033701EE /* ModesoNavigationTabsViewController.swift */; };
-		9D73B2111B66F3DECE47FA610C882EF3 /* ModesoNavigationTabs-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 901944C787F7C0FA329C5F07B641D2E5 /* ModesoNavigationTabs-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A7F9F9B85AAD4337A854A8D25D6A1393 /* ModesoNavigationTabsViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = FD10FF43DCDBB1686E7774AB033701EE /* ModesoNavigationTabsViewController.swift */; };
+		089C922E08155B2911DD59B3FF51C23D /* ModesoNavigationTabsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3522224CAB10125FD4FBE29CA2E503E /* ModesoNavigationTabsViewController.xib */; };
+		0BF17D2A4270C86E43DD6DD86FA93574 /* ModesoNavigationTabsViewController+ScrollDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD739E04E31B75AA64B8B3ABBC247235 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */; };
+		2E3DBCC9E13E57298736932C3E6AA6EC /* ModesoNavigationTabsViewController+extension.swift in Resources */ = {isa = PBXBuildFile; fileRef = 64D674A5CF836AF4944CCE5F76FC9654 /* ModesoNavigationTabsViewController+extension.swift */; };
+		400A5FF6B041AAAF9CEFEB47290280A4 /* ModesoNavigationTabsViewController+IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A71E49C5BDB29E11F33CB076F1047C /* ModesoNavigationTabsViewController+IBDesignables.swift */; };
+		5E0B952FA7A8B1346F59D17CEC7D67CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		6A24DE798159AF35B352703C0A6B4C8C /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7799908DF88C594CAB3238BF1DE5EF3 /* Array+extension.swift */; };
+		6AD41315AA80C95FC26CCB5BEA4D9DFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		7874FF1B6587858AA9CDF9AB0EDD17C2 /* Array+extension.swift in Resources */ = {isa = PBXBuildFile; fileRef = D7799908DF88C594CAB3238BF1DE5EF3 /* Array+extension.swift */; };
+		7CFB938A876DBB8B07FFCBAF6038A77A /* ModesoRubberBandScrollView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 741D0C2BFC1DA3E78BB3337131DECEAD /* ModesoRubberBandScrollView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7EF3E63E7C8813DB21469DAC68C75DF7 /* ModesoNavigationTabsViewController+IBDesignables.swift in Resources */ = {isa = PBXBuildFile; fileRef = 56A71E49C5BDB29E11F33CB076F1047C /* ModesoNavigationTabsViewController+IBDesignables.swift */; };
+		8A716A069F77CC40AAA4676F0DDE1EBF /* ModesoRubberBandScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49274128C6C48EEF3D12E4094B1CED /* ModesoRubberBandScrollView.swift */; };
+		966EB54F66CE2E4BACB55F677E60651F /* ModesoRubberBandScrollView.swift in Resources */ = {isa = PBXBuildFile; fileRef = DD49274128C6C48EEF3D12E4094B1CED /* ModesoRubberBandScrollView.swift */; };
+		97B9905A9BFFA5A73BAA0CE1030F624B /* ModesoNavigationTabsViewController+ScrollDelegate.swift in Resources */ = {isa = PBXBuildFile; fileRef = CD739E04E31B75AA64B8B3ABBC247235 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */; };
+		9C0FB57C730FC9868AA7E4E140496702 /* ModesoNavigationTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FB296FA5B4CFB2442F1DFB126FDE5 /* ModesoNavigationTabsViewController.swift */; };
+		9CAFCF500E6B81460A3ECECC42504F79 /* ModesoRubberBandScrollView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C86187684FD498051BC177F097034133 /* ModesoRubberBandScrollView-dummy.m */; };
+		9D73B2111B66F3DECE47FA610C882EF3 /* ModesoNavigationTabs-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EA6E760DDD111C0F57A6EF3CBEA63E77 /* ModesoNavigationTabs-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A5BF155246C523FC55E3A8AEB3E9DC25 /* Pods-TestMyPod-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D6611F6D993844C0A728ED207DFCCCCD /* Pods-TestMyPod-dummy.m */; };
+		A7F9F9B85AAD4337A854A8D25D6A1393 /* ModesoNavigationTabsViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 644FB296FA5B4CFB2442F1DFB126FDE5 /* ModesoNavigationTabsViewController.swift */; };
 		C6077081CAB2673D216470A5D7460195 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		DE39B2AEB232613F9377F1DEE88E7411 /* ModesoNavigationTabs-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86839035396F3C073DF98553080179E6 /* ModesoNavigationTabs-dummy.m */; };
-		EB936943DD407EE3E922E9D921EDBDB7 /* ModesoNavigationTabsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = 8332890566033369F58EBADF18B03609 /* ModesoNavigationTabsViewController.xib */; };
-		FA6C11A301544CE43EE1D4DE6690CF9C /* ModesoNavigationTabsViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258340990F20394EDE1DF072D5849618 /* ModesoNavigationTabsViewController+extension.swift */; };
+		DE39B2AEB232613F9377F1DEE88E7411 /* ModesoNavigationTabs-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6633564E935FF06ED974A38360C30ADA /* ModesoNavigationTabs-dummy.m */; };
+		EB936943DD407EE3E922E9D921EDBDB7 /* ModesoNavigationTabsViewController.xib in Sources */ = {isa = PBXBuildFile; fileRef = B3522224CAB10125FD4FBE29CA2E503E /* ModesoNavigationTabsViewController.xib */; };
+		F2C901AD7744C67224B325E7C1201CB4 /* Pods-TestMyPod-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D87FF7C64371EE99C5987A8911B47A3D /* Pods-TestMyPod-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA6C11A301544CE43EE1D4DE6690CF9C /* ModesoNavigationTabsViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D674A5CF836AF4944CCE5F76FC9654 /* ModesoNavigationTabsViewController+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B720423F4590F885BBA0B5D39D0DBF75 /* PBXContainerItemProxy */ = {
+		1F701B8F86A1634A6FA35EA3D7DC9640 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A89234B7EB18BB7A545D27D490B8F1F7;
+			remoteInfo = ModesoRubberBandScrollView;
+		};
+		74797DDC888386CD5CF13A4FEF8D2781 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -38,40 +50,48 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		004E9F7A48A38EB1153476575C719D02 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		031B187093A2C65173845F90B7C9F1E7 /* Pods-TestMyPod-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TestMyPod-acknowledgements.plist"; sourceTree = "<group>"; };
 		050BA3AC07FB5332B9382A5B84F9612F /* Pods-TestMyPod-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TestMyPod-acknowledgements.markdown"; sourceTree = "<group>"; };
-		258340990F20394EDE1DF072D5849618 /* ModesoNavigationTabsViewController+extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ModesoNavigationTabsViewController+extension.swift"; path = "ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController+extension.swift"; sourceTree = "<group>"; };
-		45080DA9A05EED29160C623BF9E20818 /* ModesoNavigationTabs.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ModesoNavigationTabs.xcconfig; sourceTree = "<group>"; };
-		4A4F98D12BFBAFA9F583D3878CF7C529 /* ModesoNavigationTabs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ModesoNavigationTabs.framework; path = ModesoNavigationTabs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B4BD4905554BC88809296AFFB1B3EDD /* ModesoNavigationTabsViewController+IBDesignables.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ModesoNavigationTabsViewController+IBDesignables.swift"; path = "ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController+IBDesignables.swift"; sourceTree = "<group>"; };
+		06C09FE2907D3351296AE63358BF2B34 /* ModesoNavigationTabs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ModesoNavigationTabs.framework; path = ModesoNavigationTabs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C74CCCBB6724BC619B073C0B6D2E7F1 /* ModesoRubberBandScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ModesoRubberBandScrollView.framework; path = ModesoRubberBandScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35E5FDC15855FC504C6A4BD1869DF283 /* ModesoNavigationTabs.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ModesoNavigationTabs.modulemap; sourceTree = "<group>"; };
+		37CC1E2B8DD5F3CE48AE0DB7001AAFD3 /* ModesoRubberBandScrollView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ModesoRubberBandScrollView.xcconfig; sourceTree = "<group>"; };
+		4C57E7C95B172F4E892902B0DEA35372 /* ModesoNavigationTabs.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ModesoNavigationTabs.xcconfig; sourceTree = "<group>"; };
 		51394E615DB59232FE698D38A405ADC6 /* Pods-TestMyPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TestMyPod.release.xcconfig"; sourceTree = "<group>"; };
+		56A71E49C5BDB29E11F33CB076F1047C /* ModesoNavigationTabsViewController+IBDesignables.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ModesoNavigationTabsViewController+IBDesignables.swift"; path = "ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController+IBDesignables.swift"; sourceTree = "<group>"; };
 		59417E11D0958CCF77FA950AAD7B1261 /* Pods-TestMyPod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TestMyPod.debug.xcconfig"; sourceTree = "<group>"; };
-		61C0DB9C1F28E82C87E9FD130C61CFEA /* ModesoNavigationTabs.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ModesoNavigationTabs.modulemap; sourceTree = "<group>"; };
-		8332890566033369F58EBADF18B03609 /* ModesoNavigationTabsViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = ModesoNavigationTabsViewController.xib; path = ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController.xib; sourceTree = "<group>"; };
+		644FB296FA5B4CFB2442F1DFB126FDE5 /* ModesoNavigationTabsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModesoNavigationTabsViewController.swift; path = ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController.swift; sourceTree = "<group>"; };
+		64D674A5CF836AF4944CCE5F76FC9654 /* ModesoNavigationTabsViewController+extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ModesoNavigationTabsViewController+extension.swift"; path = "ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController+extension.swift"; sourceTree = "<group>"; };
+		6633564E935FF06ED974A38360C30ADA /* ModesoNavigationTabs-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ModesoNavigationTabs-dummy.m"; sourceTree = "<group>"; };
+		73DC7C11201DCF805B822B52BA99525E /* ModesoRubberBandScrollView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ModesoRubberBandScrollView-prefix.pch"; sourceTree = "<group>"; };
+		741D0C2BFC1DA3E78BB3337131DECEAD /* ModesoRubberBandScrollView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ModesoRubberBandScrollView-umbrella.h"; sourceTree = "<group>"; };
 		851D3764E0431B8430E7646B237D89BD /* Pods-TestMyPod-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TestMyPod-resources.sh"; sourceTree = "<group>"; };
-		86839035396F3C073DF98553080179E6 /* ModesoNavigationTabs-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ModesoNavigationTabs-dummy.m"; sourceTree = "<group>"; };
 		8DFD1EBE8BE09010E178B480B2F56AD7 /* Pods-TestMyPod-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TestMyPod-frameworks.sh"; sourceTree = "<group>"; };
-		901944C787F7C0FA329C5F07B641D2E5 /* ModesoNavigationTabs-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ModesoNavigationTabs-umbrella.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B25AC712CD7C3CC8E7A8705B4D7F62C2 /* Array+extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+extension.swift"; path = "ModesoNavigationTabs/Sources/Array+extension.swift"; sourceTree = "<group>"; };
+		95B58B4EAE5B30AB22296D65DCABB570 /* ModesoNavigationTabs-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ModesoNavigationTabs-prefix.pch"; sourceTree = "<group>"; };
+		99F4925D4262511597841D02A43CC662 /* ModesoRubberBandScrollView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ModesoRubberBandScrollView.modulemap; sourceTree = "<group>"; };
+		9A98D2689E54E4664FA21826ADED31CB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9CF9C8402B677F5BA8780C533F034B29 /* Pods_TestMyPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TestMyPod.framework; path = "Pods-TestMyPod.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3522224CAB10125FD4FBE29CA2E503E /* ModesoNavigationTabsViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = ModesoNavigationTabsViewController.xib; path = ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController.xib; sourceTree = "<group>"; };
+		C7BEB5E081682C48A4F9838DE98C5215 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C86187684FD498051BC177F097034133 /* ModesoRubberBandScrollView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ModesoRubberBandScrollView-dummy.m"; sourceTree = "<group>"; };
 		CA20744F4BF60734D5C10EFB53A39ACF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		CE8DE785EC965C90D762F7BA9C364126 /* ModesoNavigationTabs-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ModesoNavigationTabs-prefix.pch"; sourceTree = "<group>"; };
+		CD739E04E31B75AA64B8B3ABBC247235 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ModesoNavigationTabsViewController+ScrollDelegate.swift"; path = "ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
 		D6611F6D993844C0A728ED207DFCCCCD /* Pods-TestMyPod-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TestMyPod-dummy.m"; sourceTree = "<group>"; };
+		D7799908DF88C594CAB3238BF1DE5EF3 /* Array+extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+extension.swift"; path = "ModesoNavigationTabs/Sources/Array+extension.swift"; sourceTree = "<group>"; };
 		D87FF7C64371EE99C5987A8911B47A3D /* Pods-TestMyPod-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TestMyPod-umbrella.h"; sourceTree = "<group>"; };
-		DF27F20867BACFDCC13F13D8703B6C33 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ModesoNavigationTabsViewController+ScrollDelegate.swift"; path = "ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController+ScrollDelegate.swift"; sourceTree = "<group>"; };
-		EE5B231C90F2DE123745765D1E0E7392 /* Pods_TestMyPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TestMyPod.framework; path = "Pods-TestMyPod.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD49274128C6C48EEF3D12E4094B1CED /* ModesoRubberBandScrollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModesoRubberBandScrollView.swift; path = ModesoRubberBandScrollView/Sources/ModesoRubberBandScrollView.swift; sourceTree = "<group>"; };
+		EA6E760DDD111C0F57A6EF3CBEA63E77 /* ModesoNavigationTabs-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ModesoNavigationTabs-umbrella.h"; sourceTree = "<group>"; };
 		F793BE8184FD2A53E5FAAD292FCCA564 /* Pods-TestMyPod.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-TestMyPod.modulemap"; sourceTree = "<group>"; };
-		FD10FF43DCDBB1686E7774AB033701EE /* ModesoNavigationTabsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModesoNavigationTabsViewController.swift; path = ModesoNavigationTabs/Sources/ModesoNavigationTabsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		895F19DCAD867414CE5E991B6A2C018B /* Frameworks */ = {
+		8069724C37C84FF6BDC6FF3D2F3858F0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D2031D9048441F3EB5E6A721AA54F60 /* Foundation.framework in Frameworks */,
+				5E0B952FA7A8B1346F59D17CEC7D67CE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,9 +103,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF52276B5DECC5311EEFEDFAEA06B79B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AD41315AA80C95FC26CCB5BEA4D9DFA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08579F4AB07FC2E0397AD4FD286A5992 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		16300CFBFF3C6F24EF7175EA122B804C /* Pods-TestMyPod */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,35 +139,36 @@
 			path = "Target Support Files/Pods-TestMyPod";
 			sourceTree = "<group>";
 		};
-		1C668383B3646945E6B29CD40F7E1F3A /* ModesoNavigationTabs */ = {
-			isa = PBXGroup;
-			children = (
-				B25AC712CD7C3CC8E7A8705B4D7F62C2 /* Array+extension.swift */,
-				FD10FF43DCDBB1686E7774AB033701EE /* ModesoNavigationTabsViewController.swift */,
-				8332890566033369F58EBADF18B03609 /* ModesoNavigationTabsViewController.xib */,
-				258340990F20394EDE1DF072D5849618 /* ModesoNavigationTabsViewController+extension.swift */,
-				4B4BD4905554BC88809296AFFB1B3EDD /* ModesoNavigationTabsViewController+IBDesignables.swift */,
-				DF27F20867BACFDCC13F13D8703B6C33 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */,
-				2BDB1A330194B610FE8EEEBABD0191EF /* Resources */,
-				866223B7D2FC7614BA8A914EDA7F41A1 /* Support Files */,
-			);
-			name = ModesoNavigationTabs;
-			path = ModesoNavigationTabs;
-			sourceTree = "<group>";
-		};
-		2BDB1A330194B610FE8EEEBABD0191EF /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		4CAEC9AF88A8C574B8E9DA261AF3E260 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
 				16300CFBFF3C6F24EF7175EA122B804C /* Pods-TestMyPod */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		683091E671C878BE3734F20D6B8636CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				06C09FE2907D3351296AE63358BF2B34 /* ModesoNavigationTabs.framework */,
+				0C74CCCBB6724BC619B073C0B6D2E7F1 /* ModesoRubberBandScrollView.framework */,
+				9CF9C8402B677F5BA8780C533F034B29 /* Pods_TestMyPod.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70653254A0CC043259DCC6D4A027708D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A98D2689E54E4664FA21826ADED31CB /* Info.plist */,
+				35E5FDC15855FC504C6A4BD1869DF283 /* ModesoNavigationTabs.modulemap */,
+				4C57E7C95B172F4E892902B0DEA35372 /* ModesoNavigationTabs.xcconfig */,
+				6633564E935FF06ED974A38360C30ADA /* ModesoNavigationTabs-dummy.m */,
+				95B58B4EAE5B30AB22296D65DCABB570 /* ModesoNavigationTabs-prefix.pch */,
+				EA6E760DDD111C0F57A6EF3CBEA63E77 /* ModesoNavigationTabs-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ModesoNavigationTabs";
 			sourceTree = "<group>";
 		};
 		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
@@ -148,41 +184,33 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				B50C3671D6577311EA0D90911E30E6C1 /* Pods */,
-				9D9C2D2D0E5DFD449EE54FAA566FA186 /* Products */,
+				F4CDD941F8225E54A9932F7520EEEBEE /* Pods */,
+				683091E671C878BE3734F20D6B8636CF /* Products */,
 				4CAEC9AF88A8C574B8E9DA261AF3E260 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		866223B7D2FC7614BA8A914EDA7F41A1 /* Support Files */ = {
+		86C7982604683052F48966B1745267E3 /* ModesoNavigationTabs */ = {
 			isa = PBXGroup;
 			children = (
-				004E9F7A48A38EB1153476575C719D02 /* Info.plist */,
-				61C0DB9C1F28E82C87E9FD130C61CFEA /* ModesoNavigationTabs.modulemap */,
-				45080DA9A05EED29160C623BF9E20818 /* ModesoNavigationTabs.xcconfig */,
-				86839035396F3C073DF98553080179E6 /* ModesoNavigationTabs-dummy.m */,
-				CE8DE785EC965C90D762F7BA9C364126 /* ModesoNavigationTabs-prefix.pch */,
-				901944C787F7C0FA329C5F07B641D2E5 /* ModesoNavigationTabs-umbrella.h */,
+				D7799908DF88C594CAB3238BF1DE5EF3 /* Array+extension.swift */,
+				644FB296FA5B4CFB2442F1DFB126FDE5 /* ModesoNavigationTabsViewController.swift */,
+				B3522224CAB10125FD4FBE29CA2E503E /* ModesoNavigationTabsViewController.xib */,
+				64D674A5CF836AF4944CCE5F76FC9654 /* ModesoNavigationTabsViewController+extension.swift */,
+				56A71E49C5BDB29E11F33CB076F1047C /* ModesoNavigationTabsViewController+IBDesignables.swift */,
+				CD739E04E31B75AA64B8B3ABBC247235 /* ModesoNavigationTabsViewController+ScrollDelegate.swift */,
+				08579F4AB07FC2E0397AD4FD286A5992 /* Resources */,
+				70653254A0CC043259DCC6D4A027708D /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/ModesoNavigationTabs";
+			name = ModesoNavigationTabs;
+			path = ModesoNavigationTabs;
 			sourceTree = "<group>";
 		};
-		9D9C2D2D0E5DFD449EE54FAA566FA186 /* Products */ = {
+		B9C47DA3A3CDFA99DE418D34A29AA66C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4A4F98D12BFBAFA9F583D3878CF7C529 /* ModesoNavigationTabs.framework */,
-				EE5B231C90F2DE123745765D1E0E7392 /* Pods_TestMyPod.framework */,
 			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B50C3671D6577311EA0D90911E30E6C1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1C668383B3646945E6B29CD40F7E1F3A /* ModesoNavigationTabs */,
-			);
-			name = Pods;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -193,17 +221,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CFA302D2EAD6DAE79358888096466160 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C7BEB5E081682C48A4F9838DE98C5215 /* Info.plist */,
+				99F4925D4262511597841D02A43CC662 /* ModesoRubberBandScrollView.modulemap */,
+				37CC1E2B8DD5F3CE48AE0DB7001AAFD3 /* ModesoRubberBandScrollView.xcconfig */,
+				C86187684FD498051BC177F097034133 /* ModesoRubberBandScrollView-dummy.m */,
+				73DC7C11201DCF805B822B52BA99525E /* ModesoRubberBandScrollView-prefix.pch */,
+				741D0C2BFC1DA3E78BB3337131DECEAD /* ModesoRubberBandScrollView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ModesoRubberBandScrollView";
+			sourceTree = "<group>";
+		};
+		D874AA437163D43AEA2C337953B3AB8B /* ModesoRubberBandScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				DD49274128C6C48EEF3D12E4094B1CED /* ModesoRubberBandScrollView.swift */,
+				B9C47DA3A3CDFA99DE418D34A29AA66C /* Resources */,
+				CFA302D2EAD6DAE79358888096466160 /* Support Files */,
+			);
+			name = ModesoRubberBandScrollView;
+			path = ModesoRubberBandScrollView;
+			sourceTree = "<group>";
+		};
+		F4CDD941F8225E54A9932F7520EEEBEE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				86C7982604683052F48966B1745267E3 /* ModesoNavigationTabs */,
+				D874AA437163D43AEA2C337953B3AB8B /* ModesoRubberBandScrollView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		75933FE124210D5F2F8F4B8FB4F99AB3 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				011AC5611E96E75DA86B22E05A19621E /* Pods-TestMyPod-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8AF61BB5B5839CC6BF3B2E1F866A185F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,25 +266,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DB831058F2A964DE5A797D31716C00DE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2C901AD7744C67224B325E7C1201CB4 /* Pods-TestMyPod-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7D824EB88E18D736FF09815FB2F31A8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CFB938A876DBB8B07FFCBAF6038A77A /* ModesoRubberBandScrollView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0B608CF688B66AD620BFAACC24D51398 /* Pods-TestMyPod */ = {
+		222064AAB5B8FAD13EB2C1696EA31912 /* Pods-TestMyPod */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 95B6A17F10E2276847AB8F1A0D42EBEC /* Build configuration list for PBXNativeTarget "Pods-TestMyPod" */;
+			buildConfigurationList = 86105586C529BFB06D0FF7CD7F3D50EE /* Build configuration list for PBXNativeTarget "Pods-TestMyPod" */;
 			buildPhases = (
-				59F0219616A598D8FFBF455A74C94D56 /* Sources */,
-				895F19DCAD867414CE5E991B6A2C018B /* Frameworks */,
-				75933FE124210D5F2F8F4B8FB4F99AB3 /* Headers */,
+				1DC50BA578D05D1EDB2202DC83FB4690 /* Sources */,
+				8069724C37C84FF6BDC6FF3D2F3858F0 /* Frameworks */,
+				DB831058F2A964DE5A797D31716C00DE /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9BEEC0E958BDE22F98A0D8DE0809947C /* PBXTargetDependency */,
+				642ECAE872A858A7FCC5B5EB3FFF3EC1 /* PBXTargetDependency */,
+				9437D379B65B03AAA1C1B856ACB71B07 /* PBXTargetDependency */,
 			);
 			name = "Pods-TestMyPod";
 			productName = "Pods-TestMyPod";
-			productReference = EE5B231C90F2DE123745765D1E0E7392 /* Pods_TestMyPod.framework */;
+			productReference = 9CF9C8402B677F5BA8780C533F034B29 /* Pods_TestMyPod.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8D5E3E6E3C6C97A28E84965E60027FE9 /* ModesoNavigationTabs */ = {
@@ -248,7 +319,25 @@
 			);
 			name = ModesoNavigationTabs;
 			productName = ModesoNavigationTabs;
-			productReference = 4A4F98D12BFBAFA9F583D3878CF7C529 /* ModesoNavigationTabs.framework */;
+			productReference = 06C09FE2907D3351296AE63358BF2B34 /* ModesoNavigationTabs.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A89234B7EB18BB7A545D27D490B8F1F7 /* ModesoRubberBandScrollView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DA9F84B51AEED11A0DA87F5CAF96A26 /* Build configuration list for PBXNativeTarget "ModesoRubberBandScrollView" */;
+			buildPhases = (
+				8EB53262114AAC061FFE64A7AA7CF74C /* Sources */,
+				EF52276B5DECC5311EEFEDFAEA06B79B /* Frameworks */,
+				679DC69176C1239B4BC288E498E699C1 /* Resources */,
+				E7D824EB88E18D736FF09815FB2F31A8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ModesoRubberBandScrollView;
+			productName = ModesoRubberBandScrollView;
+			productReference = 0C74CCCBB6724BC619B073C0B6D2E7F1 /* ModesoRubberBandScrollView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -268,12 +357,13 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 9D9C2D2D0E5DFD449EE54FAA566FA186 /* Products */;
+			productRefGroup = 683091E671C878BE3734F20D6B8636CF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				8D5E3E6E3C6C97A28E84965E60027FE9 /* ModesoNavigationTabs */,
-				0B608CF688B66AD620BFAACC24D51398 /* Pods-TestMyPod */,
+				A89234B7EB18BB7A545D27D490B8F1F7 /* ModesoRubberBandScrollView */,
+				222064AAB5B8FAD13EB2C1696EA31912 /* Pods-TestMyPod */,
 			);
 		};
 /* End PBXProject section */
@@ -292,14 +382,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		679DC69176C1239B4BC288E498E699C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				966EB54F66CE2E4BACB55F677E60651F /* ModesoRubberBandScrollView.swift in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		59F0219616A598D8FFBF455A74C94D56 /* Sources */ = {
+		1DC50BA578D05D1EDB2202DC83FB4690 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8ED3D19FB83A82B63BD98A2EDE180521 /* Pods-TestMyPod-dummy.m in Sources */,
+				A5BF155246C523FC55E3A8AEB3E9DC25 /* Pods-TestMyPod-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EB53262114AAC061FFE64A7AA7CF74C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CAFCF500E6B81460A3ECECC42504F79 /* ModesoRubberBandScrollView-dummy.m in Sources */,
+				8A716A069F77CC40AAA4676F0DDE1EBF /* ModesoRubberBandScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,11 +427,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9BEEC0E958BDE22F98A0D8DE0809947C /* PBXTargetDependency */ = {
+		642ECAE872A858A7FCC5B5EB3FFF3EC1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ModesoNavigationTabs;
 			target = 8D5E3E6E3C6C97A28E84965E60027FE9 /* ModesoNavigationTabs */;
-			targetProxy = B720423F4590F885BBA0B5D39D0DBF75 /* PBXContainerItemProxy */;
+			targetProxy = 74797DDC888386CD5CF13A4FEF8D2781 /* PBXContainerItemProxy */;
+		};
+		9437D379B65B03AAA1C1B856ACB71B07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ModesoRubberBandScrollView;
+			target = A89234B7EB18BB7A545D27D490B8F1F7 /* ModesoRubberBandScrollView */;
+			targetProxy = 1F701B8F86A1634A6FA35EA3D7DC9640 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -373,7 +486,105 @@
 			};
 			name = Debug;
 		};
-		27080BA0237C6E01B2532CBE139BA118 /* Release */ = {
+		33686CEB0E92ED252E874006A09CB16B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37CC1E2B8DD5F3CE48AE0DB7001AAFD3 /* ModesoRubberBandScrollView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ModesoRubberBandScrollView/ModesoRubberBandScrollView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ModesoRubberBandScrollView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ModesoRubberBandScrollView/ModesoRubberBandScrollView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = ModesoRubberBandScrollView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5AC4874DF43F2733CE8EF3D66541E6CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C57E7C95B172F4E892902B0DEA35372 /* ModesoNavigationTabs.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ModesoNavigationTabs/ModesoNavigationTabs-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ModesoNavigationTabs/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ModesoNavigationTabs/ModesoNavigationTabs.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = ModesoNavigationTabs;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5FB930171E83CF33EE3B55FA34BF0F4F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37CC1E2B8DD5F3CE48AE0DB7001AAFD3 /* ModesoRubberBandScrollView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ModesoRubberBandScrollView/ModesoRubberBandScrollView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ModesoRubberBandScrollView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ModesoRubberBandScrollView/ModesoRubberBandScrollView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = ModesoRubberBandScrollView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B005793ACEFEBFEEE2365CE95A9DFF81 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51394E615DB59232FE698D38A405ADC6 /* Pods-TestMyPod.release.xcconfig */;
 			buildSettings = {
@@ -408,7 +619,7 @@
 			};
 			name = Release;
 		};
-		4F1816004644BED26FD1F313D9CFDD0C /* Debug */ = {
+		C301336910B9331EBF99CB31FD38CEFF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 59417E11D0958CCF77FA950AAD7B1261 /* Pods-TestMyPod.debug.xcconfig */;
 			buildSettings = {
@@ -444,42 +655,9 @@
 			};
 			name = Debug;
 		};
-		5AC4874DF43F2733CE8EF3D66541E6CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45080DA9A05EED29160C623BF9E20818 /* ModesoNavigationTabs.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/ModesoNavigationTabs/ModesoNavigationTabs-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ModesoNavigationTabs/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ModesoNavigationTabs/ModesoNavigationTabs.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = ModesoNavigationTabs;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		E51C3E413C0CB14D873740C4B33F4B97 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45080DA9A05EED29160C623BF9E20818 /* ModesoNavigationTabs.xcconfig */;
+			baseConfigurationReference = 4C57E7C95B172F4E892902B0DEA35372 /* ModesoNavigationTabs.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -570,11 +748,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		95B6A17F10E2276847AB8F1A0D42EBEC /* Build configuration list for PBXNativeTarget "Pods-TestMyPod" */ = {
+		5DA9F84B51AEED11A0DA87F5CAF96A26 /* Build configuration list for PBXNativeTarget "ModesoRubberBandScrollView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4F1816004644BED26FD1F313D9CFDD0C /* Debug */,
-				27080BA0237C6E01B2532CBE139BA118 /* Release */,
+				5FB930171E83CF33EE3B55FA34BF0F4F /* Debug */,
+				33686CEB0E92ED252E874006A09CB16B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86105586C529BFB06D0FF7CD7F3D50EE /* Build configuration list for PBXNativeTarget "Pods-TestMyPod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C301336910B9331EBF99CB31FD38CEFF /* Debug */,
+				B005793ACEFEBFEEE2365CE95A9DFF81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
