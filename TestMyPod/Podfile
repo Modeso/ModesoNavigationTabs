@@ -7,4 +7,5 @@ target 'TestMyPod' do
 
   # Pods for TestMyPod
   pod 'ModesoNavigationTabs', :git => 'https://github.com/Modeso/ModesoNavigationTabs.git'
+  pod 'ModesoRubberBandScrollView', :git => 'https://github.com/Modeso/ModesoRubberBandScrollView.git'
 end

@@ -1,0 +1,6 @@
+framework module ModesoRubberBandScrollView {
+  umbrella header "ModesoRubberBandScrollView-umbrella.h"
+
+  export *
+  module * { export * }
+}

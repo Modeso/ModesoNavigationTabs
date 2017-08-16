@@ -100,7 +100,6 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="tabWidth">
                             <real key="value" value="130"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableGlobalScrolling" value="NO"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="enableShadowOnScrolling" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </viewController>

@@ -90,9 +90,11 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ModesoNavigationTabs/ModesoNavigationTabs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ModesoRubberBandScrollView/ModesoRubberBandScrollView.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ModesoNavigationTabs/ModesoNavigationTabs.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ModesoRubberBandScrollView/ModesoRubberBandScrollView.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
