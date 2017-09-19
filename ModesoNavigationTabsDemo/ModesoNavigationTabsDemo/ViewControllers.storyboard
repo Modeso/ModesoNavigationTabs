@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--First View Controller-->
         <scene sceneID="WFg-4Z-2ii">
             <objects>
-                <viewController storyboardIdentifier="FirstViewController" id="Hr3-7O-pbX" customClass="FirstViewController" customModule="TestMyPod" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstViewController" id="Hr3-7O-pbX" customClass="FirstViewController" customModule="ModesoNavigationTabsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gMD-Jw-BxA"/>
                         <viewControllerLayoutGuide type="bottom" id="I0b-1X-z8Q"/>
@@ -281,21 +281,22 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="9Rc-j2-R6a" secondAttribute="trailing" constant="50" id="61u-kC-9ff"/>
-                                    <constraint firstAttribute="trailing" secondItem="l3E-Cm-M0o" secondAttribute="trailing" constant="50" id="85U-TZ-ITP"/>
+                                    <constraint firstItem="bEb-pZ-5Db" firstAttribute="centerX" secondItem="cGO-IK-V1r" secondAttribute="centerX" id="5YQ-St-4Ub"/>
                                     <constraint firstItem="vXB-Im-wGj" firstAttribute="top" secondItem="l3E-Cm-M0o" secondAttribute="bottom" constant="20" id="EnY-k2-aIV"/>
-                                    <constraint firstItem="bEb-pZ-5Db" firstAttribute="leading" secondItem="cGO-IK-V1r" secondAttribute="leading" constant="50" id="Hdb-YI-gZd"/>
-                                    <constraint firstItem="vXB-Im-wGj" firstAttribute="leading" secondItem="cGO-IK-V1r" secondAttribute="leading" constant="50" id="Q3p-Qk-loW"/>
+                                    <constraint firstItem="phG-Gj-Ybg" firstAttribute="centerX" secondItem="cGO-IK-V1r" secondAttribute="centerX" id="FtS-eO-MJv"/>
+                                    <constraint firstItem="l3E-Cm-M0o" firstAttribute="centerX" secondItem="cGO-IK-V1r" secondAttribute="centerX" id="JkI-sh-oQA"/>
                                     <constraint firstItem="phG-Gj-Ybg" firstAttribute="top" secondItem="cGO-IK-V1r" secondAttribute="top" id="Rwx-3o-hI6"/>
-                                    <constraint firstItem="l3E-Cm-M0o" firstAttribute="leading" secondItem="cGO-IK-V1r" secondAttribute="leading" constant="50" id="Uup-H5-zh1"/>
-                                    <constraint firstAttribute="trailing" secondItem="bEb-pZ-5Db" secondAttribute="trailing" constant="50" id="eM7-PP-Lq7"/>
-                                    <constraint firstItem="9Rc-j2-R6a" firstAttribute="leading" secondItem="cGO-IK-V1r" secondAttribute="leading" constant="50" id="gV4-K1-D2s"/>
+                                    <constraint firstItem="9Rc-j2-R6a" firstAttribute="centerX" secondItem="cGO-IK-V1r" secondAttribute="centerX" id="VtP-u5-yTV"/>
+                                    <constraint firstItem="phG-Gj-Ybg" firstAttribute="leading" secondItem="cGO-IK-V1r" secondAttribute="leading" constant="50" id="WuZ-Et-Z4a"/>
+                                    <constraint firstAttribute="trailing" secondItem="phG-Gj-Ybg" secondAttribute="trailing" constant="50" id="fhx-wq-mMo"/>
+                                    <constraint firstItem="bEb-pZ-5Db" firstAttribute="width" secondItem="phG-Gj-Ybg" secondAttribute="width" id="gIO-gQ-SaA"/>
+                                    <constraint firstItem="vXB-Im-wGj" firstAttribute="centerX" secondItem="cGO-IK-V1r" secondAttribute="centerX" id="hdP-YI-77J"/>
+                                    <constraint firstItem="9Rc-j2-R6a" firstAttribute="width" secondItem="phG-Gj-Ybg" secondAttribute="width" id="hvz-vt-GjT"/>
                                     <constraint firstAttribute="bottom" secondItem="vXB-Im-wGj" secondAttribute="bottom" constant="20" id="ibT-Ob-iIB"/>
-                                    <constraint firstItem="phG-Gj-Ybg" firstAttribute="leading" secondItem="cGO-IK-V1r" secondAttribute="leading" constant="50" id="mpP-ny-aNv"/>
-                                    <constraint firstAttribute="trailing" secondItem="phG-Gj-Ybg" secondAttribute="trailing" constant="50" id="n5E-7P-2gG"/>
                                     <constraint firstItem="bEb-pZ-5Db" firstAttribute="top" secondItem="9Rc-j2-R6a" secondAttribute="bottom" constant="20" id="oJT-sg-2go"/>
+                                    <constraint firstItem="vXB-Im-wGj" firstAttribute="width" secondItem="phG-Gj-Ybg" secondAttribute="width" id="qjX-6I-FkH"/>
+                                    <constraint firstItem="l3E-Cm-M0o" firstAttribute="width" secondItem="phG-Gj-Ybg" secondAttribute="width" id="sbF-6J-4EO"/>
                                     <constraint firstItem="9Rc-j2-R6a" firstAttribute="top" secondItem="phG-Gj-Ybg" secondAttribute="bottom" constant="20" id="u7g-tB-Bpd"/>
-                                    <constraint firstAttribute="trailing" secondItem="vXB-Im-wGj" secondAttribute="trailing" constant="50" id="ucE-S5-PMU"/>
                                     <constraint firstItem="l3E-Cm-M0o" firstAttribute="top" secondItem="bEb-pZ-5Db" secondAttribute="bottom" constant="20" id="yOJ-Oi-DR5"/>
                                 </constraints>
                                 <connections>
@@ -321,7 +322,7 @@
         <!--Second View Controller-->
         <scene sceneID="3g0-Jf-RKT">
             <objects>
-                <viewController storyboardIdentifier="SecondViewController" id="dMK-hH-O70" customClass="SecondViewController" customModule="TestMyPod" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SecondViewController" id="dMK-hH-O70" customClass="SecondViewController" customModule="ModesoNavigationTabsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="czj-12-GCl"/>
                         <viewControllerLayoutGuide type="bottom" id="911-ur-dQQ"/>
@@ -702,7 +703,7 @@
         <!--Third View Controller-->
         <scene sceneID="IIU-O1-CFi">
             <objects>
-                <viewController storyboardIdentifier="ThirdViewController" id="2eT-28-94s" customClass="ThirdViewController" customModule="TestMyPod" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThirdViewController" id="2eT-28-94s" customClass="ThirdViewController" customModule="ModesoNavigationTabsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pk2-Mj-aJU"/>
                         <viewControllerLayoutGuide type="bottom" id="vGN-Mz-Hd3"/>
@@ -1079,7 +1080,7 @@
         <!--Forth View Controller-->
         <scene sceneID="KQf-2N-LgX">
             <objects>
-                <viewController storyboardIdentifier="ForthViewController" id="HvD-KT-Kja" customClass="ForthViewController" customModule="TestMyPod" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForthViewController" id="HvD-KT-Kja" customClass="ForthViewController" customModule="ModesoNavigationTabsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JfZ-nF-wZT"/>
                         <viewControllerLayoutGuide type="bottom" id="wls-ey-EJG"/>
