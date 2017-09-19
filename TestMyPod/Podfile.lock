@@ -14,13 +14,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ModesoRubberBandScrollView:
-    :commit: 2cc855a69c1c34a5c4d1d43cebf1eab7d3120ca7
+    :commit: a306cca4c00039e7b802b1f886a5b9e4805f72e5
     :git: https://github.com/Modeso/ModesoRubberBandScrollView.git
 
 SPEC CHECKSUMS:
   ModesoNavigationTabs: b9be1b8d05fc6eb8bd5604cd3898965a35b2fc5f
   ModesoRubberBandScrollView: 2387fa80931f6509042de595fab32ad99e1b62f7
 
-PODFILE CHECKSUM: d1ad4dffe47fe6a64b4655901f09c10059c8675d
+PODFILE CHECKSUM: 5010af59cc3244b3288ab2be30fd0f8b9ae05287
 
 COCOAPODS: 1.2.0

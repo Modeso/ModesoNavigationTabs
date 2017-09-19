@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'TestMyPod' do
+target 'ModesoNavigationTabsDemo' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for TestMyPod
+  # Pods for ModesoNavigationTabsDemo
   pod 'ModesoNavigationTabs', path: './../'
   pod 'ModesoRubberBandScrollView', :git => 'https://github.com/Modeso/ModesoRubberBandScrollView.git'
 end
