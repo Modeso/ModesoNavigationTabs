@@ -21,11 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		112FDA0E0A50AB08C5D7E553 /* Pods-TestMyPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMyPod.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestMyPod/Pods-TestMyPod.release.xcconfig"; sourceTree = "<group>"; };
 		21A54A3EF4A64D3B2AF89E99 /* Pods_ModesoNavigationTabsDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModesoNavigationTabsDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6415E9F9E757877D533E0D3F /* Pods_TestMyPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestMyPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A35760E25301A553A423582 /* Pods-ModesoNavigationTabsDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModesoNavigationTabsDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ModesoNavigationTabsDemo/Pods-ModesoNavigationTabsDemo.release.xcconfig"; sourceTree = "<group>"; };
-		871252DC0D0F2FC066656B3F /* Pods-TestMyPod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestMyPod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestMyPod/Pods-TestMyPod.debug.xcconfig"; sourceTree = "<group>"; };
 		A54545071E89133D00C3EB72 /* ForthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForthViewController.swift; sourceTree = "<group>"; };
 		A5F266811E82BF610021EEB9 /* ModesoNavigationTabsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModesoNavigationTabsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F266841E82BF610021EEB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,8 +53,6 @@
 		617B4A6A2E0B6161B965FEFF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				871252DC0D0F2FC066656B3F /* Pods-TestMyPod.debug.xcconfig */,
-				112FDA0E0A50AB08C5D7E553 /* Pods-TestMyPod.release.xcconfig */,
 				FE93138DA5232516662F07A1 /* Pods-ModesoNavigationTabsDemo.debug.xcconfig */,
 				6A35760E25301A553A423582 /* Pods-ModesoNavigationTabsDemo.release.xcconfig */,
 			);
@@ -111,7 +106,6 @@
 		E39297A28D237872A7E0A015 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6415E9F9E757877D533E0D3F /* Pods_TestMyPod.framework */,
 				21A54A3EF4A64D3B2AF89E99 /* Pods_ModesoNavigationTabsDemo.framework */,
 			);
 			name = Frameworks;
@@ -136,7 +130,7 @@
 			dependencies = (
 			);
 			name = ModesoNavigationTabsDemo;
-			productName = TestMyPod;
+			productName = ModesoNavigationTabsDemo;
 			productReference = A5F266811E82BF610021EEB9 /* ModesoNavigationTabsDemo.app */;
 			productType = "com.apple.product-type.application";
 		};

@@ -266,7 +266,7 @@
 				734E89545A041BE0F5386F81C82ABD30 /* ModesoNavigationTabs-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "TestMyPod/Pods/Target Support Files/ModesoNavigationTabs";
+			path = "ModesoNavigationTabsDemo/Pods/Target Support Files/ModesoNavigationTabs";
 			sourceTree = "<group>";
 		};
 		EB174B17E0690B1100C1E90F5E8C8C64 /* Targets Support Files */ = {
