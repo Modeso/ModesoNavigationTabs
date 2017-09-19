@@ -1350,22 +1350,23 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="8xD-UK-osW" secondAttribute="trailing" constant="50" id="2kj-5I-3bo"/>
-                                    <constraint firstAttribute="trailing" secondItem="wW4-Xi-MF0" secondAttribute="trailing" constant="50" id="3nx-9h-VYO"/>
-                                    <constraint firstItem="8xD-UK-osW" firstAttribute="leading" secondItem="wy9-RH-uWI" secondAttribute="leading" constant="50" id="5xX-ta-6hj"/>
-                                    <constraint firstItem="ed6-UX-eAD" firstAttribute="leading" secondItem="wy9-RH-uWI" secondAttribute="leading" constant="50" id="DJO-ZK-3Jh"/>
-                                    <constraint firstItem="1jS-oT-UMu" firstAttribute="leading" secondItem="wy9-RH-uWI" secondAttribute="leading" constant="50" id="FyE-sF-7uP"/>
+                                    <constraint firstItem="1jS-oT-UMu" firstAttribute="width" secondItem="9I4-hC-g0y" secondAttribute="width" id="5Ew-h0-cE4"/>
+                                    <constraint firstItem="9I4-hC-g0y" firstAttribute="centerX" secondItem="wy9-RH-uWI" secondAttribute="centerX" id="EWP-gP-lmf"/>
                                     <constraint firstAttribute="bottom" secondItem="wW4-Xi-MF0" secondAttribute="bottom" constant="20" id="GFI-Po-n9f"/>
                                     <constraint firstItem="1jS-oT-UMu" firstAttribute="top" secondItem="9I4-hC-g0y" secondAttribute="bottom" constant="20" id="HAQ-n9-eEt"/>
                                     <constraint firstItem="ed6-UX-eAD" firstAttribute="top" secondItem="8xD-UK-osW" secondAttribute="bottom" constant="20" id="Lsn-yu-2pV"/>
-                                    <constraint firstItem="wW4-Xi-MF0" firstAttribute="leading" secondItem="wy9-RH-uWI" secondAttribute="leading" constant="50" id="SUu-Xp-d2k"/>
                                     <constraint firstItem="8xD-UK-osW" firstAttribute="top" secondItem="1jS-oT-UMu" secondAttribute="bottom" constant="20" id="Stq-Vr-W5n"/>
-                                    <constraint firstAttribute="trailing" secondItem="1jS-oT-UMu" secondAttribute="trailing" constant="50" id="atP-pi-pm7"/>
+                                    <constraint firstItem="ed6-UX-eAD" firstAttribute="centerX" secondItem="wy9-RH-uWI" secondAttribute="centerX" id="UpY-2I-4xH"/>
+                                    <constraint firstItem="8xD-UK-osW" firstAttribute="centerX" secondItem="wy9-RH-uWI" secondAttribute="centerX" id="VjV-Xy-B6x"/>
+                                    <constraint firstItem="ed6-UX-eAD" firstAttribute="width" secondItem="9I4-hC-g0y" secondAttribute="width" id="gKw-Zd-d63"/>
                                     <constraint firstAttribute="trailing" secondItem="9I4-hC-g0y" secondAttribute="trailing" constant="50" id="gdJ-dK-Dfe"/>
+                                    <constraint firstItem="wW4-Xi-MF0" firstAttribute="centerX" secondItem="wy9-RH-uWI" secondAttribute="centerX" id="gmf-sG-iL1"/>
                                     <constraint firstItem="wW4-Xi-MF0" firstAttribute="top" secondItem="ed6-UX-eAD" secondAttribute="bottom" constant="23" id="gz4-gH-07i"/>
                                     <constraint firstItem="9I4-hC-g0y" firstAttribute="top" secondItem="wy9-RH-uWI" secondAttribute="top" id="ksH-Kx-MdY"/>
-                                    <constraint firstAttribute="trailing" secondItem="ed6-UX-eAD" secondAttribute="trailing" constant="50" id="lRp-rl-kMs"/>
                                     <constraint firstItem="9I4-hC-g0y" firstAttribute="leading" secondItem="wy9-RH-uWI" secondAttribute="leading" constant="50" id="nwr-Fe-bfM"/>
+                                    <constraint firstItem="wW4-Xi-MF0" firstAttribute="width" secondItem="9I4-hC-g0y" secondAttribute="width" id="qrx-nu-yHY"/>
+                                    <constraint firstItem="8xD-UK-osW" firstAttribute="width" secondItem="9I4-hC-g0y" secondAttribute="width" id="tTh-3j-iR6"/>
+                                    <constraint firstItem="1jS-oT-UMu" firstAttribute="centerX" secondItem="wy9-RH-uWI" secondAttribute="centerX" id="uJ7-it-S5a"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="HvD-KT-Kja" id="uzt-fP-0e3"/>
