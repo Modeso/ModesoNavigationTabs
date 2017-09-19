@@ -13,6 +13,8 @@
 
 ModesoNavigationTabs is a Navigation Tabs library written in Swift. It enables switching between different UIViewController in an elegant way with a lot of features and ease of use.
 
+The design for the demo project is depending on [Yaroslav Zubko](https://dribbble.com/madebyanton)'s [design](https://dribbble.com/shots/3233957--15-Horizontal-Menu-Slider).
+
 <img src="https://raw.githubusercontent.com/Modeso/ModesoNavigationTabs/master/2.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 <img src="https://raw.githubusercontent.com/Modeso/ModesoNavigationTabs/master/1.gif?token=AASve6-SxJXgc73hDhBM6U7rkDxdw8Zdks5Y4lk5wA%3D%3D" alt="GifDemo">
 
