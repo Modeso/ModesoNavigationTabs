@@ -371,7 +371,6 @@
                                             <constraint firstItem="HuH-UY-7lm" firstAttribute="top" secondItem="zBO-tK-mIS" secondAttribute="bottom" constant="10" id="O3N-VL-7Rc"/>
                                             <constraint firstAttribute="trailing" secondItem="HuH-UY-7lm" secondAttribute="trailing" constant="160" id="Ono-7g-zzU"/>
                                             <constraint firstItem="HuH-UY-7lm" firstAttribute="top" secondItem="zBO-tK-mIS" secondAttribute="bottom" constant="10" id="Ow8-k7-0VZ"/>
-                                            <constraint firstAttribute="width" constant="275" id="TCD-ro-weY"/>
                                             <constraint firstItem="zBO-tK-mIS" firstAttribute="top" secondItem="sdr-TC-rE2" secondAttribute="top" constant="10" id="UFt-RU-kW8"/>
                                             <constraint firstItem="zBO-tK-mIS" firstAttribute="leading" secondItem="sdr-TC-rE2" secondAttribute="leading" constant="15" id="b7z-rr-9xj"/>
                                             <constraint firstAttribute="height" constant="60" id="nW7-eW-g8U"/>
@@ -657,28 +656,29 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ILS-uw-De1" secondAttribute="trailing" constant="50" id="3D3-D5-6Tk"/>
+                                    <constraint firstItem="ILS-uw-De1" firstAttribute="width" secondItem="sdr-TC-rE2" secondAttribute="width" id="3aO-3c-tE8"/>
+                                    <constraint firstItem="ykg-8h-bT9" firstAttribute="width" secondItem="sdr-TC-rE2" secondAttribute="width" id="3gy-9g-GFK"/>
                                     <constraint firstItem="ILS-uw-De1" firstAttribute="top" secondItem="NXg-qs-Aqc" secondAttribute="bottom" constant="20" id="4Jm-tf-nu7"/>
-                                    <constraint firstItem="ykg-8h-bT9" firstAttribute="leading" secondItem="EyX-Og-jeo" secondAttribute="leading" constant="50" id="54z-sG-gd2"/>
                                     <constraint firstItem="dSo-g8-vUg" firstAttribute="top" secondItem="VUc-vA-SXt" secondAttribute="bottom" constant="23" id="7sf-YV-Fl0"/>
+                                    <constraint firstItem="NXg-qs-Aqc" firstAttribute="centerX" secondItem="EyX-Og-jeo" secondAttribute="centerX" id="87E-LO-DGj"/>
+                                    <constraint firstItem="ILS-uw-De1" firstAttribute="centerX" secondItem="EyX-Og-jeo" secondAttribute="centerX" id="AN8-2n-87z"/>
                                     <constraint firstAttribute="bottom" secondItem="dSo-g8-vUg" secondAttribute="bottom" constant="20" id="DLQ-Wr-4cH"/>
-                                    <constraint firstAttribute="trailing" secondItem="ykg-8h-bT9" secondAttribute="trailing" constant="50" id="HLJ-90-pgz"/>
-                                    <constraint firstItem="dSo-g8-vUg" firstAttribute="leading" secondItem="EyX-Og-jeo" secondAttribute="leading" constant="50" id="Upz-eC-rTz"/>
-                                    <constraint firstAttribute="trailing" secondItem="VUc-vA-SXt" secondAttribute="trailing" constant="50" id="UuK-Ud-nmc"/>
-                                    <constraint firstItem="doQ-Wd-kyk" firstAttribute="leading" secondItem="EyX-Og-jeo" secondAttribute="leading" constant="50" id="VfW-1h-fxA"/>
-                                    <constraint firstAttribute="trailing" secondItem="doQ-Wd-kyk" secondAttribute="trailing" constant="50" id="X4T-Zd-FfD"/>
+                                    <constraint firstItem="ykg-8h-bT9" firstAttribute="centerX" secondItem="EyX-Og-jeo" secondAttribute="centerX" id="F6h-Jr-XnV"/>
+                                    <constraint firstItem="VUc-vA-SXt" firstAttribute="centerX" secondItem="EyX-Og-jeo" secondAttribute="centerX" id="H3w-bg-8h1"/>
+                                    <constraint firstItem="doQ-Wd-kyk" firstAttribute="centerX" secondItem="EyX-Og-jeo" secondAttribute="centerX" id="J9b-41-AeW"/>
+                                    <constraint firstAttribute="trailing" secondItem="sdr-TC-rE2" secondAttribute="trailing" constant="50" id="LVn-lZ-wpF"/>
+                                    <constraint firstItem="VUc-vA-SXt" firstAttribute="width" secondItem="sdr-TC-rE2" secondAttribute="width" id="QRK-Mz-g81"/>
                                     <constraint firstItem="NXg-qs-Aqc" firstAttribute="top" secondItem="sdr-TC-rE2" secondAttribute="bottom" constant="20" id="Ycq-4O-KaR"/>
-                                    <constraint firstAttribute="trailing" secondItem="sdr-TC-rE2" secondAttribute="trailing" constant="50" id="bdn-ms-s0i"/>
-                                    <constraint firstAttribute="trailing" secondItem="dSo-g8-vUg" secondAttribute="trailing" constant="50" id="dOo-bB-rT8"/>
+                                    <constraint firstItem="sdr-TC-rE2" firstAttribute="leading" secondItem="EyX-Og-jeo" secondAttribute="leading" constant="50" id="Zkb-BE-B1t"/>
+                                    <constraint firstItem="sdr-TC-rE2" firstAttribute="centerX" secondItem="EyX-Og-jeo" secondAttribute="centerX" id="an3-o5-tKZ"/>
+                                    <constraint firstItem="NXg-qs-Aqc" firstAttribute="width" secondItem="sdr-TC-rE2" secondAttribute="width" id="gGY-mX-UCf"/>
                                     <constraint firstItem="ykg-8h-bT9" firstAttribute="top" secondItem="ILS-uw-De1" secondAttribute="bottom" constant="20" id="gXa-Vz-m01"/>
-                                    <constraint firstAttribute="trailing" secondItem="NXg-qs-Aqc" secondAttribute="trailing" constant="50" id="gcp-5N-xD0"/>
                                     <constraint firstItem="doQ-Wd-kyk" firstAttribute="top" secondItem="ykg-8h-bT9" secondAttribute="bottom" constant="20" id="joY-2u-N5s"/>
-                                    <constraint firstItem="ILS-uw-De1" firstAttribute="leading" secondItem="EyX-Og-jeo" secondAttribute="leading" constant="50" id="mvU-Bm-c7j"/>
+                                    <constraint firstItem="dSo-g8-vUg" firstAttribute="centerX" secondItem="EyX-Og-jeo" secondAttribute="centerX" id="oFU-An-fLo"/>
                                     <constraint firstItem="sdr-TC-rE2" firstAttribute="top" secondItem="EyX-Og-jeo" secondAttribute="top" id="pbd-vX-IkH"/>
                                     <constraint firstItem="VUc-vA-SXt" firstAttribute="top" secondItem="doQ-Wd-kyk" secondAttribute="bottom" constant="20" id="pmr-RF-P1a"/>
-                                    <constraint firstItem="NXg-qs-Aqc" firstAttribute="leading" secondItem="EyX-Og-jeo" secondAttribute="leading" constant="50" id="tDG-sm-j7d"/>
-                                    <constraint firstItem="VUc-vA-SXt" firstAttribute="leading" secondItem="EyX-Og-jeo" secondAttribute="leading" constant="50" id="txl-WY-4ic"/>
-                                    <constraint firstItem="sdr-TC-rE2" firstAttribute="leading" secondItem="EyX-Og-jeo" secondAttribute="leading" constant="50" id="upy-7h-fNb"/>
+                                    <constraint firstItem="doQ-Wd-kyk" firstAttribute="width" secondItem="sdr-TC-rE2" secondAttribute="width" id="ryN-oP-Q7E"/>
+                                    <constraint firstItem="dSo-g8-vUg" firstAttribute="width" secondItem="sdr-TC-rE2" secondAttribute="width" id="w0O-Fr-x0c"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="dMK-hH-O70" id="QTo-Ma-veC"/>
